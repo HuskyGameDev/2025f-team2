@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://co48nl1f8gywv"]
+
+[ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
+[ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
+[ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid")]
+texture_filter = 1
+script = ExtResource("1_g28u0")
+fallSpeed = 0.6
+boxFiller = NodePath("BoxFiller")
+boxGrid = NodePath("BaseGridPos")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(108, 30)
+points = PackedVector2Array(-2, -6, -2, 135, 105, 135, 105, -6)
+width = 4.0
+default_color = Color(0.930736, 2.98411e-06, 0.567304, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="BaseGridPos" type="Node2D" parent="." node_paths=PackedStringArray("levelManager")]
+position = Vector2(116, 154)
+script = ExtResource("4_fe8sf")
+levelManager = NodePath("..")
+grid_space = 17
+grid_size = Vector2i(6, 9)
+
+[node name="BoxFiller" type="Node2D" parent="." node_paths=PackedStringArray("levelGrid")]
+position = Vector2(76, 141)
+script = ExtResource("3_1omkh")
+levelGrid = NodePath("../BaseGridPos")

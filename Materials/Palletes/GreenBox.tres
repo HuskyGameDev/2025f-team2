@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dasascupv172m"]
+
+[ext_resource type="Shader" uid="uid://dvw0kwy006b3r" path="res://Scripts/Shaders/PalleteShader.gdshader" id="1_auhk4"]
+[ext_resource type="Texture2D" uid="uid://8bcvxehauxo6" path="res://Artwork/GameObjects/BoxPalleteBase.png" id="2_gdutf"]
+[ext_resource type="Texture2D" uid="uid://dmesep6xt3q28" path="res://Artwork/GameObjects/BoxPalleteGreen.png" id="3_mcs57"]
+
+[resource]
+shader = ExtResource("1_auhk4")
+shader_parameter/brightness = 0.0
+shader_parameter/source_palette = ExtResource("2_gdutf")
+shader_parameter/target_palette = ExtResource("3_mcs57")

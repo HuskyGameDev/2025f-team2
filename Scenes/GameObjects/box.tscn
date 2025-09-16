@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5iay4hp23ysi"]
+
+[ext_resource type="Material" uid="uid://dasascupv172m" path="res://Materials/Palletes/GreenBox.tres" id="1_rgigi"]
+[ext_resource type="Texture2D" uid="uid://ce0xt248y0d5x" path="res://Artwork/GameObjects/Box.png" id="2_0s7tu"]
+[ext_resource type="Script" uid="uid://btnd83logedww" path="res://Scripts/Gameplay/BoxHandler.gd" id="3_gqkxm"]
+[ext_resource type="Material" uid="uid://bywqrakadbhh4" path="res://Materials/Palletes/RedBox.tres" id="4_0s7tu"]
+
+[sub_resource type="SystemFont" id="SystemFont_g28u0"]
+font_names = PackedStringArray("Cursive")
+hinting = 2
+keep_rounding_remainders = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_1omkh"]
+font = SubResource("SystemFont_g28u0")
+font_size = 13
+
+[node name="Box" type="Sprite2D"]
+material = ExtResource("1_rgigi")
+texture = ExtResource("2_0s7tu")
+script = ExtResource("3_gqkxm")
+palletes = Array[Material]([ExtResource("1_rgigi"), ExtResource("4_0s7tu")])
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 10.0
+offset_bottom = 11.0
+text = "9"
+label_settings = SubResource("LabelSettings_1omkh")
+horizontal_alignment = 1
+vertical_alignment = 1
