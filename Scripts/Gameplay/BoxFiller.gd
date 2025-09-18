@@ -10,8 +10,16 @@ func fillBlock(block : BoxHandler):
 	add_child(block)
 	block.position = Vector2(0,0)
 	fblock = block
-	block._set_color(randi_range(0,1))
-	
+	block._set_color(randi_range(0,2))
+	var time = 1.0
+	while (fblock != null):
+		if fblock.blockValue >= 20:
+			break
+			return
+		fblock._addToBlock()
+		await get_tree().create_timer(time).timeout
+		if time > 0.01:
+			time /= 1.3
 
 func _input(event: InputEvent) -> void:
 	if fblock == null:
@@ -19,5 +27,3 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("release"):
 		levelGrid.addBlock(fblock)
 		fblock = null
-	if event.is_action_pressed("ui_text_submit"):
-		fblock._addToBlock()

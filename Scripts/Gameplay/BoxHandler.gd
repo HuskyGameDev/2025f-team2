@@ -33,3 +33,9 @@ func _set_color(col : int):
 func _addToBlock():
 	blockValue += 1
 	_updateBoxText()
+
+func mergeBox(grid:LevelGrid, downBlock:BoxHandler):
+	downBlock.blockValue += blockValue
+	downBlock._updateBoxText()
+	grid.blocks[bPosition.y][bPosition.x] = null
+	queue_free()

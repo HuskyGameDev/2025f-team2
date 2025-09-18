@@ -32,7 +32,7 @@ func addBlock(block : BoxHandler):
 func setActiveBlock(block : BoxHandler):
 	active_block = block
 
-func removeActiveBlock(block : BoxHandler):
+func removeActiveBlock():
 	active_block = null
 
 func spawnBlockAtPosition(pos : Vector2i, color : int):
@@ -116,16 +116,13 @@ func place_block(block : BoxHandler):
 	next_block()
 
 func next_block():
-	active_block = null
+	removeActiveBlock()
 	levelManager.spawnBlock()
 
 func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
 	if upBlock.bColor != downBlock.bColor:
 		return
-	downBlock.blockValue += upBlock.blockValue
-	downBlock._updateBoxText()
-	blocks[upBlock.bPosition.y][upBlock.bPosition.x] = null
-	upBlock.queue_free()
+	upBlock.mergeBox(self, downBlock)
 	next_block()
 
 func blockCheck(upBlock : BoxHandler, downBlock : BoxHandler) -> bool: #works regardless of position
