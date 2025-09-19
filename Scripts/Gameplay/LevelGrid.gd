@@ -49,70 +49,19 @@ func setPositionOfBlockOnBoard(block : BoxHandler):
 	block.position = Vector2(block.bPosition.x*grid_space, -block.bPosition.y*grid_space)
 
 func moveBlockDown(block : BoxHandler):
-	if (block.bPosition.y - 1) < 0:
-		place_block(block)
-		return
-	if blocks[block.bPosition.y-1][block.bPosition.x] != null:
-		if blockCheck(blocks[block.bPosition.y][block.bPosition.x], blocks[block.bPosition.y-1][block.bPosition.x]):
-			mergeBlocks(blocks[block.bPosition.y][block.bPosition.x], blocks[block.bPosition.y-1][block.bPosition.x])
-		else:
-			place_block(block)
-		return
-	#move Block Downwards
-	blocks[block.bPosition.y][block.bPosition.x] = null
-	block.bPosition.y -= 1
-	blocks[block.bPosition.y][block.bPosition.x] = block
-	setPositionOfBlockOnBoard(block)
+	block.moveDown()
 
-func moveBlockLeft(block : BoxHandler):
-	if (block.bPosition.x - 1) < 0:
-		return
-	if blocks[block.bPosition.y][block.bPosition.x-1] != null:
-		return
-	#move Block Downwards
-	blocks[block.bPosition.y][block.bPosition.x] = null
-	block.bPosition.x -= 1
-	blocks[block.bPosition.y][block.bPosition.x] = block
-	setPositionOfBlockOnBoard(block)
+func moveBlockLeft(block : BoxHandler, merge : bool = false):
+	block.moveLeft(merge)
 	
-func moveBlockRight(block : BoxHandler):
-	if (block.bPosition.x + 1) > grid_size.x-1:
-		return
-	if blocks[block.bPosition.y][block.bPosition.x+1] != null:
-		return
-	#move Block Downwards
-	blocks[block.bPosition.y][block.bPosition.x] = null
-	block.bPosition.x += 1
-	blocks[block.bPosition.y][block.bPosition.x] = block
-	setPositionOfBlockOnBoard(block)
+func moveBlockRight(block : BoxHandler ,merge : bool = false):
+	block.moveRight(merge)
 
 func hardDropBlock(block : BoxHandler):
-	var y = grid_size.y-1
-	while(y >= 0):
-		if y == 0:
-			blocks[block.bPosition.y][block.bPosition.x] = null
-			block.bPosition.y = y
-			blocks[block.bPosition.y][block.bPosition.x] = block
-			setPositionOfBlockOnBoard(block)
-			place_block(block)
-			return
-		if blocks[y-1][block.bPosition.x] == null or blocks[y-1][block.bPosition.x].placed == false:
-			y -= 1
-		else:
-			if blockCheck(blocks[block.bPosition.y][block.bPosition.x], blocks[y-1][block.bPosition.x]):
-				mergeBlocks(blocks[block.bPosition.y][block.bPosition.x], blocks[y-1][block.bPosition.x])
-				return
-			else:
-				blocks[block.bPosition.y][block.bPosition.x] = null
-				block.bPosition.y = y
-				blocks[block.bPosition.y][block.bPosition.x] = block
-				setPositionOfBlockOnBoard(block)
-				place_block(block)
-				return
-	
-	
+	block.hardDrop()
+
 func place_block(block : BoxHandler):
-	block.placed = true
+	block.placeBlock()
 	next_block()
 
 func next_block():
@@ -122,13 +71,26 @@ func next_block():
 func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
 	if upBlock.bColor != downBlock.bColor:
 		return
-	upBlock.mergeBox(self, downBlock)
-	next_block()
+	upBlock.mergeBox(downBlock)
 
 func blockCheck(upBlock : BoxHandler, downBlock : BoxHandler) -> bool: #works regardless of position
 	if upBlock == downBlock:
 		return false
 	return upBlock.bColor == downBlock.bColor
+
+func get_all_blocks_in_board() -> Array:
+	var vaildBlocks = []
+	for i in grid_size.y:
+		for j in grid_size.x:
+			if blocks[i][j] != null:
+				vaildBlocks.append(blocks[i][j])
+	return vaildBlocks
+
+func move_all_blocks_left():
+	var vaildBlocks = get_all_blocks_in_board()
+	for block in vaildBlocks:
+		moveBlockLeft(block, true)
+		moveBlockDown(block)
 
 func _input(event: InputEvent) -> void:
 	if active_block == null:
@@ -141,3 +103,5 @@ func _input(event: InputEvent) -> void:
 		hardDropBlock(active_block)
 	if event.is_action_pressed("down"):
 		moveBlockDown(active_block)
+	if event.is_action_pressed("ui_text_indent"):
+		move_all_blocks_left()
