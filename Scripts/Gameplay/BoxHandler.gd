@@ -40,15 +40,19 @@ func mergeBox(downBlock:BoxHandler):
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	queue_free()
 
-func moveDown():
+func moveDown(control : bool = true):
 	if (bPosition.y - 1) < 0:
-		levelGrid.place_block(self)
+		await levelGrid.place_block(self)
+		if control:
+			levelGrid.next_block()
 		return
 	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null:
 		if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x]):
 			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x])
 		else:
-			levelGrid.place_block(self)
+			await levelGrid.place_block(self)
+			if control:
+				levelGrid.next_block()
 		return
 	#move Block Downwards
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
@@ -92,7 +96,8 @@ func hardDrop():
 			bPosition.y = y
 			levelGrid.blocks[bPosition.y][bPosition.x] = self
 			levelGrid.setPositionOfBlockOnBoard(self)
-			levelGrid.place_block(self)
+			await levelGrid.place_block(self)
+			levelGrid.next_block()
 			return
 		if levelGrid.blocks[y-1][bPosition.x] == null or levelGrid.blocks[y-1][bPosition.x].placed == false:
 			y -= 1
@@ -106,7 +111,8 @@ func hardDrop():
 				bPosition.y = y
 				levelGrid.blocks[bPosition.y][bPosition.x] = self
 				levelGrid.setPositionOfBlockOnBoard(self)
-				levelGrid.place_block(self)
+				await levelGrid.place_block(self)
+				levelGrid.next_block()
 				return
 
 func placeBlock():

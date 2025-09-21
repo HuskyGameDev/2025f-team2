@@ -4,6 +4,8 @@ class_name LevelManager
 
 var block_node = load("res://Scenes/GameObjects/box.tscn")
 
+var arrow_node = load("res://Scenes/GameObjects/arrow.tscn")
+
 @export var fallSpeed : float = 1.25
 var fallTimer : Timer
 
@@ -18,7 +20,12 @@ func _ready() -> void:
 	spawnBlock()
 
 func createBlock() -> BoxHandler:
-	var newBlock : BoxHandler = block_node.instantiate()
+	var id = randi_range(0, 4)
+	var newBlock : BoxHandler
+	if id < 4:
+		newBlock = block_node.instantiate()
+	elif id == 4:
+		newBlock = arrow_node.instantiate()
 	newBlock.bPosition = Vector2i(boxGrid.grid_size.x/2, boxGrid.grid_size.y-1)
 	return newBlock
 	

@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://jct1kxacp7rg"]
+
+[ext_resource type="Material" uid="uid://dasascupv172m" path="res://Materials/Palletes/GreenBox.tres" id="1_db650"]
+[ext_resource type="Texture2D" uid="uid://ccftgwkiiucyo" path="res://Artwork/GameObjects/ArrowLeft.png" id="2_db650"]
+[ext_resource type="Script" uid="uid://cjabio3rl07w5" path="res://Scripts/Gameplay/Arrow.gd" id="3_db650"]
+[ext_resource type="Material" uid="uid://bywqrakadbhh4" path="res://Materials/Palletes/RedBox.tres" id="4_3bplr"]
+[ext_resource type="Material" uid="uid://dllslliq0c4jg" path="res://Materials/Palletes/YellowBox.tres" id="5_ukgtn"]
+
+[sub_resource type="SystemFont" id="SystemFont_g28u0"]
+font_names = PackedStringArray("Cursive")
+hinting = 2
+keep_rounding_remainders = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_1omkh"]
+font = SubResource("SystemFont_g28u0")
+font_size = 13
+
+[node name="Arrow" type="Sprite2D"]
+material = ExtResource("1_db650")
+texture = ExtResource("2_db650")
+script = ExtResource("3_db650")
+palletes = Array[Material]([ExtResource("1_db650"), ExtResource("4_3bplr"), ExtResource("5_ukgtn")])
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 10.0
+offset_bottom = 11.0
+label_settings = SubResource("LabelSettings_1omkh")
+horizontal_alignment = 1
+vertical_alignment = 1

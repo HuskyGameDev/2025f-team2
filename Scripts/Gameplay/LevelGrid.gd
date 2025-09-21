@@ -48,8 +48,8 @@ func spawnBlockAtPosition(pos : Vector2i, color : int):
 func setPositionOfBlockOnBoard(block : BoxHandler):
 	block.position = Vector2(block.bPosition.x*grid_space, -block.bPosition.y*grid_space)
 
-func moveBlockDown(block : BoxHandler):
-	block.moveDown()
+func moveBlockDown(block : BoxHandler, control : bool = true):
+	block.moveDown(control)
 
 func moveBlockLeft(block : BoxHandler, merge : bool = false):
 	block.moveLeft(merge)
@@ -62,10 +62,10 @@ func hardDropBlock(block : BoxHandler):
 
 func place_block(block : BoxHandler):
 	block.placeBlock()
-	next_block()
 
 func next_block():
 	removeActiveBlock()
+	await get_tree().create_timer(.5).timeout
 	levelManager.spawnBlock()
 
 func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
@@ -90,7 +90,8 @@ func move_all_blocks_left():
 	var vaildBlocks = get_all_blocks_in_board()
 	for block in vaildBlocks:
 		moveBlockLeft(block, true)
-		moveBlockDown(block)
+		moveBlockDown(block, false)
+		
 
 func _input(event: InputEvent) -> void:
 	if active_block == null:
