@@ -1,5 +1,8 @@
 extends BoxHandler
 
+func _init() -> void:
+	bType = BlockType.Arrow
+
 func _updateBoxText():
 	$Label.text = ""
 

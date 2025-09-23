@@ -3,6 +3,8 @@ class_name BoxHandler
 
 enum BlockColor{Green, Red}
 
+enum BlockType{Block, Arrow}
+
 @export var palletes : Array[Material]
 
 var blockValue : int = 0
@@ -11,6 +13,7 @@ var levelGrid : LevelGrid
 var bPosition : Vector2i
 
 var bColor : BlockColor = BlockColor.Green
+var bType : BlockType = BlockType.Block
 
 var placed : bool
 
@@ -46,9 +49,11 @@ func moveDown(control : bool = true):
 		if control:
 			levelGrid.next_block()
 		return
-	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null:
+	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null && levelGrid.blocks[bPosition.y][bPosition.x] != null:
 		if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x]):
 			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x])
+			levelGrid.next_block()
+			return
 		else:
 			await levelGrid.place_block(self)
 			if control:
@@ -75,7 +80,7 @@ func moveLeft(merge : bool = false):
 	levelGrid.setPositionOfBlockOnBoard(self)
 
 func moveRight(merge : bool = false):
-	if (bPosition.x + 1) < 0:
+	if (bPosition.x + 1) > levelGrid.grid_size.x - 1:
 		return
 	if levelGrid.blocks[bPosition.y][bPosition.x+1] != null:
 		if merge:

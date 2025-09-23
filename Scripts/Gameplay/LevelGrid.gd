@@ -96,13 +96,11 @@ func move_all_blocks_left():
 func _input(event: InputEvent) -> void:
 	if active_block == null:
 		return
-	if event.is_action_pressed("left"):
+	if event.is_action_pressed("left", true):
 		moveBlockLeft(active_block)
-	if event.is_action_pressed("right"):
+	if event.is_action_pressed("right", true):
 		moveBlockRight(active_block)
-	if event.is_action_pressed("up"):
+	if event.is_action_pressed("up", true):
 		hardDropBlock(active_block)
-	if event.is_action_pressed("down"):
+	if event.is_action_pressed("down", true):
 		moveBlockDown(active_block)
-	if event.is_action_pressed("ui_text_indent"):
-		move_all_blocks_left()
