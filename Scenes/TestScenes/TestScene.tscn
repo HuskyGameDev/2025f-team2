@@ -30,3 +30,6 @@ grid_size = Vector2i(6, 9)
 position = Vector2(76, 141)
 script = ExtResource("3_1omkh")
 levelGrid = NodePath("../BaseGridPos")
+
+[node name="SpawnPoint" type="Node2D" parent="BoxFiller"]
+position = Vector2(0, -140)

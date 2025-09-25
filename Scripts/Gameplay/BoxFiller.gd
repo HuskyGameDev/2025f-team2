@@ -21,10 +21,17 @@ func fillBlock(block : BoxHandler):
 			return
 		if bok != fblock and bok != null:
 			return
-		fblock._addToBlock()
-		await get_tree().create_timer(time).timeout
-		if time > 0.01:
-			time /= 1.3
+		if fblock.bType != fblock.BlockType.Arrow:
+			var cts : Crystal = spawnCrystal()
+			cts.on_die.connect(addToFBlock.bind(cts))
+			cts.material = fblock.material
+			cts.block = self
+			await get_tree().create_timer(time).timeout
+			if time > 0.25:
+				time /= 1.1
+		else:
+			break
+			return
 
 func _input(event: InputEvent) -> void:
 	if fblock == null:
@@ -32,3 +39,14 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("release"):
 		levelGrid.addBlock(fblock)
 		fblock = null
+
+func spawnCrystal() -> Crystal:
+	var crys = load("res://Scenes/GameObjects/crystals.tscn").instantiate()
+	add_child(crys)
+	crys.position.y = -140
+	return crys
+	
+func addToFBlock(Cys : Crystal):
+	if fblock != null:
+		if fblock.material == Cys.material:
+			fblock._addToBlock()
