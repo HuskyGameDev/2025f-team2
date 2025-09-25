@@ -13,6 +13,8 @@ var active_block : BoxHandler
 
 var blocks = []
 
+var can_input : bool = true
+
 func _ready() -> void:
 	for i in grid_size.y:
 		blocks.append([])
@@ -91,16 +93,37 @@ func move_all_blocks_left():
 	for block in vaildBlocks:
 		moveBlockLeft(block, true)
 		moveBlockDown(block, false)
-		
+
+func disable_input():
+	if !can_input:
+		return
+	can_input = false
+	await get_tree().create_timer(0.6, true)
+	can_input = true
+	
 
 func _input(event: InputEvent) -> void:
+	if !can_input:
+		return
 	if active_block == null:
 		return
-	if event.is_action_pressed("left", true):
+	if event.is_action_pressed("left", false):
+		if !can_input:
+			return
 		moveBlockLeft(active_block)
-	if event.is_action_pressed("right", true):
+		disable_input()
+	if event.is_action_pressed("right", false):
+		if !can_input:
+			return
 		moveBlockRight(active_block)
-	if event.is_action_pressed("up", true):
+		disable_input()
+	if event.is_action_pressed("up", false):
+		if !can_input:
+			return
 		hardDropBlock(active_block)
-	if event.is_action_pressed("down", true):
+		disable_input()
+	if event.is_action_pressed("down", false):
+		if !can_input:
+			return
 		moveBlockDown(active_block)
+		disable_input()

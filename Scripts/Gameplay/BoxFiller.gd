@@ -7,6 +7,9 @@ class_name BoxFiller
 var fblock : BoxHandler
 
 func fillBlock(block : BoxHandler):
+	var bok = fblock
+	if fblock != null:
+		fblock.queue_free()
 	add_child(block)
 	block.position = Vector2(0,0)
 	fblock = block
@@ -15,6 +18,8 @@ func fillBlock(block : BoxHandler):
 	while (fblock != null):
 		if fblock.blockValue >= 20:
 			break
+			return
+		if bok != fblock and bok != null:
 			return
 		fblock._addToBlock()
 		await get_tree().create_timer(time).timeout
