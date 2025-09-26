@@ -5,15 +5,11 @@
 [ext_resource type="Script" uid="uid://btnd83logedww" path="res://Scripts/Gameplay/BoxHandler.gd" id="3_gqkxm"]
 [ext_resource type="Material" uid="uid://bywqrakadbhh4" path="res://Materials/Palletes/RedBox.tres" id="4_0s7tu"]
 [ext_resource type="Material" uid="uid://dllslliq0c4jg" path="res://Materials/Palletes/YellowBox.tres" id="5_gqkxm"]
-
-[sub_resource type="SystemFont" id="SystemFont_g28u0"]
-font_names = PackedStringArray("Cursive")
-hinting = 2
-keep_rounding_remainders = false
+[ext_resource type="FontFile" uid="uid://nlfw5q8qmmtp" path="res://Artwork/Text/Numbers-Sheet.png" id="6_n1uwp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1omkh"]
-font = SubResource("SystemFont_g28u0")
-font_size = 13
+font = ExtResource("6_n1uwp")
+font_size = 12
 
 [node name="Box" type="Sprite2D"]
 material = ExtResource("1_rgigi")
@@ -23,10 +19,10 @@ palletes = Array[Material]([ExtResource("1_rgigi"), ExtResource("4_0s7tu"), ExtR
 
 [node name="Label" type="Label" parent="."]
 offset_left = -10.0
-offset_top = -12.0
+offset_top = -11.0
 offset_right = 10.0
-offset_bottom = 11.0
-text = "9"
+offset_bottom = 12.0
+text = "99"
 label_settings = SubResource("LabelSettings_1omkh")
 horizontal_alignment = 1
 vertical_alignment = 1

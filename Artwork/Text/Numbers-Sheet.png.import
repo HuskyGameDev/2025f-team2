@@ -1,0 +1,25 @@
+[remap]
+
+importer="font_data_image"
+type="FontFile"
+uid="uid://nlfw5q8qmmtp"
+path="res://.godot/imported/Numbers-Sheet.png-2312418c25d01259cd57f4d559f09fa2.fontdata"
+
+[deps]
+
+source_file="res://Artwork/Text/Numbers-Sheet.png"
+dest_files=["res://.godot/imported/Numbers-Sheet.png-2312418c25d01259cd57f4d559f09fa2.fontdata"]
+
+[params]
+
+character_ranges=PackedStringArray("48-57")
+kerning_pairs=PackedStringArray()
+columns=10
+rows=1
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(0, 0, 1, 0)
+ascent=0
+descent=0
+fallbacks=[]
+compress=true
+scaling_mode=2
