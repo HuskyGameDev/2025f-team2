@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnf7j42ijh2cr"]
+
+[ext_resource type="Texture2D" uid="uid://dnec75lr1rrot" path="res://Artwork/GameObjects/IndustructableBlock.png" id="1_o5tpa"]
+[ext_resource type="Script" uid="uid://bdfw5rb82w5mw" path="res://Scripts/Gameplay/IndestructableBlock.gd" id="2_llqdt"]
+[ext_resource type="FontFile" uid="uid://nlfw5q8qmmtp" path="res://Artwork/Text/Numbers-Sheet.png" id="3_17tha"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_66x0g"]
+font = ExtResource("3_17tha")
+font_size = 12
+
+[node name="Indestructable" type="Sprite2D"]
+texture = ExtResource("1_o5tpa")
+script = ExtResource("2_llqdt")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 12.0
+label_settings = SubResource("LabelSettings_66x0g")
+horizontal_alignment = 1
+vertical_alignment = 1

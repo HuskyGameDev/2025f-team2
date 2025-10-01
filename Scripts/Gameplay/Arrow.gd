@@ -1,7 +1,19 @@
 extends BoxHandler
 
+var side = "left"
+
 func _init() -> void:
 	bType = BlockType.Arrow
+
+func _ready() -> void:
+	super._ready()
+	var sided = randi_range(0,1)
+	if sided == 0:
+		side = "left"
+		flip_h = false
+	elif sided == 1:
+		side = "right"
+		flip_h = true
 
 func _updateBoxText():
 	$Label.text = ""
@@ -19,39 +31,18 @@ func mergeBox(downBlock:BoxHandler):
 
 func placeBlock():
 	moveNext()
+	placed = true
 
 func _addToBlock():
 	return
 
-func hardDrop():
-	var y = bPosition.y
-	while(y >= 0):
-		if y == 0:
-			levelGrid.blocks[bPosition.y][bPosition.x] = null
-			bPosition.y = y
-			levelGrid.blocks[bPosition.y][bPosition.x] = self
-			levelGrid.setPositionOfBlockOnBoard(self)
-			await moveNext()
-			return
-		if levelGrid.blocks[y-1][bPosition.x] == null or levelGrid.blocks[y-1][bPosition.x].placed == false:
-			y -= 1
-		else:
-			if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[y-1][bPosition.x]):
-				levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[y-1][bPosition.x])
-				await moveNext()
-				return
-			else:
-				levelGrid.blocks[bPosition.y][bPosition.x] = null
-				bPosition.y = y
-				levelGrid.blocks[bPosition.y][bPosition.x] = self
-				levelGrid.setPositionOfBlockOnBoard(self)
-				await moveNext()
-				return
-
 func moveNext():
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	placed = true
-	levelGrid.move_all_blocks_left()
+	if side == "left":
+		levelGrid.move_all_blocks_left()
+	elif side == "right":
+		levelGrid.move_all_blocks_right()
 	await levelGrid.next_block()
 	queue_free()
 

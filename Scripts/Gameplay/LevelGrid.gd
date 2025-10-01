@@ -24,6 +24,7 @@ func _ready() -> void:
 func addBlock(block : BoxHandler):
 	block.placed = false
 	block.levelGrid = self
+	block.floating = false
 	block.get_parent().remove_child(block)
 	add_child(block)
 	blocks[block.bPosition.y][block.bPosition.x] = block
@@ -63,7 +64,8 @@ func hardDropBlock(block : BoxHandler):
 	block.hardDrop()
 
 func place_block(block : BoxHandler):
-	block.placeBlock()
+	if block == active_block:
+		block.placeBlock()
 
 func next_block():
 	removeActiveBlock()
@@ -71,6 +73,8 @@ func next_block():
 	levelManager.spawnBlock()
 
 func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
+	if downBlock.bType != BoxHandler.BlockType.Block:
+		return
 	if upBlock.bColor != downBlock.bColor:
 		return
 	upBlock.mergeBox(downBlock)
@@ -92,6 +96,13 @@ func move_all_blocks_left():
 	var vaildBlocks = get_all_blocks_in_board()
 	for block in vaildBlocks:
 		moveBlockLeft(block, true)
+		moveBlockDown(block, false)
+
+func move_all_blocks_right():
+	var vaildBlocks = get_all_blocks_in_board()
+	vaildBlocks.reverse()
+	for block in vaildBlocks:
+		moveBlockRight(block, true)
 		moveBlockDown(block, false)
 
 func disable_input():

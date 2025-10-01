@@ -14,21 +14,21 @@ func fillBlock(block : BoxHandler):
 	block.position = Vector2(0,0)
 	fblock = block
 	block._set_color(randi_range(0,2))
-	var time = 1.0
+	var time = 0.75
 	while (fblock != null):
 		if fblock.blockValue >= 20:
 			break
 			return
 		if bok != fblock and bok != null:
 			return
-		if fblock.bType != fblock.BlockType.Arrow:
+		if fblock.bType == fblock.BlockType.Block:
 			var cts : Crystal = spawnCrystal()
 			cts.on_die.connect(addToFBlock.bind(cts))
 			cts.material = fblock.material
 			cts.block = self
 			await get_tree().create_timer(time).timeout
-			if time > 0.25:
-				time /= 1.1
+			if time > 0.25 and time < 5.0:
+				time *= 1.075
 		else:
 			break
 			return
