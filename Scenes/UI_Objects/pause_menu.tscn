@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cwepxmyofmf4r"]
+[gd_scene load_steps=3 format=3 uid="uid://cwepxmyofmf4r"]
+
+[ext_resource type="Script" uid="uid://cng520ljsj2ox" path="res://Scripts/UI_Scripts/Paused_Resume.gd" id="1_2hj8d"]
+[ext_resource type="Script" uid="uid://ckmkqwgmabwnx" path="res://Scripts/UI_Scripts/Paused_MainMenu.gd" id="1_ho1k2"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -24,9 +27,25 @@ offset_bottom = 23.0
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Panel"]
+[node name="Resume" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 32.0
 offset_right = 72.0
-offset_bottom = 48.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 10
+text = "Resume"
+script = ExtResource("1_2hj8d")
+
+[node name="Main_Menu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 7
+text = "Main Menu"
+script = ExtResource("1_ho1k2")
+
+[connection signal="pressed" from="Panel/Resume" to="Panel/Resume" method="_on_pressed"]
+[connection signal="pressed" from="Panel/Main_Menu" to="Panel/Main_Menu" method="_on_pressed"]

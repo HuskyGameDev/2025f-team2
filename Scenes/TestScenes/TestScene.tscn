@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=7 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
+[ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
+[ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
 [ext_resource type="Texture2D" uid="uid://dskweavqum5qa" path="res://Artwork/Player/RibbonTest.png" id="4_5qkg8"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
 
@@ -38,3 +40,11 @@ texture = ExtResource("4_5qkg8")
 
 [node name="SpawnPoint" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -140)
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_5qkg8")]
+visible = false
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+script = ExtResource("3_635xr")
