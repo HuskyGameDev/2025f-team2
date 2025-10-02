@@ -3,7 +3,7 @@ class_name BoxHandler
 
 enum BlockColor{Green, Red, Yellow}
 
-enum BlockType{Block, Arrow, Indestructible}
+enum BlockType{Block, Arrow, Indestructible, Enemy}
 
 @export var palletes : Array[Material]
 
@@ -49,36 +49,53 @@ func mergeBox(downBlock:BoxHandler):
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	queue_free()
 
+func is_obstacle() -> bool:
+	return bType == BlockType.Indestructible or bType == BlockType.Enemy
+
 func moveDown(control : bool = true):
 	if (bPosition.y - 1) < 0:
 		await levelGrid.place_block(self)
 		if control:
 			levelGrid.next_block()
 		return
-	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null && levelGrid.blocks[bPosition.y][bPosition.x] != null:
-		if levelGrid.blocks[bPosition.y-1][bPosition.x].bType == BlockType.Indestructible:
+
+	var below = levelGrid.blocks[bPosition.y - 1][bPosition.x]
+	if below != null:
+		# --- Enemy Handling ---
+		if below.bType == BlockType.Enemy:
+			below.on_block_collision(self)
+			return
+
+		# --- Indestructible handling ---
+		if below.bType == BlockType.Indestructible:
 			if control:
 				await levelGrid.place_block(self)
 				levelGrid.next_block()
 			return
-		elif levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x]):
-			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x])
+
+		# --- Merge handling ---
+		elif levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], below):
+			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], below)
 			if control:
 				levelGrid.next_block()
 			return
+
+		# --- Normal stop ---
 		else:
 			if control:
 				await levelGrid.place_block(self)
 				levelGrid.next_block()
-		return
-	#move Block Downwards
+			return
+
+	# --- Move Down if empty ---
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	bPosition.y -= 1
 	levelGrid.blocks[bPosition.y][bPosition.x] = self
 	levelGrid.setPositionOfBlockOnBoard(self)
 	await get_tree().create_timer(0.25).timeout
-	if levelGrid.blocks[bPosition.y-1][bPosition.x] == null:
+	if levelGrid.blocks[bPosition.y - 1][bPosition.x] == null:
 		placed = false
+
 
 func moveLeft(merge : bool = false):
 	if (bPosition.x - 1) < 0:
@@ -138,6 +155,10 @@ func hardDrop():
 			levelGrid.setPositionOfBlockOnBoard(self)
 			await levelGrid.place_block(self)
 			levelGrid.next_block()
+			return
+		elif levelGrid.blocks[y-1][bPosition.x].bType == BlockType.Enemy:
+			var enemy = levelGrid.blocks[y-1][bPosition.x]
+			enemy.on_block_collision(self)
 			return
 		else:
 			if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[y-1][bPosition.x]):

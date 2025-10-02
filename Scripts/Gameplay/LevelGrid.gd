@@ -15,6 +15,19 @@ var blocks = []
 
 var can_input : bool = true
 
+var enemy_node = load("res://Scenes/GameObjects/Enemy.tscn")
+
+func spawnEnemyAtPosition(enemy: BoxHandler, pos: Vector2i, type: int = 0):
+	enemy.levelGrid = self             # important!
+	enemy.bPosition = pos
+	enemy.bType = BoxHandler.BlockType.Enemy
+	enemy.enemy_type = type if "enemy_type" in enemy else 0
+	enemy.placed = true
+	blocks[pos.y][pos.x] = enemy
+	add_child(enemy)
+	setPositionOfBlockOnBoard(enemy)
+
+
 func _ready() -> void:
 	for i in grid_size.y:
 		blocks.append([])
@@ -92,6 +105,13 @@ func get_all_blocks_in_board() -> Array:
 				vaildBlocks.append(blocks[i][j])
 	return vaildBlocks
 
+# Returns the lowest empty position in column x, or (-1) if full
+func get_lowest_free_position(x: int) -> Vector2i:
+	for y in range(grid_size.y):
+		if blocks[y][x] == null:
+			return Vector2i(x, y)
+	return Vector2i(x, -1)
+
 func move_all_blocks_left():
 	var vaildBlocks = get_all_blocks_in_board()
 	for block in vaildBlocks:
@@ -111,7 +131,6 @@ func disable_input():
 	can_input = false
 	await get_tree().create_timer(0.6, true)
 	can_input = true
-	
 
 func _input(event: InputEvent) -> void:
 	if !can_input:
