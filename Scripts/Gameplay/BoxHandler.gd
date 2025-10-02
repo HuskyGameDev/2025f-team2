@@ -36,6 +36,7 @@ func _updateBoxText():
 	$Label.text = str(blockValue)
 
 func _set_color(col : int):
+	@warning_ignore("int_as_enum_without_cast")
 	bColor = col
 	material = palletes[bColor]
 

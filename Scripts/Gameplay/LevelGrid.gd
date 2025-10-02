@@ -18,7 +18,7 @@ var can_input : bool = true
 var enemy_node = load("res://Scenes/GameObjects/Enemy.tscn")
 
 func spawnEnemyAtPosition(enemy: BoxHandler, pos: Vector2i, type: int = 0):
-	enemy.levelGrid = self             # important!
+	enemy.levelGrid = self
 	enemy.bPosition = pos
 	enemy.bType = BoxHandler.BlockType.Enemy
 	enemy.enemy_type = type if "enemy_type" in enemy else 0
@@ -26,7 +26,6 @@ func spawnEnemyAtPosition(enemy: BoxHandler, pos: Vector2i, type: int = 0):
 	blocks[pos.y][pos.x] = enemy
 	add_child(enemy)
 	setPositionOfBlockOnBoard(enemy)
-
 
 func _ready() -> void:
 	for i in grid_size.y:

@@ -64,31 +64,35 @@ func get_lowest_free_position(x: int) -> Vector2i:
 	return Vector2i(x, -1) # column full
 
 func spawnEnemy():
-	var id = randi_range(0, 2) # 0=Static, 1=Floater, 2=Painter
-	var enemy: BoxHandler
+	# Choose enemy type: 0=Static, 1=Floater, 2=Painter
+	var id = randi_range(0, 2)
+	var enemy: BoxHandler = null
+
+	# Pick a random column
 	var col = randi_range(0, boxGrid.grid_size.x - 1)
 	var pos: Vector2i
 
 	match id:
-		0: # --- Static Enemy ---
+		0:
 			enemy = static_enemy_node.instantiate()
 			pos = boxGrid.get_lowest_free_position(col)
 			if pos.y == -1: return # column full
-
-		1: # --- Floater Enemy ---
+		1:
 			enemy = floater_enemy_node.instantiate()
-			pos = Vector2i(col, boxGrid.grid_size.y - 2) # second-to-top row
-
-		2: # --- Painter Enemy ---
+			pos = boxGrid.get_lowest_free_position(col)
+			if pos.y == -1: return
+		2:
 			enemy = painter_enemy_node.instantiate()
 			pos = boxGrid.get_lowest_free_position(col)
-			if pos.y == -1: return # column full
+			if pos.y == -1: return
 
-	# Register enemy in grid
-	enemy.levelGrid = boxGrid       # assign grid
+	# Assign enemy properties
+	enemy.levelGrid = boxGrid
 	enemy.bPosition = pos
 	enemy.bType = BoxHandler.BlockType.Enemy
-	enemy.placed = true             # enemies are "placed"
+	enemy.placed = true
+
+	# Add to grid & scene
 	boxGrid.blocks[pos.y][pos.x] = enemy
 	boxGrid.setPositionOfBlockOnBoard(enemy)
-	add_child(enemy)
+	boxGrid.add_child(enemy)
