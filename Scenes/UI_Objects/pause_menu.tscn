@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cwepxmyofmf4r"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 48.0
+offset_right = 208.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 80.0
+offset_bottom = 23.0
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = 48.0
