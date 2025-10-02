@@ -10,7 +10,7 @@ func on_player_block_placed():
 	var grid = levelGrid
 	var dirs = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
 
-	# Paint neighbors
+	# paint neighboring blocks
 	for d in dirs:
 		var nx = bPosition.x + d.x
 		var ny = bPosition.y + d.y
@@ -19,7 +19,7 @@ func on_player_block_placed():
 			if neighbor != null and neighbor.bType == BoxHandler.BlockType.Block:
 				neighbor._set_color(randi_range(0, neighbor.palletes.size() - 1))
 
-	# Move to new lowest spot in a random column
+	# move to new lowest spot in a random column
 	var col = randi_range(0, grid.grid_size.x - 1)
 	var pos = grid.get_lowest_free_position(col)
 	if pos.y != -1:

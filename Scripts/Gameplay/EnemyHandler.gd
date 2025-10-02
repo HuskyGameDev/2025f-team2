@@ -20,7 +20,7 @@ func die():
 		levelGrid.blocks[bPosition.y][bPosition.x] = null
 	queue_free()
 
-# Called when a player block is placed
+# called when a player block is placed
 func on_player_block_placed():
 	pass  # override in subclasses
 

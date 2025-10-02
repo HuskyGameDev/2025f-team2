@@ -45,11 +45,11 @@ func spawnBlock():
 	boxFiller.fillBlock(block)
 	blocks_placed += 1
 
-	# Spawn enemy every X blocks
+	# spawn enemy every X blocks
 	if blocks_placed % enemy_spawn_interval == 0:
 		spawnEnemy()
 
-	# Let all enemies react to player block placement
+	# let all enemies react to player block placement
 	for row in boxGrid.blocks:
 		for cell in row:
 			if cell != null and cell.bType == BoxHandler.BlockType.Enemy:
@@ -64,11 +64,11 @@ func get_lowest_free_position(x: int) -> Vector2i:
 	return Vector2i(x, -1) # column full
 
 func spawnEnemy():
-	# Choose enemy type: 0=Static, 1=Floater, 2=Painter
+	# choose enemy type: 0=Static, 1=Floater, 2=Painter
 	var id = randi_range(0, 2)
 	var enemy: BoxHandler = null
 
-	# Pick a random column
+	# pick a random column
 	var col = randi_range(0, boxGrid.grid_size.x - 1)
 	var pos: Vector2i
 
@@ -86,13 +86,13 @@ func spawnEnemy():
 			pos = boxGrid.get_lowest_free_position(col)
 			if pos.y == -1: return
 
-	# Assign enemy properties
+	# assign enemy properties
 	enemy.levelGrid = boxGrid
 	enemy.bPosition = pos
 	enemy.bType = BoxHandler.BlockType.Enemy
 	enemy.placed = true
 
-	# Add to grid & scene
+	# add to grid & scene
 	boxGrid.blocks[pos.y][pos.x] = enemy
 	boxGrid.setPositionOfBlockOnBoard(enemy)
 	boxGrid.add_child(enemy)
