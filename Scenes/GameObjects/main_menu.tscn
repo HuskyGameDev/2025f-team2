@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://w6i51b5jwmid"]
+
+[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/Play_Game.gd" id="1_wsnrw"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 80.0
+offset_right = 192.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 10
+text = "Play Game"
+script = ExtResource("1_wsnrw")
+
+[node name="Settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 10
+text = "Settings"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 144.0
+offset_right = 192.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 10
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 20
+text = "Ribbon In The Wacky Warehouse"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PlayGame" to="PlayGame" method="_on_pressed"]

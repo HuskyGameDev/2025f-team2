@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ribbon In The Wacky Warehouse"
-run/main_scene="uid://co48nl1f8gywv"
+run/main_scene="uid://dcgj7q6h1wg41"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
