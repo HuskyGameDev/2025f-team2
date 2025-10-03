@@ -5,6 +5,11 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 uniform float brightness : hint_range(-1, 1) = 0;
 uniform sampler2D source_palette;
 uniform sampler2D target_palette;
+varying vec4 vertex_color; 
+
+void vertex() {
+	vertex_color = COLOR;
+}
 
 void fragment() {
 	vec4 screen_color = texture(TEXTURE, UV);
@@ -26,5 +31,5 @@ void fragment() {
 	int swatch_offset = int(brightness * float(pal_size.x));
 	int target_swatch = clamp(nearest_swatch + swatch_offset, 0, pal_size.x -1);
 	
-	COLOR = texelFetch(target_palette, ivec2(target_swatch, 0), 0);
+	COLOR = vertex_color*texelFetch(target_palette, ivec2(target_swatch, 0), 0);
 }

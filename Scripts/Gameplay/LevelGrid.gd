@@ -22,14 +22,14 @@ func _ready() -> void:
 			blocks[i].append(null) # Set a starter value for each position
 
 func addBlock(block : BoxHandler):
-	block.placed = false
 	block.levelGrid = self
-	block.floating = false
+	block.onAdd()
 	block.get_parent().remove_child(block)
 	add_child(block)
 	blocks[block.bPosition.y][block.bPosition.x] = block
 	levelManager.fallTimer.timeout.connect(block._onFallTick)
-	setActiveBlock(block)
+	if block.bType != BoxHandler.BlockType.Arrow:
+		setActiveBlock(block)
 	setPositionOfBlockOnBoard(block)
 
 func setActiveBlock(block : BoxHandler):
@@ -77,39 +77,44 @@ func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
 		return
 	if upBlock.bColor != downBlock.bColor:
 		return
+	if upBlock == downBlock:
+		return 
 	upBlock.mergeBox(downBlock)
 
 func blockCheck(upBlock : BoxHandler, downBlock : BoxHandler) -> bool: #works regardless of position
+	if upBlock == null or downBlock == null:
+		return false
 	if upBlock == downBlock:
 		return false
 	return upBlock.bColor == downBlock.bColor
 
-func get_all_blocks_in_board() -> Array:
-	var vaildBlocks = []
+func get_all_blocks_in_board(flip = false) -> Array[BoxHandler]:
+	var vaildBlocks : Array[BoxHandler]
+	var currentPos = blocks.duplicate(true)
 	for i in grid_size.y:
+		if flip:
+			currentPos[i].reverse()
 		for j in grid_size.x:
-			if blocks[i][j] != null:
-				vaildBlocks.append(blocks[i][j])
+			if currentPos[i][j] != null:
+				if currentPos[i][j].bType != BoxHandler.BlockType.Arrow:
+					vaildBlocks.append(currentPos[i][j])
 	return vaildBlocks
 
 func move_all_blocks_left():
-	var vaildBlocks = get_all_blocks_in_board()
+	var vaildBlocks : Array[BoxHandler] = get_all_blocks_in_board()
 	for block in vaildBlocks:
 		moveBlockLeft(block, true)
-		moveBlockDown(block, false)
 
 func move_all_blocks_right():
-	var vaildBlocks = get_all_blocks_in_board()
-	vaildBlocks.reverse()
+	var vaildBlocks : Array[BoxHandler] = get_all_blocks_in_board(true)
 	for block in vaildBlocks:
 		moveBlockRight(block, true)
-		moveBlockDown(block, false)
 
 func disable_input():
 	if !can_input:
 		return
 	can_input = false
-	await get_tree().create_timer(0.6, true)
+	await get_tree().create_timer(0.05, false).timeout
 	can_input = true
 	
 

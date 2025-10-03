@@ -19,44 +19,37 @@ func _updateBoxText():
 	$Label.text = ""
 
 func moveLeft(merge : bool = false):
-	merge = false
-	super.moveLeft(merge)
+	return
 
 func moveRight(merge : bool = false):
-	merge = false
-	super.moveRight(merge)
+	return
 
 func mergeBox(downBlock:BoxHandler):
 	return
 
 func placeBlock():
-	moveNext()
-	placed = true
+	return
 
 func _addToBlock():
 	return
 
 func moveNext():
-	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	placed = true
+	z_index = 255
 	if side == "left":
 		levelGrid.move_all_blocks_left()
 	elif side == "right":
 		levelGrid.move_all_blocks_right()
-	await levelGrid.next_block()
+	var s_tween = create_tween().tween_property(self, "scale", Vector2(50, 50), 0.9).set_trans(Tween.TRANS_QUINT)
+	create_tween().tween_property(self, "modulate:a", 0.0, 0.9).set_trans(Tween.TRANS_QUINT)
+	await s_tween.finished
+	levelGrid.next_block()
 	queue_free()
 
+
 func moveDown(control : bool = true):
-	if (bPosition.y - 1) < 0:
-		if control:
-			moveNext()
-		return
-	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null:
-		if control:
-			moveNext()
-		return
-	#move Block Downwards
-	levelGrid.blocks[bPosition.y][bPosition.x] = null
-	bPosition.y -= 1
-	levelGrid.blocks[bPosition.y][bPosition.x] = self
-	levelGrid.setPositionOfBlockOnBoard(self)
+	return
+
+func onAdd():
+	floating = false
+	moveNext()

@@ -26,7 +26,7 @@ func fillBlock(block : BoxHandler):
 			cts.on_die.connect(addToFBlock.bind(cts))
 			cts.material = fblock.material
 			cts.block = self
-			await get_tree().create_timer(time).timeout
+			await get_tree().create_timer(time, false).timeout
 			if time > 0.25 and time < 5.0:
 				time *= 1.075
 		else:

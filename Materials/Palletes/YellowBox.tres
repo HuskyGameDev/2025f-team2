@@ -1,42 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dllslliq0c4jg"]
 
+[ext_resource type="Shader" uid="uid://dvw0kwy006b3r" path="res://Scripts/Shaders/PalleteShader.gdshader" id="1_omc5f"]
 [ext_resource type="Texture2D" uid="uid://8bcvxehauxo6" path="res://Artwork/GameObjects/BoxPalleteBase.png" id="2_tjlr8"]
 [ext_resource type="Texture2D" uid="uid://bstacr1qxqsce" path="res://Artwork/GameObjects/BoxPalleteYellow.png" id="2_yy0jl"]
 
-[sub_resource type="Shader" id="Shader_omc5f"]
-code = "shader_type canvas_item;
-
-uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
-
-uniform float brightness : hint_range(-1, 1) = 0;
-uniform sampler2D source_palette;
-uniform sampler2D target_palette;
-
-void fragment() {
-	vec4 screen_color = texture(TEXTURE, UV);
-	ivec2 pal_size = textureSize(source_palette, 0);
-	
-	float color_diff = 1.0;
-	int nearest_swatch = 0;
-		
-	for (int swatch=0; swatch < pal_size.x; swatch++) {
-		vec4 sampled_color = texelFetch(source_palette, ivec2(swatch,0), 0);
-		float new_color_diff = distance(sampled_color, screen_color);
-		
-		if (new_color_diff < color_diff) {
-			color_diff = new_color_diff;
-			nearest_swatch = swatch;
-		}
-	}
-	
-	int swatch_offset = int(brightness * float(pal_size.x));
-	int target_swatch = clamp(nearest_swatch + swatch_offset, 0, pal_size.x -1);
-	
-	COLOR = texelFetch(target_palette, ivec2(target_swatch, 0), 0);
-}"
-
 [resource]
-shader = SubResource("Shader_omc5f")
+shader = ExtResource("1_omc5f")
 shader_parameter/brightness = 0.0
 shader_parameter/source_palette = ExtResource("2_tjlr8")
 shader_parameter/target_palette = ExtResource("2_yy0jl")

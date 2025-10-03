@@ -25,9 +25,16 @@ func _ready() -> void:
 func _onFallTick():
 	if floating:
 		return
+	if bType == BlockType.Block:
+		if levelGrid.get_all_blocks_in_board().find(self) == -1:
+			print("father help "+ str(bColor) + " " + str(blockValue))
+		levelGrid.setPositionOfBlockOnBoard(self)
 	if bPosition.y-1 >= 0:
 		if levelGrid.blocks[bPosition.y-1][bPosition.x] == null:
 			placed = false
+		elif levelGrid.blocks[bPosition.y-1][bPosition.x] != null:
+			levelGrid.moveBlockDown(self, levelGrid.active_block == self)
+			return
 	if placed:
 		return
 	levelGrid.moveBlockDown(self, levelGrid.active_block == self)
@@ -55,7 +62,7 @@ func moveDown(control : bool = true):
 		if control:
 			levelGrid.next_block()
 		return
-	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null && levelGrid.blocks[bPosition.y][bPosition.x] != null:
+	if levelGrid.blocks[bPosition.y-1][bPosition.x] != null:
 		if levelGrid.blocks[bPosition.y-1][bPosition.x].bType == BlockType.Indestructible:
 			if control:
 				await levelGrid.place_block(self)
@@ -65,20 +72,23 @@ func moveDown(control : bool = true):
 			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y-1][bPosition.x])
 			if control:
 				levelGrid.next_block()
-			return
 		else:
 			if control:
 				await levelGrid.place_block(self)
 				levelGrid.next_block()
 		return
 	#move Block Downwards
-	levelGrid.blocks[bPosition.y][bPosition.x] = null
-	bPosition.y -= 1
-	levelGrid.blocks[bPosition.y][bPosition.x] = self
-	levelGrid.setPositionOfBlockOnBoard(self)
-	await get_tree().create_timer(0.25).timeout
-	if levelGrid.blocks[bPosition.y-1][bPosition.x] == null:
-		placed = false
+	if bType != BlockType.Arrow:
+		levelGrid.blocks[bPosition.y][bPosition.x] = null
+		bPosition.y -= 1
+		levelGrid.blocks[bPosition.y][bPosition.x] = self
+		levelGrid.setPositionOfBlockOnBoard(self)
+		return
+	else:
+		bPosition.y -= 1
+		levelGrid.setPositionOfBlockOnBoard(self)
+		return
+
 
 func moveLeft(merge : bool = false):
 	if (bPosition.x - 1) < 0:
@@ -89,14 +99,20 @@ func moveLeft(merge : bool = false):
 				return
 			if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y][bPosition.x-1]):
 				levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y][bPosition.x-1])
+			return
+		else:
+			return
+	#move Block Left
+	if bType != BlockType.Arrow:
+		levelGrid.blocks[bPosition.y][bPosition.x] = null
+		bPosition.x -= 1
+		levelGrid.blocks[bPosition.y][bPosition.x] = self
+		levelGrid.setPositionOfBlockOnBoard(self)
 		return
-
-	#move Block Downwards
-	levelGrid.blocks[bPosition.y][bPosition.x] = null
-	bPosition.x -= 1
-	levelGrid.blocks[bPosition.y][bPosition.x] = self
-	levelGrid.setPositionOfBlockOnBoard(self)
-	
+	else:
+		bPosition.x -= 1
+		levelGrid.setPositionOfBlockOnBoard(self)
+		return
 
 func moveRight(merge : bool = false):
 	if (bPosition.x + 1) > levelGrid.grid_size.x - 1:
@@ -107,14 +123,20 @@ func moveRight(merge : bool = false):
 				return
 			if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y][bPosition.x+1]):
 				levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y][bPosition.x+1])
+			return
+		else:
+			return
+	#move Block Right
+	if bType != BlockType.Arrow:
+		levelGrid.blocks[bPosition.y][bPosition.x] = null
+		bPosition.x += 1
+		levelGrid.blocks[bPosition.y][bPosition.x] = self
+		levelGrid.setPositionOfBlockOnBoard(self)
 		return
-	
-	#move Block Downwards
-	levelGrid.blocks[bPosition.y][bPosition.x] = null
-	bPosition.x += 1
-	levelGrid.blocks[bPosition.y][bPosition.x] = self
-	levelGrid.setPositionOfBlockOnBoard(self)
-
+	else:
+		bPosition.x += 1
+		levelGrid.setPositionOfBlockOnBoard(self)
+		return
 
 func hardDrop():
 	var y =  bPosition.y
@@ -155,3 +177,7 @@ func hardDrop():
 
 func placeBlock():
 	placed = true
+
+func onAdd():
+	placed = false
+	floating = false
