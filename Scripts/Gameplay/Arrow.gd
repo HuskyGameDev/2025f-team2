@@ -42,8 +42,9 @@ func moveNext():
 		levelGrid.move_all_blocks_right()
 	var s_tween = create_tween().tween_property(self, "scale", Vector2(50, 50), 0.9).set_trans(Tween.TRANS_QUINT)
 	create_tween().tween_property(self, "modulate:a", 0.0, 0.9).set_trans(Tween.TRANS_QUINT)
-	await s_tween.finished
+	await get_tree().create_timer(0.5,false).timeout
 	levelGrid.next_block()
+	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
 
 
