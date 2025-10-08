@@ -13,7 +13,6 @@ func fillBlock(block : BoxHandler):
 	add_child(block)
 	block.position = Vector2(0,0)
 	fblock = block
-	block._set_color(randi_range(0,2))
 	var time = 0.75
 	while (fblock != null):
 		if fblock.blockValue >= 20:
@@ -46,6 +45,8 @@ func _on_reroll_button_pressed() -> void:
 	reroll()
 	
 func reroll():
+	if fblock == null:
+		return
 	fblock.queue_free()
 	levelGrid.next_block()
 	fblock = null

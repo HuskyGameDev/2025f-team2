@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=9 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
+[ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/test_Order.tres" id="2_p83bp"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
 [ext_resource type="Texture2D" uid="uid://dskweavqum5qa" path="res://Artwork/Player/RibbonTest.png" id="4_5qkg8"]
@@ -14,6 +15,7 @@ script = ExtResource("1_g28u0")
 fallSpeed = 0.6
 boxFiller = NodePath("BoxFiller")
 boxGrid = NodePath("BaseGridPos")
+levelOrder = ExtResource("2_p83bp")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(107, 30)
@@ -36,11 +38,13 @@ script = ExtResource("3_1omkh")
 levelGrid = NodePath("../BaseGridPos")
 
 [node name="Button" type="Button" parent="BoxFiller"]
+visible = false
 offset_left = -30.0
 offset_top = -65.0
 offset_right = 30.0
 offset_bottom = -44.0
 theme_override_font_sizes/font_size = 9
+disabled = true
 text = "Reroll Block"
 script = ExtResource("4_36qpc")
 
