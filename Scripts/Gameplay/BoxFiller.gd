@@ -36,10 +36,20 @@ func fillBlock(block : BoxHandler):
 func _input(event: InputEvent) -> void:
 	if fblock == null:
 		return
+	if event.is_action_pressed("reroll"):
+		reroll()
 	if event.is_action_pressed("release"):
 		levelGrid.addBlock(fblock)
 		fblock = null
-
+		
+func _on_reroll_button_pressed() -> void:
+	reroll()
+	
+func reroll():
+	fblock.queue_free()
+	levelGrid.next_block()
+	fblock = null
+	
 func spawnCrystal() -> Crystal:
 	var crys = load("res://Scenes/GameObjects/crystals.tscn").instantiate()
 	add_child(crys)
