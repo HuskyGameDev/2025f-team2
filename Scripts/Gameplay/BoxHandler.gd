@@ -65,6 +65,11 @@ func moveDown(control : bool = true):
 		# --- Enemy Handling ---
 		if below.bType == BlockType.Enemy:
 			below.on_block_collision(self)
+
+			# mark this block as placed and spawn next block
+			await levelGrid.place_block(self)
+			if levelGrid.active_block == self:
+				await levelGrid.next_block()
 			return
 
 		# --- Indestructible handling ---
@@ -97,7 +102,6 @@ func moveDown(control : bool = true):
 	if levelGrid.blocks[bPosition.y - 1][bPosition.x] == null:
 		placed = false
 
-
 func moveLeft(merge : bool = false):
 	if (bPosition.x - 1) < 0:
 		return
@@ -109,7 +113,7 @@ func moveLeft(merge : bool = false):
 				levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y][bPosition.x-1])
 		return
 
-	#move Block Downwards
+	# move Block Downwards
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	bPosition.x -= 1
 	levelGrid.blocks[bPosition.y][bPosition.x] = self
@@ -127,12 +131,11 @@ func moveRight(merge : bool = false):
 				levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[bPosition.y][bPosition.x+1])
 		return
 	
-	#move Block Downwards
+	# move Block Downwards
 	levelGrid.blocks[bPosition.y][bPosition.x] = null
 	bPosition.x += 1
 	levelGrid.blocks[bPosition.y][bPosition.x] = self
 	levelGrid.setPositionOfBlockOnBoard(self)
-
 
 func hardDrop():
 	var y =  bPosition.y
@@ -160,6 +163,11 @@ func hardDrop():
 		elif levelGrid.blocks[y-1][bPosition.x].bType == BlockType.Enemy:
 			var enemy = levelGrid.blocks[y-1][bPosition.x]
 			enemy.on_block_collision(self)
+
+			# mark this block as placed and spawn next block
+			await levelGrid.place_block(self)
+			if levelGrid.active_block == self:
+				await levelGrid.next_block()
 			return
 		else:
 			if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[y-1][bPosition.x]):
@@ -174,6 +182,13 @@ func hardDrop():
 				await levelGrid.place_block(self)
 				levelGrid.next_block()
 				return
+
+
+func _safe_remove_from_grid():
+	if levelGrid != null:
+		levelGrid.blocks[bPosition.y][bPosition.x] = null
+	call_deferred("queue_free")
+
 
 func placeBlock():
 	placed = true
