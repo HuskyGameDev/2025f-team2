@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://li112uf83anh"]
+
+[ext_resource type="Material" uid="uid://dasascupv172m" path="res://Materials/Palletes/GreenBox.tres" id="1_bpaos"]
+[ext_resource type="Texture2D" uid="uid://bb60pdal8u7pk" path="res://Artwork/Enemies/Bucket.png" id="2_bpaos"]
+[ext_resource type="Script" uid="uid://d2aa5gbht5q46" path="res://Scripts/Gameplay/PainterEnemy.gd" id="3_bpaos"]
+[ext_resource type="FontFile" uid="uid://nlfw5q8qmmtp" path="res://Artwork/Text/Numbers-Sheet.png" id="4_ad2ye"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1omkh"]
+font = ExtResource("4_ad2ye")
+font_size = 12
+
+[node name="Box2" type="Sprite2D"]
+material = ExtResource("1_bpaos")
+texture = ExtResource("2_bpaos")
+script = ExtResource("3_bpaos")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 12.0
+text = "99"
+label_settings = SubResource("LabelSettings_1omkh")
+horizontal_alignment = 1
+vertical_alignment = 1

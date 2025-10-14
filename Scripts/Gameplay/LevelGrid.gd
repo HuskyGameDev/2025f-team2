@@ -168,6 +168,16 @@ func _input(event: InputEvent) -> void:
 		moveBlockDown(active_block)
 		disable_input()
 
+func get_lowest_free_position(column: int) -> Vector2i:
+	# Return the lowest available (empty) grid cell in a column.
+	for row in range(grid_size.y - 1, -1, -1):  # start from bottom, go upward
+		if blocks[row][column] == null:
+			return Vector2i(column, row)
+
+	# If the column is full, return topmost cell (to prevent null issues)
+	return Vector2i(column, 0)
+
+
 func check_if_block_exist(block:BoxHandler) -> bool:
 	if block == null:
 		return false

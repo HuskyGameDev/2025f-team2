@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
 [ext_resource type="Texture2D" uid="uid://dskweavqum5qa" path="res://Artwork/Player/RibbonTest.png" id="4_5qkg8"]
-[ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
+[ext_resource type="Script" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
 [ext_resource type="Script" uid="uid://biwb1rcybg3tr" path="res://Scripts/Background/CloudAnimation.gd" id="9_72xxr"]
 [ext_resource type="Texture2D" uid="uid://kgsist0w7161" path="res://Artwork/Backgrounds/BGCloud.png" id="9_y8ukn"]

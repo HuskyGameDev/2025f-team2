@@ -3,7 +3,7 @@ class_name BoxHandler
 
 enum BlockColor{Green, Red, Yellow}
 
-enum BlockType{Block, Arrow, Indestructible}
+enum BlockType{Block, Arrow, Indestructible, Enemy }
 
 @export var palletes : Array[Material]
 
@@ -19,7 +19,12 @@ var placed : bool
 var floating : bool = true
 
 func _ready() -> void:
-	material = palletes[bColor]
+	if palletes.is_empty():
+		push_error("BoxHandler: palletes array is empty!")
+		return
+
+	var safe_index: int = clamp(int(bColor), 0, palletes.size() - 1)
+	material = palletes[safe_index]
 	_updateBoxText()
 	
 func _onFallTick():
@@ -49,9 +54,18 @@ func _onFallTick():
 func _updateBoxText():
 	$Label.text = str(blockValue)
 
-func _set_color(col : int):
+func _set_color(col: int):
+	if palletes.is_empty():
+		push_error("BoxHandler: palletes array is empty!")
+		return
+
 	bColor = col
-	material = palletes[bColor]
+	var safe_index: int = clamp(int(bColor), 0, palletes.size() - 1)
+	if safe_index >= palletes.size():
+		push_error("BoxHandler: color index out of range (" + str(safe_index) + ")")
+		return
+
+	material = palletes[safe_index]
 
 func _addToBlock():
 	blockValue += 1

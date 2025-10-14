@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cui4u1pfpuenk"]
+
+[ext_resource type="Material" uid="uid://dasascupv172m" path="res://Materials/Palletes/GreenBox.tres" id="1_vi6by"]
+[ext_resource type="Texture2D" uid="uid://dvntvc5faqcau" path="res://Artwork/Enemies/Stationary.png" id="2_vi6by"]
+[ext_resource type="Script" uid="uid://dr3qcodaqau0b" path="res://Scripts/Gameplay/StaticEnemy.gd" id="3_vi6by"]
+[ext_resource type="FontFile" uid="uid://nlfw5q8qmmtp" path="res://Artwork/Text/Numbers-Sheet.png" id="4_6c1tw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1omkh"]
+font = ExtResource("4_6c1tw")
+font_size = 12
+
+[node name="Box2" type="Sprite2D"]
+material = ExtResource("1_vi6by")
+texture = ExtResource("2_vi6by")
+script = ExtResource("3_vi6by")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 12.0
+text = "99"
+label_settings = SubResource("LabelSettings_1omkh")
+horizontal_alignment = 1
+vertical_alignment = 1
