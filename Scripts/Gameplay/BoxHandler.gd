@@ -29,6 +29,13 @@ func _onFallTick():
 		if levelGrid.get_all_blocks_in_board().find(self) == -1:
 			print("father help "+ str(bColor) + " " + str(blockValue))
 		levelGrid.setPositionOfBlockOnBoard(self)
+		if blockValue >= 20:
+			var explo = $Explosion
+			remove_child(explo)
+			get_parent().add_child(explo)
+			explo.position = position
+			explo.emitting = true
+			levelGrid.explode(self)
 	if bPosition.y-1 >= 0:
 		if levelGrid.blocks[bPosition.y-1][bPosition.x] == null:
 			placed = false

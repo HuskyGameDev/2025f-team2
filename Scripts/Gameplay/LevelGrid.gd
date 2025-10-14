@@ -32,6 +32,10 @@ func addBlock(block : BoxHandler):
 		setActiveBlock(block)
 	setPositionOfBlockOnBoard(block)
 
+func removeBlock(block : BoxHandler):
+	blocks[block.bPosition.y][block.bPosition.x] = null
+	block.queue_free()
+
 func setActiveBlock(block : BoxHandler):
 	active_block = block
 
@@ -62,6 +66,17 @@ func moveBlockRight(block : BoxHandler ,merge : bool = false):
 
 func hardDropBlock(block : BoxHandler):
 	block.hardDrop()
+
+func explode(block : BoxHandler):
+	removeBlock(block)
+	if check_if_block_exist(blocks[block.bPosition.y-1][block.bPosition.x]):
+		explode(blocks[block.bPosition.y-1][block.bPosition.x])
+	if check_if_block_exist(blocks[block.bPosition.y+1][block.bPosition.x]):
+		explode(blocks[block.bPosition.y+1][block.bPosition.x])
+	if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x-1]):
+		explode(blocks[block.bPosition.y][block.bPosition.x-1])
+	if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x+1]):
+		explode(blocks[block.bPosition.y][block.bPosition.x+1])
 
 func place_block(block : BoxHandler):
 	if block == active_block:
@@ -143,3 +158,8 @@ func _input(event: InputEvent) -> void:
 			return
 		moveBlockDown(active_block)
 		disable_input()
+
+func check_if_block_exist(block:BoxHandler) -> bool:
+	if block == null:
+		return false
+	return true

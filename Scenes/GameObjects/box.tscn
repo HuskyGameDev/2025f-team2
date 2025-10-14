@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5iay4hp23ysi"]
+[gd_scene load_steps=10 format=3 uid="uid://c5iay4hp23ysi"]
 
 [ext_resource type="Material" uid="uid://dasascupv172m" path="res://Materials/Palletes/GreenBox.tres" id="1_rgigi"]
 [ext_resource type="Texture2D" uid="uid://ce0xt248y0d5x" path="res://Artwork/GameObjects/Box.png" id="2_0s7tu"]
@@ -14,6 +14,10 @@ font_size = 12
 [sub_resource type="Curve" id="Curve_brwx4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_n1uwp"]
+offsets = PackedFloat32Array(0.42, 1)
+colors = PackedColorArray(1, 0.564706, 0, 1, 0.838955, 0.702714, 0, 1)
 
 [node name="Box" type="Sprite2D"]
 material = ExtResource("1_rgigi")
@@ -34,7 +38,7 @@ vertical_alignment = 1
 [node name="Explosion" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 83
-lifetime = 0.27
+lifetime = 0.92
 one_shot = true
 explosiveness = 1.0
 randomness = 0.45
@@ -42,8 +46,9 @@ emission_shape = 1
 emission_sphere_radius = 4.26
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 153.66
-initial_velocity_max = 244.56
+initial_velocity_min = 93.05
+initial_velocity_max = 163.75
 scale_amount_min = 4.05
 scale_amount_max = 7.0
 scale_amount_curve = SubResource("Curve_brwx4")
+color_ramp = SubResource("Gradient_n1uwp")

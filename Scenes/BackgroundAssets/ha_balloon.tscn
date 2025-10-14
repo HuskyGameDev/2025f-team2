@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf7ivhmop354y"]
+
+[ext_resource type="Texture2D" uid="uid://cot4nu6ssh8fi" path="res://Artwork/Backgrounds/HABalloon.png" id="1_v4inl"]
+[ext_resource type="Material" uid="uid://bywqrakadbhh4" path="res://Materials/Palletes/RedBox.tres" id="2_5gurx"]
+[ext_resource type="Script" uid="uid://76ycv1pkegt7" path="res://Scripts/Background/BalloonMovement.gd" id="2_qvldx"]
+[ext_resource type="Texture2D" uid="uid://ce0xt248y0d5x" path="res://Artwork/GameObjects/Box.png" id="3_qvldx"]
+
+[node name="HaBalloon" type="Sprite2D"]
+texture = ExtResource("1_v4inl")
+script = ExtResource("2_qvldx")
+
+[node name="Box" type="Sprite2D" parent="."]
+z_index = -1
+material = ExtResource("2_5gurx")
+position = Vector2(-0.153273, 44.0111)
+texture = ExtResource("3_qvldx")
