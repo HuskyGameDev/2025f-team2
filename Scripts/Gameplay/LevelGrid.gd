@@ -69,14 +69,23 @@ func hardDropBlock(block : BoxHandler):
 
 func explode(block : BoxHandler):
 	removeBlock(block)
-	if check_if_block_exist(blocks[block.bPosition.y-1][block.bPosition.x]):
-		explode(blocks[block.bPosition.y-1][block.bPosition.x])
-	if check_if_block_exist(blocks[block.bPosition.y+1][block.bPosition.x]):
-		explode(blocks[block.bPosition.y+1][block.bPosition.x])
-	if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x-1]):
-		explode(blocks[block.bPosition.y][block.bPosition.x-1])
-	if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x+1]):
-		explode(blocks[block.bPosition.y][block.bPosition.x+1])
+	if block.bPosition.y-1 >= 0:
+		if is_instance_valid(blocks[block.bPosition.y-1][block.bPosition.x]):
+			if check_if_block_exist(blocks[block.bPosition.y-1][block.bPosition.x]):
+				removeBlock(blocks[block.bPosition.y-1][block.bPosition.x])
+	if block.bPosition.y+1 < grid_size.y:
+		if is_instance_valid(blocks[block.bPosition.y+1][block.bPosition.x]):
+			if check_if_block_exist(blocks[block.bPosition.y+1][block.bPosition.x]):
+				removeBlock(blocks[block.bPosition.y+1][block.bPosition.x])
+	if block.bPosition.x-1 >= 0:
+		if is_instance_valid(blocks[block.bPosition.y][block.bPosition.x-1]):
+			if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x-1]):
+				removeBlock(blocks[block.bPosition.y][block.bPosition.x-1])
+	if block.bPosition.x+1 < grid_size.x:
+		if is_instance_valid(blocks[block.bPosition.y][block.bPosition.x+1]):
+			if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x+1]):
+				removeBlock(blocks[block.bPosition.y][block.bPosition.x+1])
+		
 
 func place_block(block : BoxHandler):
 	if block == active_block:
