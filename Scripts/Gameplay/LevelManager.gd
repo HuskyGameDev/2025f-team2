@@ -84,14 +84,54 @@ func spawnRandomEnemy():
 		2: enemy_scene = painter_enemy_node
 
 	var enemy: EnemyHandler = enemy_scene.instantiate()
-	enemy.levelGrid = boxGrid
-	enemy.palletes = boxGrid.block_node.instantiate().palletes  # just grab palette for coloring
+	if enemy == null:
+		push_error("Failed to instantiate enemy scene.")
+		return
 
-	add_child(enemy)
+	# Ensure palletes from boxGrid
+	if boxGrid != null and boxGrid.block_node != null:
+		var sample = boxGrid.block_node.instantiate()
+		if sample != null and "palletes" in sample:
+			enemy.palletes = sample.palletes
+		if is_instance_valid(sample):
+			sample.queue_free()
 
-	# Spawn somewhere in the grid — no fancy height logic yet
+	# --- Determine spawn location ---
 	var spawn_col = randi_range(0, boxGrid.grid_size.x - 1)
-	var spawn_row = randi_range(0, boxGrid.grid_size.y - 1)
+	var spawn_row = 0
 
-	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row))
-	boxGrid.setPositionOfBlockOnBoard(enemy)  # ensure sprite matches grid
+	match enemy_type:
+		0: # Static - spawn visually near bottom (numerically high y)
+			for row in range(boxGrid.grid_size.y - 1, -1, -1):
+				if boxGrid.blocks[row][spawn_col] == null:
+					spawn_row = row
+					break
+		1: # Floater - spawn higher up
+			var attempts = 0
+			spawn_row = randi_range(0, int(boxGrid.grid_size.y * 0.4))
+			while attempts < 30 and boxGrid.blocks[spawn_row][spawn_col] != null:
+				spawn_col = randi_range(0, boxGrid.grid_size.x - 1)
+				spawn_row = randi_range(0, int(boxGrid.grid_size.y * 0.4))
+				attempts += 1
+			spawn_row = clamp(spawn_row, 0, boxGrid.grid_size.y - 1)
+		2: # Painter - also spawn visually near bottom
+			for row in range(boxGrid.grid_size.y - 1, -1, -1):
+				if boxGrid.blocks[row][spawn_col] == null:
+					spawn_row = row
+					break
+
+	spawn_col = clamp(spawn_col, 0, boxGrid.grid_size.x - 1)
+	spawn_row = clamp(spawn_row, 0, boxGrid.grid_size.y - 1)
+
+	# --- Random color selection ---
+	var color_index: int
+	if enemy.palletes.size() > 0:
+		color_index = randi_range(0, enemy.palletes.size() - 1)
+	else:
+		color_index = randi_range(0, 2)  # fallback: 0–2
+
+	# Add enemy to the grid
+	boxGrid.add_child(enemy)
+
+	# Spawn into grid
+	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)

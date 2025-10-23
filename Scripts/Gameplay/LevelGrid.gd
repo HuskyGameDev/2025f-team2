@@ -182,3 +182,11 @@ func check_if_block_exist(block:BoxHandler) -> bool:
 	if block == null:
 		return false
 	return true
+
+func damage_enemies_at(pos: Vector2i, color_index: int, amount: int = 1):
+	if !has_node("Enemies"):
+		return
+	var enemies_node = get_node("Enemies")
+	for e in enemies_node.get_children():
+		if e is EnemyHandler and e.grid_pos == pos:
+			e.take_damage(amount, color_index)
