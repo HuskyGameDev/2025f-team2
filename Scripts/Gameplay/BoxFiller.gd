@@ -29,8 +29,8 @@ func fillBlock(block : BoxHandler):
 			cts.material = fblock.material
 			cts.block = self
 			await get_tree().create_timer(time, false).timeout
-			if time > 0.25 and time < 5.0:
-				time *= 1.075
+			if time > 0.25 and time < 7.0:
+				time *= 1.095
 		else:
 			break
 			return
@@ -41,12 +41,15 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reroll"):
 		reroll()
 	if event.is_action_pressed("release"):
+		if fblock.blockValue >= 20:
+			return
+		var aBlock : BoxHandler = fblock
+		fblock = null
 		ribbon.setHop()
 		await get_tree().create_timer(0.2, false).timeout
-		create_tween().tween_property(fblock,"position", Vector2(0, -200), .75)
+		create_tween().tween_property(aBlock,"position", Vector2(0, -200), .75)
 		await ribbon.waitUntilFinish()
-		levelGrid.addBlock(fblock)
-		fblock = null
+		levelGrid.addBlock(aBlock)
 		
 func _on_reroll_button_pressed() -> void:
 	reroll()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=29 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
 [ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/test_Order.tres" id="2_p83bp"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
+[ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="3_e7vnt"]
 [ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
 [ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="6_j3c8t"]
@@ -208,7 +209,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0833333, 0.25, 0.416667, 1, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [1, 2, 3, 4, 5, 2]
+"values": [1, 2, 3, 4, 5, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -270,10 +271,12 @@ boxGrid = NodePath("BaseGridPos")
 levelOrder = ExtResource("2_p83bp")
 
 [node name="Border" type="Line2D" parent="."]
+texture_repeat = 2
 position = Vector2(107, 30)
 points = PackedVector2Array(-2, -6, -2, 135, 105, 135, 105, -6)
 width = 4.0
-default_color = Color(0.930736, 2.98411e-06, 0.567304, 1)
+texture = ExtResource("3_e7vnt")
+texture_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 
