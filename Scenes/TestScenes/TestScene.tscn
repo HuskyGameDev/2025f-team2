@@ -1,17 +1,22 @@
-[gd_scene load_steps=15 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=28 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
 [ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/test_Order.tres" id="2_p83bp"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
-[ext_resource type="Texture2D" uid="uid://dskweavqum5qa" path="res://Artwork/Player/RibbonTest.png" id="4_5qkg8"]
-[ext_resource type="Script" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
+[ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
+[ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="6_j3c8t"]
+[ext_resource type="Script" uid="uid://c3qfxtnd08lrf" path="res://Scripts/Gameplay/RibbonAnimator.gd" id="6_qk1kx"]
+[ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="7_qk1kx"]
+[ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="8_nxyhc"]
 [ext_resource type="Script" uid="uid://biwb1rcybg3tr" path="res://Scripts/Background/CloudAnimation.gd" id="9_72xxr"]
 [ext_resource type="Texture2D" uid="uid://kgsist0w7161" path="res://Artwork/Backgrounds/BGCloud.png" id="9_y8ukn"]
 [ext_resource type="Script" uid="uid://cc08gxp3ybh10" path="res://Scripts/Background/BalloonSpawner.gd" id="11_dk750"]
 [ext_resource type="PackedScene" uid="uid://cf7ivhmop354y" path="res://Scenes/BackgroundAssets/ha_balloon.tscn" id="12_y8ukn"]
+[ext_resource type="Shader" uid="uid://vl5b478745jc" path="res://Scripts/Shaders/BGwind.gdshader" id="14_bs1rv"]
+[ext_resource type="Texture2D" uid="uid://b2jus41ra42ks" path="res://Artwork/Backgrounds/SkyBG.png" id="14_nxyhc"]
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -19,6 +24,242 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qk1kx"]
 gradient = SubResource("Gradient_j3c8t")
 width = 1
+
+[sub_resource type="Animation" id="Animation_qk1kx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RibbonArms:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ribbon-faces:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j3c8t"]
+resource_name = "idle"
+length = 3.50001
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0769299, 0.25, 0.416667, 0.5, 0.666667, 0.833334, 1, 1.08333, 1.25, 1.41667, 1.58334, 1.75, 1.82693, 2, 2.16667, 2.25, 2.41667, 2.58333, 2.75, 2.83333, 3, 3.16667, 3.33334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 13, 12, 11, 10, 9, 8, 9, 10, 11, 12, 13, 14, 13, 12, 11, 10, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RibbonArms:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ribbon-faces:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [8, 9, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nxyhc"]
+resource_name = "getBox"
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ribbon-faces:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RibbonArms:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bs1rv"]
+resource_name = "Hop"
+length = 1.33334
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RibbonArms:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.25, 0.416667, 1, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Ribbon-faces:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.916666, 1.08333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 3, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.583333, 1.08333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -52), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxyhc"]
+_data = {
+&"Hop": SubResource("Animation_bs1rv"),
+&"RESET": SubResource("Animation_qk1kx"),
+&"getBox": SubResource("Animation_nxyhc"),
+&"idle": SubResource("Animation_j3c8t")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bs1rv"]
+noise_type = 0
+seed = 6
+frequency = 0.0008
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bs1rv"]
+noise = SubResource("FastNoiseLite_bs1rv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7vnt"]
+shader = ExtResource("14_bs1rv")
+shader_parameter/render_noise = false
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bs1rv")
+shader_parameter/amplitude = 0.18
+shader_parameter/time_scale = 0.01
+shader_parameter/noise_scale = 0.001
+shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid")]
 texture_filter = 1
@@ -67,9 +308,34 @@ disabled = true
 text = "Reroll Block"
 script = ExtResource("4_36qpc")
 
-[node name="RibbonTest" type="Sprite2D" parent="BoxFiller"]
+[node name="Ribbon" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -5)
-texture = ExtResource("4_5qkg8")
+script = ExtResource("6_qk1kx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BoxFiller/Ribbon"]
+root_node = NodePath("../RibbonTest")
+libraries = {
+&"": SubResource("AnimationLibrary_nxyhc")
+}
+autoplay = "idle"
+
+[node name="RibbonTest" type="Sprite2D" parent="BoxFiller/Ribbon"]
+texture = ExtResource("6_j3c8t")
+hframes = 5
+vframes = 4
+frame = 8
+
+[node name="Ribbon-faces" type="Sprite2D" parent="BoxFiller/Ribbon/RibbonTest"]
+position = Vector2(0, -16)
+texture = ExtResource("7_qk1kx")
+hframes = 4
+vframes = 4
+frame = 8
+
+[node name="RibbonArms" type="Sprite2D" parent="BoxFiller/Ribbon/RibbonTest"]
+visible = false
+z_index = 6
+texture = ExtResource("8_nxyhc")
 
 [node name="SpawnPoint" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -140)
@@ -248,22 +514,28 @@ position = Vector2(85, 174)
 skew = 0.226893
 texture = ExtResource("9_y8ukn")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background"]
-modulate = Color(0, 0.627451, 1, 1)
+[node name="CloudyBG" type="Sprite2D" parent="Background"]
 z_index = -4
-position = Vector2(160, 90)
-texture = SubResource("GradientTexture1D_qk1kx")
+texture_repeat = 3
+material = SubResource("ShaderMaterial_e7vnt")
+position = Vector2(156, 55)
+texture = ExtResource("14_nxyhc")
 region_enabled = true
-region_rect = Rect2(0, 0, 320, 180)
+region_rect = Rect2(0, 0, 512, 288)
+script = ExtResource("9_72xxr")
+timeAdd = 3.0
 
 [node name="HaBalloon" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(42, 17)
+position = Vector2(31, 74)
 
 [node name="HaBalloon2" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(162, 73)
+position = Vector2(116, 54)
 
 [node name="HaBalloon3" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(281, 138)
+position = Vector2(197, 37)
+
+[node name="HaBalloon4" parent="Background" instance=ExtResource("12_y8ukn")]
+position = Vector2(284, 8)
 
 [node name="BalloonSpawner" type="Node2D" parent="Background"]
 position = Vector2(0, -81)

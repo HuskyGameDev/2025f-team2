@@ -3,6 +3,7 @@ extends Node2D
 class_name BoxFiller
 
 @export var levelGrid : LevelGrid
+@onready var ribbon : RibbonAnimator = $Ribbon
 
 var fblock : BoxHandler
 
@@ -11,8 +12,10 @@ func fillBlock(block : BoxHandler):
 	if fblock != null:
 		fblock.queue_free()
 	add_child(block)
-	block.position = Vector2(0,0)
+	block.position = Vector2(0,-200)
 	fblock = block
+	await create_tween().tween_property(fblock, "position", Vector2(0,0), 0.5).finished
+	ribbon.setGetBox()
 	var time = 0.75
 	while (fblock != null):
 		if fblock.blockValue >= 20:
@@ -38,6 +41,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reroll"):
 		reroll()
 	if event.is_action_pressed("release"):
+		ribbon.setHop()
+		await get_tree().create_timer(0.2, false).timeout
+		create_tween().tween_property(fblock,"position", Vector2(0, -200), .75)
+		await ribbon.waitUntilFinish()
 		levelGrid.addBlock(fblock)
 		fblock = null
 		
