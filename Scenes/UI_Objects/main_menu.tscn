@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://w6i51b5jwmid"]
 
-[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/Play_Game.gd" id="1_wsnrw"]
+[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="1_wsnrw"]
 [ext_resource type="Script" uid="uid://ctpykaqiomvdw" path="res://Scripts/UI_Scripts/Quit_Game_Button.gd" id="2_ou1s8"]
 
 [node name="MainMenu" type="Control"]
@@ -10,6 +10,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Level Select" type="Button" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 48.0
+offset_right = 192.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 10
+text = "Level select"
+script = ExtResource("1_wsnrw")
+targetScene = "res://Scenes/TestScenes/LevelSelect.tscn"
 
 [node name="PlayGame" type="Button" parent="."]
 layout_mode = 0
@@ -48,5 +59,6 @@ theme_override_font_sizes/font_size = 20
 text = "Ribbon In The Wacky Warehouse"
 horizontal_alignment = 1
 
+[connection signal="pressed" from="Level Select" to="Level Select" method="_on_pressed"]
 [connection signal="pressed" from="PlayGame" to="PlayGame" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
