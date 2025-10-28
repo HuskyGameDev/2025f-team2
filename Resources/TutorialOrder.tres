@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlacementOrder" load_steps=2 format=3 uid="uid://bybgsal6s5ns2"]
+
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Scripts/Gameplay/PlacementOrder.gd" id="1_tepg2"]
+
+[resource]
+script = ExtResource("1_tepg2")
+typeOrder = Array[int]([0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0])
+colorOrder = Array[int]([0, 0, 1, 1, 2, 1, 0, 1, 2, 0, 1, 0, 2, 1, 0, 2])
+enemyTypeOrder = Array[String](["null"])
+metadata/_custom_type_script = "uid://bq1lexixywh21"

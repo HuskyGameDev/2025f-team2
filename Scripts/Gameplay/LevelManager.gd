@@ -72,6 +72,11 @@ func spawnBlock():
 		blocks_placed_since_enemy = 0
 
 func spawnRandomEnemy():
+	print("Attempted enemy spawn")
+	#I needed a way to not spawn enemies (tutorial)
+	if levelOrder.enemyTypeOrder[0] == "null":
+		return
+	
 	var enemy_scene: PackedScene
 	var enemy_type = randi() % 3
 	while enemy_type == last_enemy_type:

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgqkp7hs1rt6s"]
+
+[ext_resource type="PackedScene" uid="uid://co48nl1f8gywv" path="res://Scenes/TestScenes/TestScene.tscn" id="1_e6cgc"]
+[ext_resource type="Resource" uid="uid://bybgsal6s5ns2" path="res://Resources/TutorialOrder.tres" id="2_rsw4r"]
+
+[node name="TutorialLevel" type="Node2D"]
+
+[node name="Tutorial" parent="." instance=ExtResource("1_e6cgc")]
+levelOrder = ExtResource("2_rsw4r")
+
+[node name="Border" parent="Tutorial" index="0"]
+default_color = Color(1, 0, 1, 1)
+
+[node name="Background" parent="Tutorial" index="4"]
+visible = false
+
+[node name="TutorialTextAndController" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 104.0
+offset_bottom = 104.0
+
+[node name="TextBox" type="Panel" parent="TutorialTextAndController"]
+offset_left = 72.0
+offset_right = 257.0
+offset_bottom = 180.0
+
+[node name="Text" type="Label" parent="TutorialTextAndController/TextBox"]
+offset_right = 186.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 13
+text = "This text will appear for the tutorial"
+autowrap_mode = 2
+
+[editable path="Tutorial"]

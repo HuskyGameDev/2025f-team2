@@ -6,4 +6,5 @@
 script = ExtResource("1_ek2ol")
 typeOrder = Array[int]([0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0])
 colorOrder = Array[int]([0, 0, 1, 1, 2, 1, 0, 1, 2, 0, 1, 0, 2, 1, 0, 2])
+enemyTypeOrder = Array[String](["StaticEnemy", "FloaterEnemy", "PainterEnemy"])
 metadata/_custom_type_script = "uid://bq1lexixywh21"
