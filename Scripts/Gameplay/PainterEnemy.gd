@@ -6,6 +6,7 @@ func on_enemy_turn() -> void:
 		return
 
 	# paint neighbors (use safe typing)
+	var didPaint = false
 	var dirs = [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]
 	for d in dirs:
 		var nx: int = bPosition.x + d.x
@@ -15,8 +16,14 @@ func on_enemy_turn() -> void:
 			if neighbor != null and neighbor.bType == BlockType.Block:
 				# choose a random valid palette index on the neighbor
 				if neighbor.palletes != null and neighbor.palletes.size() > 0:
+					#every time the painter successfully paints, it gains one health
+					didPaint = true
+					take_damage(-1)
 					var idx = randi_range(0, neighbor.palletes.size() - 1)
 					neighbor._set_color(idx)
+	#checks for if the painter painted after trying to paint
+	if(!didPaint):
+		take_damage(1)
 
 	# attempt move left or right after painting
 	var dir = -1 if randf() < 0.5 else 1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://daayhk5gnjecm"]
 
-[ext_resource type="Texture2D" uid="uid://4tcmmpu5ywxt" path="res://Scenes/UI_Objects/LevelSelectImages/Screenshot 2025-10-28 010829.png" id="1_majh7"]
+[ext_resource type="Texture2D" uid="uid://4tcmmpu5ywxt" path="res://Artwork/LevelSelectImages/Screenshot 2025-10-28 010829.png" id="1_majh7"]
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="2_5xsv1"]
 
 [node name="LevelSelectTemplate" type="Control"]
@@ -28,7 +28,7 @@ horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 80.0
-offset_bottom = 64.0
+offset_bottom = 72.0
 script = ExtResource("2_5xsv1")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

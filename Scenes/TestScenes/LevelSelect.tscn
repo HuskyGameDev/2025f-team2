@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://daayhk5gnjecm" path="res://Scenes/UI_Objects/level_select_button.tscn" id="1_oqg5x"]
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="2_4520y"]
-[ext_resource type="Texture2D" uid="uid://b1ra7nmrv2h07" path="res://Scenes/UI_Objects/LevelSelectImages/Screenshot 2025-10-28 014545.png" id="2_ro8ci"]
+[ext_resource type="Texture2D" uid="uid://b1ra7nmrv2h07" path="res://Artwork/LevelSelectImages/Screenshot 2025-10-28 014545.png" id="2_ro8ci"]
 
 [node name="LevelSelect" type="Node2D"]
 

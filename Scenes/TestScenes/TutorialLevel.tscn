@@ -1,35 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgqkp7hs1rt6s"]
+[gd_scene load_steps=5 format=3 uid="uid://dgqkp7hs1rt6s"]
 
 [ext_resource type="PackedScene" uid="uid://co48nl1f8gywv" path="res://Scenes/TestScenes/TestScene.tscn" id="1_e6cgc"]
 [ext_resource type="Resource" uid="uid://bybgsal6s5ns2" path="res://Resources/TutorialOrder.tres" id="2_rsw4r"]
+[ext_resource type="Script" uid="uid://4yc2xwcc25wf" path="res://Scripts/Gameplay/TutorialControl.gd" id="3_e01v6"]
+[ext_resource type="Texture2D" uid="uid://c0bk8drpiwjwo" path="res://Artwork/UI/Arrow.png" id="4_ft24j"]
 
 [node name="TutorialLevel" type="Node2D"]
 
-[node name="Tutorial" parent="." instance=ExtResource("1_e6cgc")]
+[node name="LevelManager" parent="." instance=ExtResource("1_e6cgc")]
 levelOrder = ExtResource("2_rsw4r")
 
-[node name="Border" parent="Tutorial" index="0"]
+[node name="Border" parent="LevelManager" index="0"]
 default_color = Color(1, 0, 1, 1)
 
-[node name="Background" parent="Tutorial" index="4"]
+[node name="Background" parent="LevelManager" index="4"]
 visible = false
 
-[node name="TutorialTextAndController" type="Control" parent="."]
+[node name="TutorialController" type="Control" parent="." node_paths=PackedStringArray("label", "textbox")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
-offset_right = 104.0
-offset_bottom = 104.0
-
-[node name="TextBox" type="Panel" parent="TutorialTextAndController"]
-offset_left = 72.0
-offset_right = 257.0
+offset_right = 320.0
 offset_bottom = 180.0
+script = ExtResource("3_e01v6")
+label = NodePath("TextBox/Text")
+textbox = NodePath("TextBox")
 
-[node name="Text" type="Label" parent="TutorialTextAndController/TextBox"]
-offset_right = 186.0
-offset_bottom = 180.0
+[node name="TextBox" type="Panel" parent="TutorialController"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 21.0
+offset_right = 288.0
+offset_bottom = 168.0
+
+[node name="Text" type="Label" parent="TutorialController/TextBox"]
+layout_mode = 0
+offset_right = 252.0
+offset_bottom = 147.0
 theme_override_font_sizes/font_size = 13
 text = "This text will appear for the tutorial"
 autowrap_mode = 2
 
-[editable path="Tutorial"]
+[node name="NextButton" type="TextureButton" parent="TutorialController/TextBox"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 122.0
+offset_right = 251.0
+offset_bottom = 147.0
+texture_normal = ExtResource("4_ft24j")
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="TutorialController/TextBox/NextButton" to="TutorialController" method="_on_next_button_pressed"]
+
+[editable path="LevelManager"]
