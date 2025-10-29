@@ -107,7 +107,7 @@ func spawnRandomEnemy():
 
 	match enemy_type:
 		0: # Static - spawn visually near bottom (numerically high y)
-			for row in range(boxGrid.grid_size.y - 1, -1, -1):
+			for row in range(0, boxGrid.grid_size.y - 1):
 				if boxGrid.blocks[row][spawn_col] == null:
 					spawn_row = row
 					break
@@ -120,7 +120,7 @@ func spawnRandomEnemy():
 				attempts += 1
 			spawn_row = clamp(spawn_row, 0, boxGrid.grid_size.y - 1)
 		2: # Painter - also spawn visually near bottom
-			for row in range(boxGrid.grid_size.y - 1, -1, -1):
+			for row in range(0, boxGrid.grid_size.y - 1):
 				if boxGrid.blocks[row][spawn_col] == null:
 					spawn_row = row
 					break

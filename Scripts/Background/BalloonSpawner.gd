@@ -19,6 +19,6 @@ func spawnObject():
 	
 	object.position.x = next
 	next += randf_range(90, 110)
-	if next > 300.0:
-		next -= (300.0 + randf_range(0, 70))
+	if next > 320.0:
+		next -= (320.0 + randf_range(0, 70))
 	object.position.y = 0

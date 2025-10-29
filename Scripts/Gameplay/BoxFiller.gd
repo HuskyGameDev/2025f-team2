@@ -6,6 +6,8 @@ class_name BoxFiller
 @onready var ribbon : RibbonAnimator = $Ribbon
 
 var fblock : BoxHandler
+var startingTime = 0.75
+
 
 func fillBlock(block : BoxHandler):
 	var bok = fblock
@@ -16,7 +18,7 @@ func fillBlock(block : BoxHandler):
 	fblock = block
 	await create_tween().tween_property(fblock, "position", Vector2(0,0), 0.5).finished
 	ribbon.setGetBox()
-	var time = 0.75
+	var time = startingTime
 	while (fblock != null):
 		if fblock.blockValue >= 20:
 			break
