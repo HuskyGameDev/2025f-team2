@@ -9,6 +9,7 @@
 
 [node name="LevelManager" parent="." instance=ExtResource("1_e6cgc")]
 levelOrder = ExtResource("2_rsw4r")
+spawnBlocks = false
 
 [node name="Border" parent="LevelManager" index="0"]
 default_color = Color(1, 0, 1, 1)
@@ -16,7 +17,7 @@ default_color = Color(1, 0, 1, 1)
 [node name="Background" parent="LevelManager" index="4"]
 visible = false
 
-[node name="TutorialController" type="Control" parent="." node_paths=PackedStringArray("label", "textbox")]
+[node name="TutorialController" type="Control" parent="." node_paths=PackedStringArray("label", "textbox", "levelmngr", "boxfill")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
@@ -25,6 +26,8 @@ offset_bottom = 180.0
 script = ExtResource("3_e01v6")
 label = NodePath("TextBox/Text")
 textbox = NodePath("TextBox")
+levelmngr = NodePath("../LevelManager")
+boxfill = NodePath("../LevelManager/BoxFiller")
 
 [node name="TextBox" type="Panel" parent="TutorialController"]
 layout_mode = 0

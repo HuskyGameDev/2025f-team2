@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_tepg2")
-typeOrder = Array[int]([0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0])
-colorOrder = Array[int]([0, 0, 1, 1, 2, 1, 0, 1, 2, 0, 1, 0, 2, 1, 0, 2])
+typeOrder = Array[int]([0])
+colorOrder = Array[int]([0, 0])
 enemyTypeOrder = Array[String](["null"])
 metadata/_custom_type_script = "uid://bq1lexixywh21"

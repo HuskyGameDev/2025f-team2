@@ -18,6 +18,9 @@ var fallTimer: Timer
 @export var boxGrid: LevelGrid
 @export var levelOrder: PlacementOrder
 
+#disable spawning for tutorial
+@export var spawnBlocks = true
+
 var bid = 0
 var cid = 0
 
@@ -39,7 +42,9 @@ func _ready() -> void:
 	fallTimer.autostart = true
 	add_child(fallTimer)
 
-	spawnBlock()
+	#if spawnBlocks is false, it won't automatically spawn a block
+	if(spawnBlocks):
+		spawnBlock()
 
 func createBlock() -> BoxHandler:
 	bid += 1
@@ -62,7 +67,7 @@ func getBlock() -> BoxHandler:
 		2: return indestructable_node.instantiate()
 	return block_node.instantiate()
 
-func spawnBlock():
+func spawnBlock() -> BoxHandler:
 	var new_block = createBlock()
 	boxFiller.fillBlock(new_block)
 
@@ -70,6 +75,7 @@ func spawnBlock():
 	if blocks_placed_since_enemy >= randi_range(3, 5):
 		spawnRandomEnemy()
 		blocks_placed_since_enemy = 0
+	return new_block
 
 func spawnRandomEnemy():
 	print("Attempted enemy spawn")

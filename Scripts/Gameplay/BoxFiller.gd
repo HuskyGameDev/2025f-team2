@@ -5,6 +5,9 @@ class_name BoxFiller
 @export var levelGrid : LevelGrid
 @onready var ribbon : RibbonAnimator = $Ribbon
 
+#off switch for the crytals (tutorial)
+@export var dropCrystals = true
+
 var fblock : BoxHandler
 var startingTime = 0.75
 
@@ -20,6 +23,9 @@ func fillBlock(block : BoxHandler):
 	ribbon.setGetBox()
 	var time = startingTime
 	while (fblock != null):
+		if !dropCrystals:
+			break
+			return
 		if fblock.blockValue >= 20:
 			break
 			return
