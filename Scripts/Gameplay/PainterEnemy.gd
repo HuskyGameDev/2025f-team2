@@ -12,13 +12,15 @@ func on_enemy_turn() -> void:
 		var nx: int = bPosition.x + d.x
 		var ny: int = bPosition.y + d.y
 		if nx >= 0 and nx < levelGrid.grid_size.x and ny >= 0 and ny < levelGrid.grid_size.y:
-			var neighbor = levelGrid.blocks[ny][nx]
+			var neighbor : BoxHandler = levelGrid.blocks[ny][nx]
 			if neighbor != null and neighbor.bType == BlockType.Block:
 				# choose a random valid palette index on the neighbor
 				if neighbor.palletes != null and neighbor.palletes.size() > 0:
 					#every time the painter successfully paints, it gains one health
 					didPaint = true
 					take_damage(-1)
+					#and removes one from the block, an eye to an eye
+					neighbor._removeToBlock()
 					var idx = randi_range(0, neighbor.palletes.size() - 1)
 					neighbor._set_color(idx)
 	#checks for if the painter painted after trying to paint

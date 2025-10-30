@@ -5,6 +5,7 @@ class_name LevelGrid
 var block_node = load("res://Scenes/GameObjects/box.tscn")
 
 @export var levelManager : LevelManager 
+@export var ribbon : RibbonAnimator
 
 @export var grid_space : int
 @export var grid_size : Vector2i
@@ -37,9 +38,11 @@ func removeBlock(block : BoxHandler):
 	block.queue_free()
 
 func setActiveBlock(block : BoxHandler):
+	ribbon.setControl()
 	active_block = block
 
 func removeActiveBlock():
+	ribbon.setIdle()
 	active_block = null
 
 func spawnBlockAtPosition(pos : Vector2i, color : int):

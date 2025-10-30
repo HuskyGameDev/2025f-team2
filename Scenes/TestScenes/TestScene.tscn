@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=22 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
@@ -12,12 +12,7 @@
 [ext_resource type="Script" uid="uid://c3qfxtnd08lrf" path="res://Scripts/Gameplay/RibbonAnimator.gd" id="6_qk1kx"]
 [ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="7_qk1kx"]
 [ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="8_nxyhc"]
-[ext_resource type="Script" uid="uid://biwb1rcybg3tr" path="res://Scripts/Background/CloudAnimation.gd" id="9_72xxr"]
-[ext_resource type="Texture2D" uid="uid://kgsist0w7161" path="res://Artwork/Backgrounds/BGCloud.png" id="9_y8ukn"]
-[ext_resource type="Script" uid="uid://cc08gxp3ybh10" path="res://Scripts/Background/BalloonSpawner.gd" id="11_dk750"]
-[ext_resource type="PackedScene" uid="uid://cf7ivhmop354y" path="res://Scenes/BackgroundAssets/ha_balloon.tscn" id="12_y8ukn"]
-[ext_resource type="Shader" uid="uid://vl5b478745jc" path="res://Scripts/Shaders/BGwind.gdshader" id="14_bs1rv"]
-[ext_resource type="Texture2D" uid="uid://b2jus41ra42ks" path="res://Artwork/Backgrounds/SkyBG.png" id="14_nxyhc"]
+[ext_resource type="PackedScene" uid="uid://dnr1ycyay0p0u" path="res://Scenes/BackgroundAssets/cloud_background.tscn" id="13_72xxr"]
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -236,32 +231,44 @@ tracks/3/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_72xxr"]
+resource_name = "control"
+length = 4.00002
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 15, 16, 15, 16, 15, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Ribbon-faces:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.75, 3.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 9, 12]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nxyhc"]
 _data = {
 &"Hop": SubResource("Animation_bs1rv"),
 &"RESET": SubResource("Animation_qk1kx"),
+&"control": SubResource("Animation_72xxr"),
 &"getBox": SubResource("Animation_nxyhc"),
 &"idle": SubResource("Animation_j3c8t")
 }
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bs1rv"]
-noise_type = 0
-seed = 6
-frequency = 0.0008
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bs1rv"]
-seamless = true
-noise = SubResource("FastNoiseLite_bs1rv")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7vnt"]
-shader = ExtResource("14_bs1rv")
-shader_parameter/render_noise = false
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_bs1rv")
-shader_parameter/amplitude = 0.18
-shader_parameter/time_scale = 0.01
-shader_parameter/noise_scale = 0.001
-shader_parameter/rotation_strength = 1.0
-shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid")]
 texture_filter = 1
@@ -289,10 +296,11 @@ texture = SubResource("GradientTexture1D_qk1kx")
 region_enabled = true
 region_rect = Rect2(0, 0, 108, 142)
 
-[node name="BaseGridPos" type="Node2D" parent="." node_paths=PackedStringArray("levelManager")]
+[node name="BaseGridPos" type="Node2D" parent="." node_paths=PackedStringArray("levelManager", "ribbon")]
 position = Vector2(116, 154)
 script = ExtResource("4_fe8sf")
 levelManager = NodePath("..")
+ribbon = NodePath("../BoxFiller/Ribbon")
 grid_space = 17
 grid_size = Vector2i(6, 9)
 
@@ -352,202 +360,7 @@ offset_right = -1.0
 offset_bottom = 1.0
 script = ExtResource("3_635xr")
 
-[node name="Background" type="Node2D" parent="."]
-z_index = -10
-
-[node name="HaBalloon" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(31, 74)
-
-[node name="HaBalloon2" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(116, 54)
-
-[node name="HaBalloon3" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(197, 37)
-
-[node name="HaBalloon4" parent="Background" instance=ExtResource("12_y8ukn")]
-position = Vector2(284, 8)
-
-[node name="Node2D" type="Node2D" parent="Background"]
-
-[node name="Cloud4" type="Node2D" parent="Background/Node2D"]
-modulate = Color(0.683078, 0.683077, 0.683077, 1)
-z_index = -3
-position = Vector2(55, -12)
-scale = Vector2(0.765, 0.765)
-skew = 0.0593412
-script = ExtResource("9_72xxr")
-
-[node name="BgCloud6" type="Sprite2D" parent="Background/Node2D/Cloud4"]
-position = Vector2(572, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud4" type="Sprite2D" parent="Background/Node2D/Cloud4"]
-position = Vector2(409, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud2" type="Sprite2D" parent="Background/Node2D/Cloud4"]
-position = Vector2(247, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud5" type="Sprite2D" parent="Background/Node2D/Cloud4"]
-position = Vector2(-231, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud3" type="Sprite2D" parent="Background/Node2D/Cloud4"]
-position = Vector2(-71, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud" type="Sprite2D" parent="Background/Node2D/Cloud4"]
-position = Vector2(85, 174)
-skew = 0.226893
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="Cloud3" type="Node2D" parent="Background/Node2D"]
-modulate = Color(0.753985, 0.753984, 0.753984, 1)
-z_index = -3
-position = Vector2(-13, -7)
-scale = Vector2(0.84, 0.84)
-skew = 0.0593412
-script = ExtResource("9_72xxr")
-timeAdd = 0.25
-
-[node name="BgCloud6" type="Sprite2D" parent="Background/Node2D/Cloud3"]
-position = Vector2(572, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud4" type="Sprite2D" parent="Background/Node2D/Cloud3"]
-position = Vector2(409, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud2" type="Sprite2D" parent="Background/Node2D/Cloud3"]
-position = Vector2(247, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud5" type="Sprite2D" parent="Background/Node2D/Cloud3"]
-position = Vector2(-231, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud3" type="Sprite2D" parent="Background/Node2D/Cloud3"]
-position = Vector2(-71, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud" type="Sprite2D" parent="Background/Node2D/Cloud3"]
-position = Vector2(85, 174)
-skew = 0.226893
-texture = ExtResource("9_y8ukn")
-
-[node name="Cloud2" type="Node2D" parent="Background/Node2D"]
-modulate = Color(0.856067, 0.856067, 0.856067, 1)
-z_index = -3
-position = Vector2(39, -5)
-scale = Vector2(0.895, 0.895)
-skew = 0.0593412
-script = ExtResource("9_72xxr")
-timeAdd = 0.5
-
-[node name="BgCloud6" type="Sprite2D" parent="Background/Node2D/Cloud2"]
-position = Vector2(572, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud4" type="Sprite2D" parent="Background/Node2D/Cloud2"]
-position = Vector2(409, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud2" type="Sprite2D" parent="Background/Node2D/Cloud2"]
-position = Vector2(247, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud5" type="Sprite2D" parent="Background/Node2D/Cloud2"]
-position = Vector2(-231, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud3" type="Sprite2D" parent="Background/Node2D/Cloud2"]
-position = Vector2(-71, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="BgCloud" type="Sprite2D" parent="Background/Node2D/Cloud2"]
-position = Vector2(85, 174)
-skew = 0.226893
-texture = ExtResource("9_y8ukn")
-flip_h = true
-
-[node name="Cloud1" type="Node2D" parent="Background/Node2D"]
-z_index = -3
-script = ExtResource("9_72xxr")
-timeAdd = 0.75
-
-[node name="BgCloud6" type="Sprite2D" parent="Background/Node2D/Cloud1"]
-position = Vector2(572, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud4" type="Sprite2D" parent="Background/Node2D/Cloud1"]
-position = Vector2(409, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud2" type="Sprite2D" parent="Background/Node2D/Cloud1"]
-position = Vector2(247, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud5" type="Sprite2D" parent="Background/Node2D/Cloud1"]
-position = Vector2(-231, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud3" type="Sprite2D" parent="Background/Node2D/Cloud1"]
-position = Vector2(-71, 174)
-skew = 0.205949
-texture = ExtResource("9_y8ukn")
-
-[node name="BgCloud" type="Sprite2D" parent="Background/Node2D/Cloud1"]
-position = Vector2(85, 174)
-skew = 0.226893
-texture = ExtResource("9_y8ukn")
-
-[node name="CloudyBG" type="Sprite2D" parent="Background/Node2D"]
-z_index = -4
-texture_repeat = 3
-material = SubResource("ShaderMaterial_e7vnt")
-position = Vector2(156, 55)
-scale = Vector2(1, 0.993596)
-texture = ExtResource("14_nxyhc")
-region_enabled = true
-region_rect = Rect2(0, 0, 512, 288)
-script = ExtResource("9_72xxr")
-timeAdd = 3.0
-
-[node name="BalloonSpawner" type="Node2D" parent="Background"]
-position = Vector2(0, -81)
-script = ExtResource("11_dk750")
-objectToSpawn = ExtResource("12_y8ukn")
+[node name="Background" parent="." instance=ExtResource("13_72xxr")]
 
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller/Button" method="_on_pressed"]

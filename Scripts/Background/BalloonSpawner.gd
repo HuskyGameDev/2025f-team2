@@ -13,10 +13,8 @@ func _ready() -> void:
 	timed.wait_time = 4.0
 
 func spawnObject():
-	print("newBalloon")
 	var object : Node2D = objectToSpawn.instantiate()
 	add_child(object)
-	
 	object.position.x = next
 	next += randf_range(90, 110)
 	if next > 320.0:

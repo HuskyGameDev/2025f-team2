@@ -12,5 +12,8 @@ func setGetBox():
 func setHop():
 	animatior.play("Hop")
 
+func setControl():
+	animatior.play("control")
+
 func waitUntilFinish():
 	await animatior.animation_finished
