@@ -49,6 +49,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reroll"):
 		reroll()
 	if event.is_action_pressed("release"):
+		#stops release when block is at value 0
+		if fblock.blockValue < 1 && fblock.bType == BoxHandler.BlockType.Block:
+			return
 		if fblock.blockValue >= 20:
 			return
 		var aBlock : BoxHandler = fblock

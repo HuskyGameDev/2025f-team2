@@ -17,7 +17,7 @@ default_color = Color(1, 0, 1, 1)
 [node name="Background" parent="LevelManager" index="4"]
 visible = false
 
-[node name="TutorialController" type="Control" parent="." node_paths=PackedStringArray("label", "textbox", "levelmngr", "boxfill")]
+[node name="TutorialController" type="Control" parent="." node_paths=PackedStringArray("label", "textbox", "levelmngr", "boxfill", "levelgrid")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 0
@@ -28,6 +28,7 @@ label = NodePath("TextBox/Text")
 textbox = NodePath("TextBox")
 levelmngr = NodePath("../LevelManager")
 boxfill = NodePath("../LevelManager/BoxFiller")
+levelgrid = NodePath("../LevelManager/BaseGridPos")
 
 [node name="TextBox" type="Panel" parent="TutorialController"]
 layout_mode = 0

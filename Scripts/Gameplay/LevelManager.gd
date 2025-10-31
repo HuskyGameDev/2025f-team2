@@ -76,6 +76,16 @@ func spawnBlock() -> BoxHandler:
 		spawnRandomEnemy()
 		blocks_placed_since_enemy = 0
 	return new_block
+	
+#may help later, I just need to spawn an arrow specifically in the tutorial
+#must use this signature: levelmngr.spawnSpecificBlock(levelmngr.blank_node) replace blank with correct node
+func spawnSpecificBlock(node) -> BoxHandler:
+	var new_block = node.instantiate()
+	boxFiller.fillBlock(new_block)
+	new_block._set_color(levelOrder.colorOrder[cid])
+	new_block.bPosition = Vector2i(boxGrid.grid_size.x / 2, boxGrid.grid_size.y - 1)
+	new_block.levelGrid = boxGrid
+	return new_block
 
 func spawnRandomEnemy():
 	print("Attempted enemy spawn")
@@ -146,3 +156,69 @@ func spawnRandomEnemy():
 
 	# Spawn into grid
 	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)
+
+#Spawns a specific type of enemy
+#must use this signature: levelmngr.spawnSpecificEnemy(x)
+#x = 
+#		0 static_enemy_node
+#		1 floater_enemy_node
+#		2 painter
+func spawnSpecificEnemy(enemyType: int) -> EnemyHandler:
+	print("Attempted enemy spawn")
+	
+	var enemy_scene: PackedScene
+	var enemy_type = randi() % 3
+
+	match enemy_type:
+		0: enemy_scene = static_enemy_node
+		1: enemy_scene = floater_enemy_node
+		2: enemy_scene = painter_enemy_node
+
+	var enemy: EnemyHandler = enemy_scene.instantiate()
+	if enemy == null:
+		push_error("Failed to instantiate enemy scene.")
+		return
+
+	# sets color to order
+	enemy._set_color(levelOrder.colorOrder[cid])
+
+	# --- Determine spawn location ---
+	var spawn_col = randi_range(0, boxGrid.grid_size.x - 1)
+	var spawn_row = 0
+
+	match enemy_type:
+		0: # Static - spawn visually near bottom (numerically high y)
+			for row in range(0, boxGrid.grid_size.y - 1):
+				if boxGrid.blocks[row][spawn_col] == null:
+					spawn_row = row
+					break
+		1: # Floater - spawn higher up
+			var attempts = 0
+			spawn_row = randi_range(0, int(boxGrid.grid_size.y * 0.4))
+			while attempts < 30 and boxGrid.blocks[spawn_row][spawn_col] != null:
+				spawn_col = randi_range(0, boxGrid.grid_size.x - 1)
+				spawn_row = randi_range(0, int(boxGrid.grid_size.y * 0.4))
+				attempts += 1
+			spawn_row = clamp(spawn_row, 0, boxGrid.grid_size.y - 1)
+		2: # Painter - also spawn visually near bottom
+			for row in range(0, boxGrid.grid_size.y - 1):
+				if boxGrid.blocks[row][spawn_col] == null:
+					spawn_row = row
+					break
+
+	spawn_col = clamp(spawn_col, 0, boxGrid.grid_size.x - 1)
+	spawn_row = clamp(spawn_row, 0, boxGrid.grid_size.y - 1)
+
+	# --- Random color selection ---
+	var color_index: int
+	if enemy.palletes.size() > 0:
+		color_index = randi_range(0, enemy.palletes.size() - 1)
+	else:
+		color_index = randi_range(0, 2)  # fallback: 0–2
+
+	# Add enemy to the grid
+	boxGrid.add_child(enemy)
+
+	# Spawn into grid
+	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)
+	return enemy
