@@ -67,7 +67,10 @@ func getBlock() -> BoxHandler:
 		2: return indestructable_node.instantiate()
 	return block_node.instantiate()
 
-func spawnBlock() -> BoxHandler:
+#autoSpawn will be true automatically for all ways of spawning, makes it able to be spawning
+func spawnBlock(autoSpawn = true) -> BoxHandler:
+	if(!spawnBlocks && autoSpawn):
+		return
 	var new_block = createBlock()
 	boxFiller.fillBlock(new_block)
 
@@ -158,16 +161,19 @@ func spawnRandomEnemy():
 	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)
 
 #Spawns a specific type of enemy
-#must use this signature: levelmngr.spawnSpecificEnemy(x)
+#must use this signature: levelmngr.spawnSpecificEnemy(x, y)
 #x = 
 #		0 static_enemy_node
 #		1 floater_enemy_node
 #		2 painter
-func spawnSpecificEnemy(enemyType: int) -> EnemyHandler:
+#y = 
+#	0 green
+#	1 red
+#	2 yellow
+func spawnSpecificEnemy(enemy_type: int, color = -1) -> EnemyHandler:
 	print("Attempted enemy spawn")
 	
 	var enemy_scene: PackedScene
-	var enemy_type = randi() % 3
 
 	match enemy_type:
 		0: enemy_scene = static_enemy_node
@@ -178,10 +184,7 @@ func spawnSpecificEnemy(enemyType: int) -> EnemyHandler:
 	if enemy == null:
 		push_error("Failed to instantiate enemy scene.")
 		return
-
-	# sets color to order
-	enemy._set_color(levelOrder.colorOrder[cid])
-
+		
 	# --- Determine spawn location ---
 	var spawn_col = randi_range(0, boxGrid.grid_size.x - 1)
 	var spawn_row = 0
@@ -209,16 +212,9 @@ func spawnSpecificEnemy(enemyType: int) -> EnemyHandler:
 	spawn_col = clamp(spawn_col, 0, boxGrid.grid_size.x - 1)
 	spawn_row = clamp(spawn_row, 0, boxGrid.grid_size.y - 1)
 
-	# --- Random color selection ---
-	var color_index: int
-	if enemy.palletes.size() > 0:
-		color_index = randi_range(0, enemy.palletes.size() - 1)
-	else:
-		color_index = randi_range(0, 2)  # fallback: 0–2
-
 	# Add enemy to the grid
 	boxGrid.add_child(enemy)
 
 	# Spawn into grid
-	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)
+	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color)
 	return enemy

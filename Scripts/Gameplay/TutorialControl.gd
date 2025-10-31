@@ -10,8 +10,10 @@ var firstBlock
 var arrow
 var bomb
 var oneBlock
+var enemy
 var blockPlacedValue = 0
 var bombExploded = false
+var oneBlockPlaced = false
 
 # Complete control of everything that happens within the tutorial level
 
@@ -42,9 +44,11 @@ var phase = 0
 #phase 11: prefilled box to 19
 #phase 12: "that is one high value block!"
 #phase 13: "add anything more to it and it'll explode!"
-#phase 14: block with just one value
-#phase 15: spawn enemy at tail end of 14, explain it
-#pphase 16: finally, let player kill it
+#phase 14: block with just one value, loops to phase 11 if not placed on bomb\
+#phase 15-17: explain the enemies
+#phase 18: kill the enemy
+#phase 19: congratulations!
+#phase 20: boots player to level select, with next level unlocked
 
 #goes to next phase
 func _on_next_button_pressed() -> void:
@@ -55,7 +59,7 @@ func _on_next_button_pressed() -> void:
 			setText("In a moment you will be thrown a block, and then magic crystals will start filling it!")
 		2:
 			makeTextDisappear()
-			firstBlock = levelmngr.spawnBlock()
+			firstBlock = levelmngr.spawnBlock(false)
 		3:
 			makeTextReappear()
 			setText("Press 'Z' to place block into the gameboard (working name)")
@@ -66,6 +70,7 @@ func _on_next_button_pressed() -> void:
 			makeTextReappear()
 			setText("Next, you will be given another block, land it on the already placed block to merge them!")
 		6:
+			bomb = levelmngr.spawnBlock(false)
 			boxfill.dropCrystals = true
 			makeTextDisappear()
 		7:
@@ -82,13 +87,15 @@ func _on_next_button_pressed() -> void:
 			makeTextReappear()
 			setText("Pretty cool huh?")
 		11:
-			makeTextDisappear()
+			oneBlockPlaced = false
+			makeTextDisappear()		
 			if(boxfill.fblock != null):
 				boxfill.fblock.queue_free()
 			boxfill.dropCrystals = false
-			bomb = levelmngr.spawnBlock()
+			bomb = levelmngr.spawnBlock(false)
 			bomb.blockValue = 19
 			bomb._updateBoxText()
+			levelmngr.spawnBlocks = false
 		12:
 			makeTextReappear()
 			setText("That is one big block!")
@@ -99,7 +106,7 @@ func _on_next_button_pressed() -> void:
 			if(boxfill.fblock != null):
 				boxfill.fblock.queue_free()
 			boxfill.dropCrystals = false
-			oneBlock = levelmngr.spawnBlock()
+			oneBlock = levelmngr.spawnBlock(false)
 			oneBlock.blockValue = 1
 			oneBlock._updateBoxText()
 		15:
@@ -112,9 +119,13 @@ func _on_next_button_pressed() -> void:
 		18:
 			makeTextDisappear()
 			boxfill.dropCrystals = true
-			boxfill.fblock.queue_free()
-			levelmngr.spawnBlock()
-			levelmngr.spawnSpecificEnemy(0)
+			levelmngr.spawnBlock(false)
+		19:
+			makeTextReappear()
+			setText("You have beaten the tutorial! Have fun playing Ribbon in the Wacky Warehouse!")
+		20:
+			makeTextDisappear()
+			get_tree().change_scene_to_file("res://Scenes/TestScenes/LevelSelect.tscn")
 		_:
 			pass
 
@@ -129,10 +140,18 @@ func makeTextReappear():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#any phase where spawning blocks after placing is necessary
+	if(phase == 6 || phase == 18):
+		levelmngr.spawnBlocks = true
+	else:
+		levelmngr.spawnBlocks = false
+	
+	
 	#when it is phase 2, check for if the block is filled to 4
 	if(phase == 2):
 		if(firstBlock.blockValue >= 4):
 			_on_next_button_pressed()
+	
 	#if during phase 2 the player throws their block, advance to phase 4
 	if( phase == 2 && Input.is_action_pressed("release") ):
 		phase = 4
@@ -157,7 +176,7 @@ func _process(delta: float) -> void:
 		
 	#once the player places the bomb, phase 11 is over
 	if(phase == 11):
-		if(bomb.placed):
+		if(bomb != null && bomb.placed):
 			_on_next_button_pressed()
 			
 	#once the bomb explodes during phase 14, go to next, spawn a static enemy
@@ -168,4 +187,27 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(1, false).timeout
 			for i in levelgrid.get_all_blocks_in_board():
 				levelgrid.removeBlock(i)
+			enemy = levelmngr.spawnSpecificEnemy(0, 0)
+			_on_next_button_pressed()
+	
+	if(phase == 14):
+		if(oneBlock != null && oneBlock.placed && !oneBlockPlaced):
+			print("Pimp down")
+			oneBlockPlaced = true
+			oneBlock = null
+			bomb = null
+			for i in levelgrid.get_all_blocks_in_board():
+				levelgrid.removeBlock(i)
+			#do phase 11 stuff right here
+			if(boxfill.fblock != null):
+				boxfill.fblock.queue_free()
+			boxfill.dropCrystals = false
+			bomb = levelmngr.spawnBlock(false)
+			bomb.blockValue = 19
+			bomb._updateBoxText()
+			phase = 11
+			oneBlockPlaced = false
+	
+	if(phase == 18):
+		if(enemy == null):
 			_on_next_button_pressed()
