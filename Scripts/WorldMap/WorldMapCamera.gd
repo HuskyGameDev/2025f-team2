@@ -16,4 +16,7 @@ func _process(delta: float) -> void:
 	position = position.lerp(target_camera_position, 15*delta)
 
 func setPositionOfCameraFromPoint(point : WorldPoint):
-	target_camera_position = point.position + Vector3(0, 2.5, 2)
+	target_camera_position = point.position + Vector3(0, 2.75, 2.1)
+
+func setPositionOfCameraInCutscene(point : WorldPoint):
+	target_camera_position = point.position + Vector3(0, 2.75, -.25)

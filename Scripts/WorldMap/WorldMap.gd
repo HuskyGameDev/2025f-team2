@@ -19,7 +19,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("right"):
 		next()
 		await sets()
-
+	if event.is_action_released("release"):
+		enterLevel()
 func next():
 	pos += 1
 	if pos >= len(worldPoints):
@@ -34,9 +35,16 @@ func sets():
 	vaild = false
 	await uiScreen.animationUp()
 	camera.setPositionOfCameraFromPoint(worldPoints[pos])
-	await uiScreen.animationUp()
+	await uiScreen.wait()
 	uiScreen.setNameLabel(worldPoints[pos].level.levelName)
 	uiScreen.setScreen(worldPoints[pos].level.img)
 	await uiScreen.animationDown()
 	vaild = true
-	
+
+func enterLevel():
+	vaild = false
+	await uiScreen.animationUp()
+	camera.setPositionOfCameraInCutscene(worldPoints[pos])
+	await create_tween().tween_property(camera, "rotation_degrees:x", -90, 0.25).finished
+	await uiScreen.wait()
+	await create_tween().tween_property(camera, "fov", 1.1, 0.25).finished

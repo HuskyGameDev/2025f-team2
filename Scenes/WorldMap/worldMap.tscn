@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=29 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bl7ii30g00b5l" path="res://Scripts/WorldMap/LevelSelectUI.gd" id="9_qlyio"]
 [ext_resource type="Texture2D" uid="uid://cbf3lderaeip3" path="res://Artwork/UI/ProtoLogo.png" id="10_53fbb"]
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="10_qlyio"]
+[ext_resource type="Texture2D" uid="uid://kgsist0w7161" path="res://Artwork/Backgrounds/BGCloud.png" id="11_1yc4n"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
 background_mode = 1
@@ -45,7 +46,7 @@ metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="Resource" id="Resource_wupwk"]
 script = ExtResource("5_rt317")
-levelName = "Tutorial 2"
+levelName = "Test Level"
 scene = ""
 img = ExtResource("8_kxxe7")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
@@ -69,6 +70,13 @@ script = ExtResource("5_rt317")
 levelName = "Tutorial 5"
 scene = ""
 img = ExtResource("10_53fbb")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_53fbb"]
+script = ExtResource("5_rt317")
+levelName = "Mayday! Mayday! I'm going down!"
+scene = ""
+img = ExtResource("11_1yc4n")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
@@ -99,7 +107,7 @@ font_color = Color(0, 0, 0, 1)
 script = ExtResource("1_3gro2")
 camera = NodePath("WorldCamera")
 uiScreen = NodePath("CanvasLayer/LevelSelectUI")
-worldPoints = [NodePath("Point"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5")]
+worldPoints = [NodePath("Point"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5"), NodePath("Point6")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kayuu")
@@ -161,6 +169,15 @@ texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
 level = SubResource("Resource_hin85")
+
+[node name="Point6" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.38991, 0.252494, -5.49163)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_53fbb")
 
 [node name="Cloud" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)
