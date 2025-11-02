@@ -1,9 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=27 format=3 uid="uid://b2qdkwusiac2o"]
 
+[ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
 [ext_resource type="Script" uid="uid://s6ygxocbd3wc" path="res://Scripts/WorldMap/WorldMapCamera.gd" id="2_rk2xb"]
 [ext_resource type="Texture2D" uid="uid://blbrknw3u5qjo" path="res://Artwork/WorldMap/WorldCloud.png" id="3_2ry0s"]
 [ext_resource type="Texture2D" uid="uid://b6nqrwth8c0lr" path="res://Artwork/WorldMap/worldMapPing.png" id="3_ujvki"]
+[ext_resource type="Script" uid="uid://cvmu0sqsv1v3h" path="res://Scripts/WorldMap/WorldPoint.gd" id="4_ggnbf"]
+[ext_resource type="Texture2D" uid="uid://b1ra7nmrv2h07" path="res://Artwork/LevelSelectImages/Screenshot 2025-10-28 014545.png" id="5_q1dlp"]
+[ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="5_rt317"]
+[ext_resource type="Texture2D" uid="uid://4tcmmpu5ywxt" path="res://Artwork/LevelSelectImages/Screenshot 2025-10-28 010829.png" id="8_kxxe7"]
+[ext_resource type="Texture2D" uid="uid://b2jus41ra42ks" path="res://Artwork/Backgrounds/SkyBG.png" id="9_1yc4n"]
+[ext_resource type="Theme" uid="uid://ded1rpxa401uw" path="res://Resources/ButtonTheme.tres" id="9_cs4vs"]
+[ext_resource type="Script" uid="uid://bl7ii30g00b5l" path="res://Scripts/WorldMap/LevelSelectUI.gd" id="9_qlyio"]
+[ext_resource type="Texture2D" uid="uid://cbf3lderaeip3" path="res://Artwork/UI/ProtoLogo.png" id="10_53fbb"]
+[ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="10_qlyio"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
 background_mode = 1
@@ -26,8 +36,45 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_2ry0s"]
 size = Vector2(29, 29)
 
+[sub_resource type="Resource" id="Resource_q1dlp"]
+script = ExtResource("5_rt317")
+levelName = "Tutorial"
+scene = ""
+img = ExtResource("5_q1dlp")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_wupwk"]
+script = ExtResource("5_rt317")
+levelName = "Tutorial 2"
+scene = ""
+img = ExtResource("8_kxxe7")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_1hco5"]
+script = ExtResource("5_rt317")
+levelName = "Tutorial 3"
+scene = ""
+img = ExtResource("1_kayuu")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_inlqg"]
+script = ExtResource("5_rt317")
+levelName = "Tutorial 4"
+scene = ""
+img = ExtResource("9_1yc4n")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_hin85"]
+script = ExtResource("5_rt317")
+levelName = "Tutorial 5"
+scene = ""
+img = ExtResource("10_53fbb")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 shading_mode = 0
 albedo_texture = ExtResource("3_2ry0s")
 texture_filter = 0
@@ -44,7 +91,15 @@ albedo_texture = ExtResource("3_2ry0s")
 texture_filter = 0
 texture_repeat = false
 
-[node name="World" type="Node3D"]
+[sub_resource type="LabelSettings" id="LabelSettings_sforw"]
+font = ExtResource("10_qlyio")
+font_color = Color(0, 0, 0, 1)
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("camera", "uiScreen", "worldPoints")]
+script = ExtResource("1_3gro2")
+camera = NodePath("WorldCamera")
+uiScreen = NodePath("CanvasLayer/LevelSelectUI")
+worldPoints = [NodePath("Point"), NodePath("Point2"), NodePath("Point3"), NodePath("Point4"), NodePath("Point5")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kayuu")
@@ -53,8 +108,8 @@ environment = SubResource("Environment_kayuu")
 material_override = SubResource("StandardMaterial3D_rk2xb")
 mesh = SubResource("PlaneMesh_2ry0s")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.67816, 0.734915, 0, -0.734915, 0.67816, -4.695, 3.375, -0.555)
+[node name="WorldCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.67816, 0.734915, 0, -0.734915, 0.67816, -6.715, 21.8896, -7.54)
 far = 20.0
 script = ExtResource("2_rk2xb")
 
@@ -63,12 +118,49 @@ transform = Transform3D(1, 0, 0, 0, 0.440848, 0.897582, 0, -0.897582, 0.440848, 
 light_volumetric_fog_energy = 0.0
 
 [node name="Point" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -6.73163, 3.21327, -8.54845)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.87465, 3.40277, -8.03859)
 pixel_size = 0.066
 billboard = 1
 texture_filter = 0
-render_priority = 1
 texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_q1dlp")
+
+[node name="Point2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.56741, 3.40277, -9.39595)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_wupwk")
+
+[node name="Point3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6257, 3.40278, -9.33662)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_1hco5")
+
+[node name="Point4" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.50689, 3.403, -8.00116)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_inlqg")
+
+[node name="Point5" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.66381, 3.403, -7.3577)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_hin85")
 
 [node name="Cloud" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)
@@ -76,7 +168,72 @@ material_override = SubResource("StandardMaterial3D_ujvki")
 mesh = SubResource("PlaneMesh_ggnbf")
 
 [node name="Cloud2" type="MeshInstance3D" parent="Cloud"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.10154, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.10541, 0)
 material_override = SubResource("StandardMaterial3D_2ry0s")
 mesh = SubResource("PlaneMesh_ggnbf")
 skeleton = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelSelectUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("nameLabel", "screen")]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -81.0
+offset_right = 80.0
+offset_bottom = 19.0
+grow_horizontal = 2
+script = ExtResource("9_qlyio")
+nameLabel = NodePath("Panel/Level Name")
+screen = NodePath("Panel/Screen")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/LevelSelectUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_cs4vs")
+
+[node name="Level Name" type="Label" parent="CanvasLayer/LevelSelectUI/Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 15.0
+grow_horizontal = 2
+text = "Level Name Insert!"
+label_settings = SubResource("LabelSettings_sforw")
+horizontal_alignment = 1
+
+[node name="Enter" type="Label" parent="CanvasLayer/LevelSelectUI/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Z - Enter the Level"
+label_settings = SubResource("LabelSettings_sforw")
+horizontal_alignment = 1
+
+[node name="Screen" type="TextureRect" parent="CanvasLayer/LevelSelectUI/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.2325
+offset_top = -25.0
+offset_right = 46.2325
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_q1dlp")
+expand_mode = 1
