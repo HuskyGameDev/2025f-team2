@@ -20,10 +20,10 @@ noise = SubResource("FastNoiseLite_bs1rv")
 shader = ExtResource("4_suvg2")
 shader_parameter/render_noise = false
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_bs1rv")
-shader_parameter/amplitude = 0.18
-shader_parameter/time_scale = 0.01
+shader_parameter/amplitude = 0.3
+shader_parameter/time_scale = 0.02
 shader_parameter/noise_scale = 0.001
-shader_parameter/rotation_strength = 1.0
+shader_parameter/rotation_strength = 0.9
 shader_parameter/rotation_pivot = Vector2(0.5, 1)
 
 [node name="Background" type="Node2D"]

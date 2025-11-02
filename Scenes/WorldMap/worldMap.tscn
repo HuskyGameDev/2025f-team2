@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2qdkwusiac2o"]
+
+[ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
+[ext_resource type="Script" uid="uid://s6ygxocbd3wc" path="res://Scripts/WorldMap/WorldMapCamera.gd" id="2_rk2xb"]
+[ext_resource type="Texture2D" uid="uid://blbrknw3u5qjo" path="res://Artwork/WorldMap/WorldCloud.png" id="3_2ry0s"]
+[ext_resource type="Texture2D" uid="uid://b6nqrwth8c0lr" path="res://Artwork/WorldMap/worldMapPing.png" id="3_ujvki"]
+
+[sub_resource type="Environment" id="Environment_kayuu"]
+background_mode = 1
+background_color = Color(0.113725, 0.45098, 1, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.133333, 0.415686, 1, 1)
+fog_density = 1.0
+fog_depth_curve = 7.20993
+fog_depth_begin = 0.5
+fog_depth_end = 7.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rk2xb"]
+albedo_texture = ExtResource("1_kayuu")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2ry0s"]
+size = Vector2(29, 29)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_2ry0s")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ggnbf"]
+size = Vector2(6.563, 3.75)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ry0s"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.317647)
+albedo_texture = ExtResource("3_2ry0s")
+texture_filter = 0
+texture_repeat = false
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kayuu")
+
+[node name="WorldPlane" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_rk2xb")
+mesh = SubResource("PlaneMesh_2ry0s")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.67816, 0.734915, 0, -0.734915, 0.67816, -4.695, 3.375, -0.555)
+far = 20.0
+script = ExtResource("2_rk2xb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.440848, 0.897582, 0, -0.897582, 0.440848, 0, 1.08371, 0)
+light_volumetric_fog_energy = 0.0
+
+[node name="Point" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -6.73163, 3.21327, -8.54845)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("3_ujvki")
+
+[node name="Cloud" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)
+material_override = SubResource("StandardMaterial3D_ujvki")
+mesh = SubResource("PlaneMesh_ggnbf")
+
+[node name="Cloud2" type="MeshInstance3D" parent="Cloud"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.10154, 0)
+material_override = SubResource("StandardMaterial3D_2ry0s")
+mesh = SubResource("PlaneMesh_ggnbf")
+skeleton = NodePath("../..")
