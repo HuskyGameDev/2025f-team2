@@ -17,6 +17,7 @@ var fallTimer: Timer
 @export var boxFiller: BoxFiller
 @export var boxGrid: LevelGrid
 @export var levelOrder: PlacementOrder
+@export var enemyStats: LevelEnemyStats
 
 #disable spawning for tutorial
 @export var spawnBlocks = true
@@ -111,6 +112,9 @@ func spawnRandomEnemy():
 	if enemy == null:
 		push_error("Failed to instantiate enemy scene.")
 		return
+	
+	#send in the enemy stats variable
+	enemy.enemyStats = enemyStats
 
 	# Ensure palletes from boxGrid
 	if boxGrid != null and boxGrid.block_node != null:
