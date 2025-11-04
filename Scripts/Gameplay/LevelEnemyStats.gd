@@ -2,6 +2,11 @@ class_name LevelEnemyStats
 extends Resource
 
 #painter stats
+@export_group("EnemySpawningPerBlock")
+#x is the min blocks per spawn, y is the max, y must be > x
+@export var enemyPerBlock: Vector2i = Vector2i(3,5)
+
+#painter stats
 @export_group("Static")
 #the minimum and maximum health of the painter
 @export var staticHealth: Vector2i = Vector2i(5,10)

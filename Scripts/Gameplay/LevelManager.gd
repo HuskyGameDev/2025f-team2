@@ -68,7 +68,8 @@ func getBlock() -> BoxHandler:
 		2: return indestructable_node.instantiate()
 	return block_node.instantiate()
 
-#autoSpawn will be true automatically for all ways of spawning, makes it able to be spawning
+#autoSpawn will be true automatically for all ways of spawning, 
+#makes it able to be manually spawned whilst spawnBlocks is false
 func spawnBlock(autoSpawn = true) -> BoxHandler:
 	if(!spawnBlocks && autoSpawn):
 		return
@@ -76,7 +77,8 @@ func spawnBlock(autoSpawn = true) -> BoxHandler:
 	boxFiller.fillBlock(new_block)
 
 	blocks_placed_since_enemy += 1
-	if blocks_placed_since_enemy >= randi_range(3, 5):
+	#assumes enemyStats is formatted correctly
+	if blocks_placed_since_enemy >= randi_range(enemyStats.enemyPerBlock.x, enemyStats.enemyPerBlock.y):
 		spawnRandomEnemy()
 		blocks_placed_since_enemy = 0
 	return new_block
