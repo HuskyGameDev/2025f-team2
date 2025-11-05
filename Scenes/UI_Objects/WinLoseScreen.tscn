@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://citcs1qcfo0ru"]
+
+[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="1_4pe0c"]
+[ext_resource type="Script" uid="uid://brses00l1g30s" path="res://Scripts/UI_Scripts/WinLose.gd" id="1_q4ug7"]
+
+[node name="WinLoseScreen" type="Control" node_paths=PackedStringArray("panel", "canvas", "winScreen", "loseScreen")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("1_q4ug7")
+panel = NodePath("Panel")
+canvas = NodePath("Panel/CanvasLayer")
+winScreen = NodePath("Panel/CanvasLayer/Winning")
+loseScreen = NodePath("Panel/CanvasLayer/Losing")
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0.110318, 1.92523e-07, 0.61891, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -68.0
+offset_right = 96.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Panel"]
+
+[node name="Winning" type="Control" parent="Panel/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -96.0
+offset_top = -72.0
+offset_right = -96.0
+offset_bottom = -72.0
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel/CanvasLayer/Winning"]
+layout_mode = 2
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 15
+text = "You win!"
+horizontal_alignment = 1
+
+[node name="NextLevel" type="Button" parent="Panel/CanvasLayer/Winning"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 96.0
+offset_right = 80.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 11
+text = "Next level"
+script = ExtResource("1_4pe0c")
+
+[node name="Menu" type="Button" parent="Panel/CanvasLayer/Winning"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 96.0
+offset_right = 184.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 11
+text = "Main menu
+"
+script = ExtResource("1_4pe0c")
+targetScene = "res://Scenes/TestScenes/MainMenu.tscn"
+
+[node name="Losing" type="Control" parent="Panel/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -96.0
+offset_top = -72.0
+offset_right = 96.0
+offset_bottom = 64.0
+
+[node name="Label" type="Label" parent="Panel/CanvasLayer/Losing"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 15
+text = "You lose!"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="Panel/CanvasLayer/Losing"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 96.0
+offset_right = 80.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 11
+text = "Restart"
+script = ExtResource("1_4pe0c")
+
+[node name="Menu" type="Button" parent="Panel/CanvasLayer/Losing"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 96.0
+offset_right = 184.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 11
+text = "Main menu
+"
+script = ExtResource("1_4pe0c")
+targetScene = "res://Scenes/TestScenes/MainMenu.tscn"
+
+[connection signal="pressed" from="Panel/CanvasLayer/Winning/NextLevel" to="Panel/CanvasLayer/Winning/NextLevel" method="_on_pressed"]
+[connection signal="pressed" from="Panel/CanvasLayer/Winning/Menu" to="Panel/CanvasLayer/Winning/Menu" method="_on_pressed"]
+[connection signal="pressed" from="Panel/CanvasLayer/Losing/Restart" to="Panel/CanvasLayer/Losing/Restart" method="_on_pressed"]
+[connection signal="pressed" from="Panel/CanvasLayer/Losing/Menu" to="Panel/CanvasLayer/Losing/Menu" method="_on_pressed"]

@@ -17,6 +17,8 @@ var fallTimer: Timer
 @export var boxFiller: BoxFiller
 @export var boxGrid: LevelGrid
 @export var levelOrder: PlacementOrder
+@export var enemyStats: LevelEnemyStats
+@export var winlosescreen: WinLose
 
 #disable spawning for tutorial
 @export var spawnBlocks = true
@@ -26,6 +28,86 @@ var cid = 0
 
 var blocks_placed_since_enemy = 0
 var last_enemy_type = -1
+
+@export_group("Win cons")
+var winConditionPresent = false
+@export var listWins: Label
+var winConString: String = "Win conditions: \n"
+#randomize for continuous playtesting
+#probably should move this to resource tbh #will do that after testing
+
+#for purposes of testing: enemies killed will be incremented everytime an enemy is lowered to 0 health
+@export var enemiesKilledCondition: bool = randi() % 2
+#target enemies to kill
+@export var killEnemies = randi() % 3 + 3
+#track how many enemies killed
+@export var enemiesKilled = 0
+
+#for purposes of testing: score will increase by every point of block placed or merged onto board, does not go down
+@export var achieveScoreCondition: bool = randi() % 2
+#target score to get
+@export var targetScore = randi() % 40 + 10
+#track score
+@export var score = 0
+
+@export_group("Lose cons")
+@export var listLoses: Label
+var loseConString: String = "Lose conditions: \n"
+
+#sets a timer to win
+@export var timerLoseCondition: bool = randi() % 2
+#lose timer, setup in ready
+@export var loseTimer: Timer
+#lose timer time till lose
+@export var timeTillLoss = randi() % 10 + 5
+
+#update for the win and lose conditions
+func _process(delta: float) -> void:
+	if(listWins != null):
+		winConString = "Win conditions: \n"
+		var winConExists: bool = false
+		#only show if not beaten
+		if(enemiesKilledCondition && killEnemies > enemiesKilled):
+			winConString += "Kill enemies: " + str(killEnemies-enemiesKilled) + "\n"
+			winConExists = true
+			winConditionPresent = true
+		if(achieveScoreCondition && targetScore > score):
+			winConString += "achieve score: " + str(targetScore-score) + "\n"
+			winConExists = true
+			winConditionPresent = true
+		if(!winConExists):
+			winConString += "empty"
+		listWins.text = winConString
+		
+	if(listLoses != null):
+		loseConString = "Lose conditions:\n"
+		var loseConExists: bool = false
+		#only show if not beaten
+		if(timerLoseCondition && loseTimer != null):
+			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
+			loseConExists = true
+		if(!loseConExists):
+			loseConString += "empty"
+		listLoses.text = loseConString
+	
+	if(winConditionPresent && winlosescreen != null):
+		checkConditions()
+	
+func checkConditions():
+	var win = true
+
+	if(enemiesKilledCondition && killEnemies > enemiesKilled):
+		win = false
+	
+	if(achieveScoreCondition && targetScore > score):
+		win = false
+	
+	if(win):
+		winlosescreen.winGame()
+
+func timerLoss():
+	if(winlosescreen != null):
+		winlosescreen.loseGame()
 
 func _ready() -> void:
 	if levelOrder == null:
@@ -41,6 +123,15 @@ func _ready() -> void:
 	fallTimer.wait_time = fallSpeed
 	fallTimer.autostart = true
 	add_child(fallTimer)
+	
+	#sets the lose timer if that condition is active
+	if(timerLoseCondition):
+		loseTimer = Timer.new()
+		loseTimer.one_shot = true
+		loseTimer.wait_time = timeTillLoss
+		loseTimer.timeout.connect(timerLoss)
+		add_child(loseTimer)
+		loseTimer.start()
 
 	#if spawnBlocks is false, it won't automatically spawn a block
 	if(spawnBlocks):
@@ -67,15 +158,20 @@ func getBlock() -> BoxHandler:
 		2: return indestructable_node.instantiate()
 	return block_node.instantiate()
 
-#autoSpawn will be true automatically for all ways of spawning, makes it able to be spawning
+#autoSpawn will be true automatically for all ways of spawning, 
+#makes it able to be manually spawned whilst spawnBlocks is false
 func spawnBlock(autoSpawn = true) -> BoxHandler:
 	if(!spawnBlocks && autoSpawn):
 		return
 	var new_block = createBlock()
 	boxFiller.fillBlock(new_block)
+	
+	#send in ref to this script
+	new_block.lvlMngr = self
 
 	blocks_placed_since_enemy += 1
-	if blocks_placed_since_enemy >= randi_range(3, 5):
+	#assumes enemyStats is formatted correctly
+	if blocks_placed_since_enemy >= randi_range(enemyStats.enemyPerBlock.x, enemyStats.enemyPerBlock.y):
 		spawnRandomEnemy()
 		blocks_placed_since_enemy = 0
 	return new_block
@@ -111,6 +207,12 @@ func spawnRandomEnemy():
 	if enemy == null:
 		push_error("Failed to instantiate enemy scene.")
 		return
+	
+	#send in ref to this script
+	enemy.lvlMngr = self
+	#send in the enemy stats variable
+	enemy.enemyStats = enemyStats
+
 
 	# Ensure palletes from boxGrid
 	if boxGrid != null and boxGrid.block_node != null:
