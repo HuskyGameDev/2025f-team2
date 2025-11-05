@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://w6jod3lo3e68"]
+[gd_scene load_steps=6 format=3 uid="uid://w6jod3lo3e68"]
 
 [ext_resource type="PackedScene" uid="uid://co48nl1f8gywv" path="res://Scenes/TestScenes/TestScene.tscn" id="1_vkc1n"]
 [ext_resource type="Resource" uid="uid://nsmuugkeisja" path="res://Resources/EnemyStatsWinLoseTest.tres" id="2_fgqlq"]
 [ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="3_mkag2"]
+[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="5_1aw2l"]
 
 [sub_resource type="FontVariation" id="FontVariation_vkc1n"]
 spacing_top = -5
@@ -10,10 +11,11 @@ spacing_bottom = -470
 
 [node name="WinLoseTesting" type="Node2D"]
 
-[node name="Level" parent="." node_paths=PackedStringArray("winlosescreen", "listWins") instance=ExtResource("1_vkc1n")]
+[node name="Level" parent="." node_paths=PackedStringArray("winlosescreen", "listWins", "listLoses") instance=ExtResource("1_vkc1n")]
 enemyStats = ExtResource("2_fgqlq")
 winlosescreen = NodePath("../WinLoseScreen")
 listWins = NodePath("../ListConditions/WinCons")
+listLoses = NodePath("../ListConditions/LoseCons")
 
 [node name="Background" parent="Level" index="4"]
 self_modulate = Color(0.784916, 0.440414, 0.523723, 1)
@@ -51,13 +53,12 @@ a"
 
 [node name="LoseCons" type="Label" parent="ListConditions"]
 layout_mode = 0
-offset_left = 243.0
-offset_top = 1.0
-offset_right = 318.0
-offset_bottom = 46.0
+offset_left = 194.0
+offset_right = 319.0
+offset_bottom = 45.0
 theme_override_fonts/font = SubResource("FontVariation_vkc1n")
-text = "lose cons:
-a
+text = "Lose conditions:
+Timer: 10.000
 a"
 horizontal_alignment = 2
 
@@ -120,6 +121,30 @@ offset_top = 0.0
 offset_right = 72.0
 offset_bottom = 24.0
 targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
+[node name="Reset" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Restart" type="Button" parent="Reset"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 149.0
+offset_right = 313.0
+offset_bottom = 173.0
+theme_override_font_sizes/font_size = 11
+text = "Restart"
+script = ExtResource("5_1aw2l")
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
+[connection signal="pressed" from="Reset/Restart" to="Reset/Restart" method="_on_pressed"]
 
 [editable path="Level"]
 [editable path="Level/Background"]

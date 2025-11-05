@@ -52,6 +52,14 @@ var winConString: String = "Win conditions: \n"
 
 @export_group("Lose cons")
 @export var listLoses: Label
+var loseConString: String = "Lose conditions: \n"
+
+#sets a timer to win
+@export var timerLoseCondition: bool = randi() % 2
+#lose timer, setup in ready
+@export var loseTimer: Timer
+#lose timer time till lose
+@export var timeTillLoss = randi() % 10 + 5
 
 #update for the win and lose conditions
 func _process(delta: float) -> void:
@@ -71,6 +79,16 @@ func _process(delta: float) -> void:
 			winConString += "empty"
 		listWins.text = winConString
 		
+	if(listLoses != null):
+		loseConString = "Lose conditions:\n"
+		var loseConExists: bool = false
+		#only show if not beaten
+		if(timerLoseCondition && loseTimer != null):
+			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
+			loseConExists = true
+		if(!loseConExists):
+			loseConString += "empty"
+		listLoses.text = loseConString
 	
 	if(winConditionPresent):
 		checkConditions()
@@ -87,6 +105,9 @@ func checkConditions():
 	if(win):
 		winlosescreen.winGame()
 
+func timerLoss():
+	winlosescreen.loseGame()
+
 func _ready() -> void:
 	if levelOrder == null:
 		push_error("Level Order is null!")
@@ -101,6 +122,15 @@ func _ready() -> void:
 	fallTimer.wait_time = fallSpeed
 	fallTimer.autostart = true
 	add_child(fallTimer)
+	
+	#sets the lose timer if that condition is active
+	if(timerLoseCondition):
+		loseTimer = Timer.new()
+		loseTimer.one_shot = true
+		loseTimer.wait_time = timeTillLoss
+		loseTimer.timeout.connect(timerLoss)
+		add_child(loseTimer)
+		loseTimer.start()
 
 	#if spawnBlocks is false, it won't automatically spawn a block
 	if(spawnBlocks):
