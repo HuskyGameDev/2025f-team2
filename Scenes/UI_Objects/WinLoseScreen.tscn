@@ -63,6 +63,7 @@ text = "You win!"
 horizontal_alignment = 1
 
 [node name="NextLevel" type="Button" parent="Panel/CanvasLayer/Winning"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
 offset_right = 80.0
@@ -72,6 +73,7 @@ text = "Next level"
 script = ExtResource("1_4pe0c")
 
 [node name="Menu" type="Button" parent="Panel/CanvasLayer/Winning"]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 96.0
 offset_right = 184.0
@@ -91,6 +93,7 @@ offset_right = 96.0
 offset_bottom = 64.0
 
 [node name="Label" type="Label" parent="Panel/CanvasLayer/Losing"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 24.0
 offset_right = 128.0
@@ -110,6 +113,7 @@ text = "Restart"
 script = ExtResource("1_4pe0c")
 
 [node name="Menu" type="Button" parent="Panel/CanvasLayer/Losing"]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 96.0
 offset_right = 184.0

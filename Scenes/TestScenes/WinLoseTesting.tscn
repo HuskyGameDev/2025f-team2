@@ -82,7 +82,6 @@ offset_right = 104.0
 offset_bottom = 67.0
 
 [node name="NextLevel" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="1"]
-layout_mode = 0
 offset_left = -33.0
 offset_top = 38.0
 offset_right = 39.0
@@ -90,7 +89,6 @@ offset_bottom = 62.0
 targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
 
 [node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="2"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 72.0
@@ -105,7 +103,6 @@ offset_right = 255.0
 offset_bottom = 161.0
 
 [node name="Label" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="0"]
-layout_mode = 0
 offset_left = 120.0
 offset_top = 0.0
 offset_right = 185.0
@@ -115,7 +112,6 @@ offset_bottom = 23.0
 targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
 
 [node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="2"]
-layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 72.0

@@ -90,7 +90,7 @@ func _process(delta: float) -> void:
 			loseConString += "empty"
 		listLoses.text = loseConString
 	
-	if(winConditionPresent):
+	if(winConditionPresent && winlosescreen != null):
 		checkConditions()
 	
 func checkConditions():
@@ -106,7 +106,8 @@ func checkConditions():
 		winlosescreen.winGame()
 
 func timerLoss():
-	winlosescreen.loseGame()
+	if(winlosescreen != null):
+		winlosescreen.loseGame()
 
 func _ready() -> void:
 	if levelOrder == null:
