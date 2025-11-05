@@ -19,4 +19,4 @@ func setPositionOfCameraFromPoint(point : WorldPoint):
 	target_camera_position = point.position + Vector3(0, 2.75, 2.1)
 
 func setPositionOfCameraInCutscene(point : WorldPoint):
-	target_camera_position = point.position + Vector3(0, 2.75, -.25)
+	target_camera_position = point.position + Vector3(0, 2.75, .25)

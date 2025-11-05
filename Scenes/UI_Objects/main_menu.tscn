@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://w6i51b5jwmid"]
 
 [ext_resource type="Theme" uid="uid://ded1rpxa401uw" path="res://Resources/ButtonTheme.tres" id="1_nskxk"]
-[ext_resource type="Script" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="1_wsnrw"]
+[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="1_wsnrw"]
 [ext_resource type="Script" uid="uid://ctpykaqiomvdw" path="res://Scripts/UI_Scripts/Quit_Game_Button.gd" id="2_ou1s8"]
 [ext_resource type="Texture2D" uid="uid://cbf3lderaeip3" path="res://Artwork/UI/ProtoLogo.png" id="3_eepvo"]
 

@@ -37,14 +37,14 @@ func sets():
 	camera.setPositionOfCameraFromPoint(worldPoints[pos])
 	await uiScreen.wait()
 	uiScreen.setNameLabel(worldPoints[pos].level.levelName)
-	uiScreen.setScreen(worldPoints[pos].level.img)
+	uiScreen.setTypeLabel(worldPoints[pos].level.getLevelTypeName(worldPoints[pos].level.levelType))
 	await uiScreen.animationDown()
 	vaild = true
 
 func enterLevel():
 	vaild = false
 	await uiScreen.animationUp()
-	camera.setPositionOfCameraInCutscene(worldPoints[pos])
-	await create_tween().tween_property(camera, "rotation_degrees:x", -90, 0.25).finished
+	#camera.setPositionOfCameraInCutscene(worldPoints[pos])
+	#await create_tween().tween_property(camera, "rotation_degrees:x", -90, 0.25).finished
 	await uiScreen.wait()
 	await create_tween().tween_property(camera, "fov", 1.1, 0.25).finished
