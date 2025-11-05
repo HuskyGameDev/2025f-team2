@@ -19,6 +19,9 @@ var floating : bool = true
 signal on_placed
 signal on_enemy_collide
 
+#needed reference for several win conditions, passed in by level manager
+var lvlMngr: LevelManager
+
 func _ready() -> void:
 	if palletes == null or palletes.size() == 0:
 		push_warning("BoxHandler: palletes is empty or null.")
@@ -84,6 +87,7 @@ func mergeBox(downBlock:BoxHandler):
 	downBlock._updateBoxText()
 	if levelGrid != null:
 		levelGrid.blocks[bPosition.y][bPosition.x] = null
+	lvlMngr.score += blockValue
 	queue_free()
 
 func moveDown(control : bool = true):
@@ -235,6 +239,7 @@ func _safe_remove_from_grid():
 
 func placeBlock():
 	placed = true
+	lvlMngr.score += blockValue
 	emit_signal("on_placed")
 
 func onAdd():

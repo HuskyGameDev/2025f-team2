@@ -43,10 +43,10 @@ var winConString: String = "Win conditions: \n"
 #track how many enemies killed
 @export var enemiesKilled = 0
 
-#for purposes of testing: score will increase by every point of block placed on board, does not go down
+#for purposes of testing: score will increase by every point of block placed or merged onto board, does not go down
 @export var achieveScoreCondition: bool = randi() % 2
 #target score to get
-@export var getScore = randi() % 40 + 10
+@export var targetScore = randi() % 40 + 10
 #track score
 @export var score = 0
 
@@ -63,8 +63,8 @@ func _process(delta: float) -> void:
 			winConString += "Kill enemies: " + str(killEnemies-enemiesKilled) + "\n"
 			winConExists = true
 			winConditionPresent = true
-		if(achieveScoreCondition):
-			winConString += "achieve score: " + "_" + "\n"
+		if(achieveScoreCondition && targetScore > score):
+			winConString += "achieve score: " + str(targetScore-score) + "\n"
 			winConExists = true
 			winConditionPresent = true
 		if(!winConExists):
@@ -81,8 +81,8 @@ func checkConditions():
 	if(enemiesKilledCondition && killEnemies > enemiesKilled):
 		win = false
 	
-	if(achieveScoreCondition):
-		pass
+	if(achieveScoreCondition && targetScore > score):
+		win = false
 	
 	if(win):
 		winlosescreen.winGame()
@@ -134,6 +134,9 @@ func spawnBlock(autoSpawn = true) -> BoxHandler:
 		return
 	var new_block = createBlock()
 	boxFiller.fillBlock(new_block)
+	
+	#send in ref to this script
+	new_block.lvlMngr = self
 
 	blocks_placed_since_enemy += 1
 	#assumes enemyStats is formatted correctly

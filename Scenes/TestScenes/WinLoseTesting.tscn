@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://w6jod3lo3e68"]
+[gd_scene load_steps=5 format=3 uid="uid://w6jod3lo3e68"]
 
 [ext_resource type="PackedScene" uid="uid://co48nl1f8gywv" path="res://Scenes/TestScenes/TestScene.tscn" id="1_vkc1n"]
 [ext_resource type="Resource" uid="uid://nsmuugkeisja" path="res://Resources/EnemyStatsWinLoseTest.tres" id="2_fgqlq"]
+[ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="3_mkag2"]
 
 [sub_resource type="FontVariation" id="FontVariation_vkc1n"]
 spacing_top = -5
@@ -11,49 +12,10 @@ spacing_bottom = -470
 
 [node name="Level" parent="." node_paths=PackedStringArray("winlosescreen", "listWins") instance=ExtResource("1_vkc1n")]
 enemyStats = ExtResource("2_fgqlq")
-winlosescreen = NodePath("WinLoseScreen")
+winlosescreen = NodePath("../WinLoseScreen")
 listWins = NodePath("../ListConditions/WinCons")
 
-[node name="WinLoseScreen" parent="Level" index="4"]
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
-[node name="CanvasLayer" parent="Level/WinLoseScreen/Panel" index="0"]
-visible = true
-
-[node name="Winning" parent="Level/WinLoseScreen/Panel/CanvasLayer" index="0"]
-visible = true
-
-[node name="NextLevel" parent="Level/WinLoseScreen/Panel/CanvasLayer/Winning" index="1"]
-offset_left = 108.0
-offset_top = 97.0
-offset_right = 180.0
-offset_bottom = 121.0
-targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
-
-[node name="Menu" parent="Level/WinLoseScreen/Panel/CanvasLayer/Winning" index="2"]
-visible = false
-
-[node name="Losing" parent="Level/WinLoseScreen/Panel/CanvasLayer" index="1"]
-visible = true
-
-[node name="Label" parent="Level/WinLoseScreen/Panel/CanvasLayer/Losing" index="0"]
-offset_left = 63.0
-offset_top = 50.0
-offset_bottom = 73.0
-
-[node name="Restart" parent="Level/WinLoseScreen/Panel/CanvasLayer/Losing" index="1"]
-targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
-
-[node name="Menu" parent="Level/WinLoseScreen/Panel/CanvasLayer/Losing" index="2"]
-visible = false
-
-[node name="Background" parent="Level" index="5"]
+[node name="Background" parent="Level" index="4"]
 self_modulate = Color(0.784916, 0.440414, 0.523723, 1)
 
 [node name="Cloud4" parent="Level/Background/Node2D" index="0"]
@@ -99,6 +61,66 @@ a
 a"
 horizontal_alignment = 2
 
+[node name="WinLoseScreen" parent="." instance=ExtResource("3_mkag2")]
+offset_left = -1.0
+offset_top = 1.0
+offset_right = 319.0
+offset_bottom = 185.0
+
+[node name="Panel" parent="WinLoseScreen" index="0"]
+visible = false
+
+[node name="CanvasLayer" parent="WinLoseScreen/Panel" index="0"]
+visible = false
+
+[node name="Winning" parent="WinLoseScreen/Panel/CanvasLayer" index="0"]
+visible = false
+offset_left = 104.0
+offset_top = 67.0
+offset_right = 104.0
+offset_bottom = 67.0
+
+[node name="NextLevel" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="1"]
+layout_mode = 0
+offset_left = -33.0
+offset_top = 38.0
+offset_right = 39.0
+offset_bottom = 62.0
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
+[node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="2"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 72.0
+offset_bottom = 24.0
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
+[node name="Losing" parent="WinLoseScreen/Panel/CanvasLayer" index="1"]
+visible = false
+offset_left = 63.0
+offset_top = 25.0
+offset_right = 255.0
+offset_bottom = 161.0
+
+[node name="Label" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="0"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 0.0
+offset_right = 185.0
+offset_bottom = 23.0
+
+[node name="Restart" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="1"]
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
+[node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="2"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 72.0
+offset_bottom = 24.0
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
 [editable path="Level"]
-[editable path="Level/WinLoseScreen"]
 [editable path="Level/Background"]
+[editable path="WinLoseScreen"]

@@ -6,9 +6,6 @@ class_name EnemyHandler
 @export var action_min_seconds: float = 3.0
 @export var action_max_seconds: float = 5.0
 
-
-#needed reference for enemiesKilled, passed in by level manager
-var lvlMngr: LevelManager
 #reference to enemyStats passed in by level manager, or manually if needed
 var enemyStats: LevelEnemyStats
 
