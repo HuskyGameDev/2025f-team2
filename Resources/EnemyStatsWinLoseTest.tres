@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelEnemyStats" load_steps=2 format=3 uid="uid://nsmuugkeisja"]
+
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Scripts/Gameplay/LevelEnemyStats.gd" id="1_onnsu"]
+
+[resource]
+script = ExtResource("1_onnsu")
+enemyPerBlock = Vector2i(1, 1)
+staticHealth = Vector2i(2, 2)
+floaterHealth = Vector2i(2, 2)
+floaterActionSpeed = Vector2(2, 4)
+painterHealth = Vector2i(2, 2)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"

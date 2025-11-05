@@ -6,8 +6,11 @@ class_name EnemyHandler
 @export var action_min_seconds: float = 3.0
 @export var action_max_seconds: float = 5.0
 
+
+#needed reference for enemiesKilled, passed in by level manager
+var lvlMngr: LevelManager
 #reference to enemyStats passed in by level manager, or manually if needed
-@export var enemyStats: LevelEnemyStats
+var enemyStats: LevelEnemyStats
 
 var health: int = 0
 var action_timer: Timer
@@ -67,6 +70,7 @@ func _remove_self_from_grid() -> void:
 		if bPosition.y >= 0 and bPosition.y < levelGrid.grid_size.y and bPosition.x >= 0 and bPosition.x < levelGrid.grid_size.x:
 			if levelGrid.blocks[bPosition.y][bPosition.x] == self:
 				levelGrid.blocks[bPosition.y][bPosition.x] = null
+	lvlMngr.enemiesKilled += 1
 	call_deferred("queue_free")
 
 func _set_color(index: int) -> void:

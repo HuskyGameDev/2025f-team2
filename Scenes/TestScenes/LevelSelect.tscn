@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3j03asyb487a"]
+[gd_scene load_steps=5 format=3 uid="uid://c3j03asyb487a"]
 
 [ext_resource type="PackedScene" uid="uid://daayhk5gnjecm" path="res://Scenes/UI_Objects/level_select_button.tscn" id="1_oqg5x"]
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="2_4520y"]
 [ext_resource type="Texture2D" uid="uid://b1ra7nmrv2h07" path="res://Artwork/LevelSelectImages/Screenshot 2025-10-28 014545.png" id="2_ro8ci"]
+[ext_resource type="Texture2D" uid="uid://diihw0upon07d" path="res://Artwork/LevelSelectImages/Screenshot 2025-11-05 004010.png" id="4_vem5l"]
 
 [node name="LevelSelect" type="Node2D"]
 
@@ -19,38 +20,56 @@ offset_right = 199.0
 offset_bottom = 23.0
 text = "Select level"
 
-[node name="LevelSelectTemplate" parent="LevelSelectUI" instance=ExtResource("1_oqg5x")]
-offset_left = 48.0
-offset_top = 72.0
-offset_right = 128.0
-offset_bottom = 120.0
+[node name="(main test level)" parent="LevelSelectUI" instance=ExtResource("1_oqg5x")]
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 88.0
+offset_bottom = 112.0
+metadata/_edit_group_ = true
 
-[node name="LevelSelectTemplate2" parent="LevelSelectUI" instance=ExtResource("1_oqg5x")]
-offset_left = 192.0
-offset_top = 72.0
-offset_right = 272.0
-offset_bottom = 120.0
+[node name="Tutorial" parent="LevelSelectUI" instance=ExtResource("1_oqg5x")]
+offset_left = 96.0
+offset_top = 40.0
+offset_right = 176.0
+offset_bottom = 88.0
+metadata/_edit_group_ = true
 
-[node name="TextureRect" parent="LevelSelectUI/LevelSelectTemplate2" index="0"]
+[node name="TextureRect" parent="LevelSelectUI/Tutorial" index="0"]
 texture = ExtResource("2_ro8ci")
 
-[node name="Label" parent="LevelSelectUI/LevelSelectTemplate2/TextureRect" index="0"]
+[node name="Label" parent="LevelSelectUI/Tutorial/TextureRect" index="0"]
 text = "Tutorial"
 
-[node name="Button" parent="LevelSelectUI/LevelSelectTemplate2" index="1"]
+[node name="Button" parent="LevelSelectUI/Tutorial" index="1"]
 targetScene = "res://Scenes/TestScenes/TutorialLevel.tscn"
 
 [node name="Menu" type="Button" parent="LevelSelectUI"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
 offset_right = 64.0
-offset_bottom = 39.0
+offset_bottom = 31.0
 text = "Menu"
 script = ExtResource("2_4520y")
 targetScene = "res://Scenes/UI_Objects/main_menu.tscn"
 
+[node name="Testing 1" parent="LevelSelectUI" instance=ExtResource("1_oqg5x")]
+offset_left = 184.0
+offset_top = 40.0
+offset_right = 264.0
+offset_bottom = 112.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" parent="LevelSelectUI/Testing 1" index="0"]
+texture = ExtResource("4_vem5l")
+
+[node name="Label" parent="LevelSelectUI/Testing 1/TextureRect" index="0"]
+text = "Win/Lose"
+
+[node name="Button" parent="LevelSelectUI/Testing 1" index="1"]
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+
 [connection signal="pressed" from="LevelSelectUI/Menu" to="LevelSelectUI/Menu" method="_on_pressed"]
 
-[editable path="LevelSelectUI/LevelSelectTemplate"]
-[editable path="LevelSelectUI/LevelSelectTemplate2"]
+[editable path="LevelSelectUI/(main test level)"]
+[editable path="LevelSelectUI/Tutorial"]
+[editable path="LevelSelectUI/Testing 1"]

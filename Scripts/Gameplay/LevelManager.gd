@@ -18,6 +18,7 @@ var fallTimer: Timer
 @export var boxGrid: LevelGrid
 @export var levelOrder: PlacementOrder
 @export var enemyStats: LevelEnemyStats
+@export var winlosescreen: WinLose
 
 #disable spawning for tutorial
 @export var spawnBlocks = true
@@ -27,6 +28,64 @@ var cid = 0
 
 var blocks_placed_since_enemy = 0
 var last_enemy_type = -1
+
+@export_group("Win cons")
+var winConditionPresent = false
+@export var listWins: Label
+var winConString: String = "Win conditions: \n"
+#randomize for continuous playtesting
+#probably should move this to resource tbh #will do that after testing
+
+#for purposes of testing: enemies killed will be incremented everytime an enemy is lowered to 0 health
+@export var enemiesKilledCondition: bool = randi() % 2
+#target enemies to kill
+@export var killEnemies = randi() % 3 + 3
+#track how many enemies killed
+@export var enemiesKilled = 0
+
+#for purposes of testing: score will increase by every point of block placed on board, does not go down
+@export var achieveScoreCondition: bool = randi() % 2
+#target score to get
+@export var getScore = randi() % 40 + 10
+#track score
+@export var score = 0
+
+@export_group("Lose cons")
+@export var listLoses: Label
+
+#update for the win and lose conditions
+func _process(delta: float) -> void:
+	if(listWins != null):
+		winConString = "Win conditions: \n"
+		var winConExists: bool = false
+		#only show if not beaten
+		if(enemiesKilledCondition && killEnemies > enemiesKilled):
+			winConString += "Kill enemies: " + str(killEnemies-enemiesKilled) + "\n"
+			winConExists = true
+			winConditionPresent = true
+		if(achieveScoreCondition):
+			winConString += "achieve score: " + "_" + "\n"
+			winConExists = true
+			winConditionPresent = true
+		if(!winConExists):
+			winConString += "empty"
+		listWins.text = winConString
+		
+	
+	if(winConditionPresent):
+		checkConditions()
+	
+func checkConditions():
+	var win = true
+
+	if(enemiesKilledCondition && killEnemies > enemiesKilled):
+		win = false
+	
+	if(achieveScoreCondition):
+		pass
+	
+	if(win):
+		winlosescreen.winGame()
 
 func _ready() -> void:
 	if levelOrder == null:
@@ -115,8 +174,11 @@ func spawnRandomEnemy():
 		push_error("Failed to instantiate enemy scene.")
 		return
 	
+	#send in ref to this script
+	enemy.lvlMngr = self
 	#send in the enemy stats variable
 	enemy.enemyStats = enemyStats
+
 
 	# Ensure palletes from boxGrid
 	if boxGrid != null and boxGrid.block_node != null:

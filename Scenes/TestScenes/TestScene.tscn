@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=24 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="7_qk1kx"]
 [ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="8_nxyhc"]
 [ext_resource type="PackedScene" uid="uid://dnr1ycyay0p0u" path="res://Scenes/BackgroundAssets/cloud_background.tscn" id="13_72xxr"]
+[ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="15_qk1kx"]
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -362,7 +363,63 @@ offset_right = -1.0
 offset_bottom = 1.0
 script = ExtResource("3_635xr")
 
+[node name="WinLoseScreen" parent="." instance=ExtResource("15_qk1kx")]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 320.0
+offset_bottom = 184.0
+
+[node name="Panel" parent="WinLoseScreen" index="0"]
+visible = false
+
+[node name="CanvasLayer" parent="WinLoseScreen/Panel" index="0"]
+visible = false
+
+[node name="Winning" parent="WinLoseScreen/Panel/CanvasLayer" index="0"]
+visible = false
+offset_left = 64.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 18.0
+
+[node name="NextLevel" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="1"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 72.0
+offset_bottom = 24.0
+
+[node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="2"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 72.0
+offset_bottom = 24.0
+
+[node name="Losing" parent="WinLoseScreen/Panel/CanvasLayer" index="1"]
+visible = false
+offset_left = 64.0
+offset_top = 18.0
+offset_right = 256.0
+offset_bottom = 154.0
+
+[node name="Label" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 64.0
+offset_bottom = 23.0
+
+[node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="2"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 72.0
+offset_bottom = 24.0
+
 [node name="Background" parent="." instance=ExtResource("13_72xxr")]
 
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller/Button" method="_on_pressed"]
+
+[editable path="WinLoseScreen"]
