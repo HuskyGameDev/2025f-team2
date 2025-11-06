@@ -45,6 +45,6 @@ func enterLevel():
 	vaild = false
 	await uiScreen.animationUp()
 	#camera.setPositionOfCameraInCutscene(worldPoints[pos])
-	#await create_tween().tween_property(camera, "rotation_degrees:x", -90, 0.25).finished
+	await create_tween().tween_property(camera, "rotation_degrees:x", 90, 0.25).finished
 	await uiScreen.wait()
-	await create_tween().tween_property(camera, "fov", 1.1, 0.25).finished
+	GlobalSceneLoader.load_level(worldPoints[pos].level.scene)

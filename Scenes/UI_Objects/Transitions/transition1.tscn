@@ -1,0 +1,2013 @@
+[gd_scene load_steps=11 format=3 uid="uid://ciw04m2c6r58s"]
+
+[ext_resource type="Script" uid="uid://ccif37a0m6h74" path="res://Scripts/UI_Scripts/Transitions.gd" id="1_bk01i"]
+[ext_resource type="Material" uid="uid://dasascupv172m" path="res://Materials/Palletes/GreenBox.tres" id="1_sx5go"]
+[ext_resource type="Texture2D" uid="uid://ce0xt248y0d5x" path="res://Artwork/GameObjects/Box.png" id="2_87ebo"]
+[ext_resource type="Script" uid="uid://rn6shf4n0ura" path="res://Scripts/WorldMap/RotatingBox.gd" id="3_87ebo"]
+
+[sub_resource type="Gradient" id="Gradient_87ebo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bk01i"]
+gradient = SubResource("Gradient_87ebo")
+width = 1
+
+[sub_resource type="Animation" id="Animation_87ebo"]
+resource_name = "transition_enters"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.766667),
+"transitions": PackedFloat32Array(1, 0.307786),
+"update": 0,
+"values": [Vector2(160, -28), Vector2(160, 268)]
+}
+
+[sub_resource type="Animation" id="Animation_bk01i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, -21)]
+}
+
+[sub_resource type="Animation" id="Animation_j4wur"]
+resource_name = "transition_exit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 0.307786),
+"update": 0,
+"values": [Vector2(160, 268), Vector2(160, 604)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bk01i"]
+_data = {
+&"RESET": SubResource("Animation_bk01i"),
+&"transition_enters": SubResource("Animation_87ebo"),
+&"transition_exit": SubResource("Animation_j4wur")
+}
+
+[node name="Transition1" type="Control" node_paths=PackedStringArray("animator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bk01i")
+animator = NodePath("AnimationPlayer")
+
+[node name="Screen" type="Node2D" parent="."]
+position = Vector2(160, -21)
+scale = Vector2(2, 2)
+
+[node name="Box" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box2" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, 0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box3" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box4" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, 0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box5" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box6" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, 0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box7" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box8" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, 0.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box9" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box10" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box11" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box12" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, 0)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box13" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box14" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, 0)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box15" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -1)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box16" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, 0)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box17" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -13)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box18" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -12)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box19" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -13)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box20" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -12)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box21" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -13)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box22" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -12)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box23" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -13)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box24" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -12)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box25" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -13.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box26" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -12.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box27" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -13.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box28" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -12.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box29" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -13.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box30" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -12.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box31" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -13.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box32" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -12.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box33" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -25.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box34" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -24.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box35" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -25.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box36" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -24.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box37" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -25.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box38" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -24.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box39" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -25.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box40" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -24.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box41" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -26)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box42" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -25)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box43" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -26)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box44" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -25)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box45" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -26)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box46" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -25)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box47" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -26)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box48" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -25)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box49" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -38)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box50" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -37)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box51" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -38)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box52" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -37)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box53" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -38)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box54" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -37)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box55" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -38)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box56" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -37)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box57" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -38.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box58" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -37.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box59" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -38.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box60" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -37.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box61" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -38.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box62" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -37.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box63" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -38.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box64" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -37.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box65" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -52.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box66" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -51.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box67" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -52.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box68" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -51.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box69" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -52.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box70" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -51.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box71" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -52.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box72" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -51.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box73" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -53)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box74" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -52)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box75" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -53)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box76" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -52)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box77" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -53)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box78" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -52)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box79" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -53)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box80" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -52)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box81" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -65)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box82" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -64)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box83" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -65)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box84" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -64)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box85" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -65)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box86" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -64)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box87" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -65)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box88" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -64)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box89" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -65.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box90" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -64.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box91" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -65.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box92" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -64.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box93" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -65.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box94" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -64.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box95" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -65.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box96" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -64.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box97" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -77.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box98" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -76.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box99" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -77.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box100" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -76.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box101" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -77.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box102" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -76.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box103" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -77.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box104" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -76.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box105" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -78)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box106" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -77)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box107" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -78)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box108" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -77)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box109" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -78)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box110" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -77)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box111" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -78)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box112" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -77)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box113" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -90)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box114" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -89)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box115" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -90)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box116" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -89)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box117" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -90)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box118" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -89)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box119" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -90)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box120" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -89)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box121" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -90.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box122" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -89.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box123" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -90.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box124" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -89.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box125" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -90.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box126" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -89.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box127" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -90.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box128" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -89.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box129" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -103)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box130" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -102)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box131" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -103)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box132" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -102)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box133" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -103)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box134" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -102)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box135" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -103)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box136" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -102)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box137" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -103.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box138" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -102.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box139" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -103.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box140" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -102.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box141" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -103.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box142" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -102.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box143" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -103.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box144" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -102.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box145" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -115.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box146" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -114.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box147" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -115.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box148" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -114.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box149" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -115.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box150" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -114.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box151" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -115.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box152" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -114.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box153" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -116)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box154" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -115)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box155" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -116)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box156" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -115)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box157" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -116)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box158" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -115)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box159" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -116)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box160" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -115)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box161" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -128)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box162" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -127)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box163" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -128)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box164" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -127)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box165" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -128)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box166" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -127)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box167" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -128)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box168" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -127)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box169" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -128.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box170" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -127.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box171" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -128.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box172" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -127.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box173" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -128.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box174" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -127.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box175" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -128.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box176" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -127.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box177" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -140.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box178" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -139.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box179" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -140.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box180" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -139.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box181" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -140.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box182" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -139.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box183" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -140.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box184" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -139.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box185" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -141)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box186" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -140)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box187" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -141)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box188" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -140)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box189" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -141)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box190" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -140)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box191" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -141)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box192" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -140)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box193" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -155)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box194" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -154)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box195" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -155)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box196" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -154)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box197" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -155)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box198" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -154)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box199" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -155)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box200" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -154)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box201" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -155.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box202" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -154.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box203" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -155.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box204" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -154.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box205" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -155.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box206" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -154.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box207" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -155.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box208" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -154.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box209" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -167.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box210" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -166.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box211" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -167.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box212" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -166.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box213" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -167.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box214" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -166.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box215" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -167.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box216" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -166.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box217" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -168)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box218" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -167)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box219" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -168)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box220" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -167)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box221" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -168)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box222" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -167)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box223" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -168)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box224" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -167)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box225" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-102, -180)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box226" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-116, -179)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box227" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-73, -180)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box228" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-87, -179)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box229" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-44, -180)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box230" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-58, -179)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box231" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-15, -180)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box232" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-29, -179)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box233" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(14, -180.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box234" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(0, -179.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box235" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(43, -180.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box236" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(29, -179.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box237" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(72, -180.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box238" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(58, -179.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box239" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(101, -180.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box240" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(87, -179.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box241" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-97, -192.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box242" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-111, -191.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box243" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-68, -192.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box244" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-82, -191.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box245" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-39, -192.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box246" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-53, -191.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box247" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-10, -192.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box248" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(-24, -191.5)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box249" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(19, -193)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box250" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(5, -192)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box251" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(48, -193)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box252" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(34, -192)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box253" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(77, -193)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box254" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(63, -192)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Box255" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(106, -193)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+
+[node name="Box256" type="Sprite2D" parent="Screen"]
+material = ExtResource("1_sx5go")
+position = Vector2(92, -192)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_87ebo")
+script = ExtResource("3_87ebo")
+sign = -1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Screen"]
+z_index = -1
+position = Vector2(-6.5, -95.5)
+scale = Vector2(1, 0.897959)
+texture = SubResource("GradientTexture1D_bk01i")
+region_enabled = true
+region_rect = Rect2(0, 0, 196, 196)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bk01i")
+}
+autoplay = "transition_enters"

@@ -40,7 +40,9 @@ func on_enemy_turn() -> void:
 		var nx: int = bPosition.x + d.x
 		var ny: int = bPosition.y + d.y
 		if nx >= 0 and nx < levelGrid.grid_size.x and ny >= 0 and ny < levelGrid.grid_size.y:
-			var neighbor : BoxHandler = levelGrid.blocks[ny][nx]
+			var neighbor : BoxHandler
+			if is_instance_valid(levelGrid.blocks[ny][nx]):
+				neighbor = levelGrid.blocks[ny][nx]
 			if neighbor != null and neighbor.bType == BlockType.Block:
 				# choose a random valid palette index on the neighbor
 				if neighbor.palletes != null and neighbor.palletes.size() > 0:

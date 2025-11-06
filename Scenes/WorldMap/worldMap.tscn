@@ -36,14 +36,14 @@ size = Vector2(36.25, 36.25)
 script = ExtResource("5_rt317")
 levelName = "Tutorial"
 levelType = 0
-scene = ""
+scene = "res://Scenes/TestScenes/TestScene.tscn"
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="Resource" id="Resource_wupwk"]
 script = ExtResource("5_rt317")
 levelName = "Test Level"
 levelType = 1
-scene = ""
+scene = "res://Scenes/TestScenes/TutorialLevel.tscn"
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
@@ -98,7 +98,7 @@ transform = Transform3D(1, 0, 0, 0, 0.440848, 0.897582, 0, -0.897582, 0.440848, 
 light_volumetric_fog_energy = 0.0
 
 [node name="Point" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.87465, 3.40277, -8.03859)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.07788, 3.40277, -8.13145)
 pixel_size = 0.066
 billboard = 1
 texture_filter = 0
@@ -107,7 +107,7 @@ script = ExtResource("4_ggnbf")
 level = SubResource("Resource_q1dlp")
 
 [node name="Point2" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.56741, 3.40277, -9.39595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.63014, 3.40277, -9.63972)
 pixel_size = 0.066
 billboard = 1
 texture_filter = 0
