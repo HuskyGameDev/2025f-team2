@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_onnsu")
-enemyPerBlock = Vector2i(1, 1)
-staticHealth = Vector2i(2, 2)
+enemyPerBlock = Vector2i(3, 4)
+staticHealth = Vector2i(5, 7)
 floaterHealth = Vector2i(2, 2)
-floaterActionSpeed = Vector2(2, 4)
-painterHealth = Vector2i(2, 2)
-painterActionSpeed = Vector2(3, 5)
+floaterActionSpeed = Vector2(1, 3)
+painterHealth = Vector2i(0, 0)
+painterActionSpeed = Vector2(2, 5)
 metadata/_custom_type_script = "uid://dhggsd3rnk3oc"

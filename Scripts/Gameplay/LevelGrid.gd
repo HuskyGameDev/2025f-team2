@@ -34,6 +34,7 @@ func addBlock(block : BoxHandler):
 	setPositionOfBlockOnBoard(block)
 
 func removeBlock(block : BoxHandler):
+	levelManager.removedBlocks += 1
 	blocks[block.bPosition.y][block.bPosition.x] = null
 	block.queue_free()
 
@@ -71,6 +72,7 @@ func hardDropBlock(block : BoxHandler):
 	block.hardDrop()
 
 func explode(block : BoxHandler):
+	levelManager.bombsBlown += 1
 	removeBlock(block)
 	if block.bPosition.y-1 >= 0:
 		if is_instance_valid(blocks[block.bPosition.y-1][block.bPosition.x]):
@@ -88,7 +90,6 @@ func explode(block : BoxHandler):
 		if is_instance_valid(blocks[block.bPosition.y][block.bPosition.x+1]):
 			if check_if_block_exist(blocks[block.bPosition.y][block.bPosition.x+1]):
 				removeBlock(blocks[block.bPosition.y][block.bPosition.x+1])
-		
 
 func place_block(block : BoxHandler):
 	if block == active_block:

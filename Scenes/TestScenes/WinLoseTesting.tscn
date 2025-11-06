@@ -48,18 +48,22 @@ offset_right = 74.0
 offset_bottom = 45.0
 theme_override_fonts/font = SubResource("FontVariation_vkc1n")
 text = "Win cons:
-a
-a"
+score:
+kill enemies
+score on board
+_ color blocks"
 
 [node name="LoseCons" type="Label" parent="ListConditions"]
 layout_mode = 0
-offset_left = 194.0
-offset_right = 319.0
+offset_left = 163.0
+offset_right = 320.0
 offset_bottom = 45.0
 theme_override_fonts/font = SubResource("FontVariation_vkc1n")
 text = "Lose conditions:
 Timer: 10.000
-a"
+Bombs: 1
+Enemies alive: 10
+Score on board: 20"
 horizontal_alignment = 2
 
 [node name="WinLoseScreen" parent="." instance=ExtResource("3_mkag2")]
@@ -68,55 +72,11 @@ offset_top = 1.0
 offset_right = 319.0
 offset_bottom = 185.0
 
-[node name="Panel" parent="WinLoseScreen" index="0"]
-visible = false
+[node name="NextLevel" parent="WinLoseScreen/CanvasLayer/Winning" index="1"]
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn/TestScene.tscn"
 
-[node name="CanvasLayer" parent="WinLoseScreen/Panel" index="0"]
-visible = false
-
-[node name="Winning" parent="WinLoseScreen/Panel/CanvasLayer" index="0"]
-visible = false
-offset_left = 104.0
-offset_top = 67.0
-offset_right = 104.0
-offset_bottom = 67.0
-
-[node name="NextLevel" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="1"]
-offset_left = -33.0
-offset_top = 38.0
-offset_right = 39.0
-offset_bottom = 62.0
-targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
-
-[node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Winning" index="2"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 72.0
-offset_bottom = 24.0
-targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
-
-[node name="Losing" parent="WinLoseScreen/Panel/CanvasLayer" index="1"]
-visible = false
-offset_left = 63.0
-offset_top = 25.0
-offset_right = 255.0
-offset_bottom = 161.0
-
-[node name="Label" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="0"]
-offset_left = 120.0
-offset_top = 0.0
-offset_right = 185.0
-offset_bottom = 23.0
-
-[node name="Restart" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="1"]
-targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
-
-[node name="Menu" parent="WinLoseScreen/Panel/CanvasLayer/Losing" index="2"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 72.0
-offset_bottom = 24.0
-targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
+[node name="Restart" parent="WinLoseScreen/CanvasLayer/Losing" index="1"]
+targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn/TestScene.tscn"
 
 [node name="Reset" type="Control" parent="."]
 process_mode = 3

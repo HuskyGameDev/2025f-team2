@@ -46,23 +46,79 @@ var winConString: String = "Win conditions: \n"
 #for purposes of testing: score will increase by every point of block placed or merged onto board, does not go down
 @export var achieveScoreCondition: bool = randi() % 2
 #target score to get
-@export var targetScore = randi() % 40 + 10
+@export var targetScore = randi() % 31 + 30
 #track score
 @export var score = 0
+
+#adds a win condition for removing blocks from the board
+@export var removeBlocksCondition: bool = randi() % 2
+#target score to get
+@export var targetRemovedBlocks = randi() % 3 + 1
+#track score
+@export var removedBlocks = 0
 
 @export_group("Lose cons")
 @export var listLoses: Label
 var loseConString: String = "Lose conditions: \n"
 
-#sets a timer to win
+#sets a timer to win before
 @export var timerLoseCondition: bool = randi() % 2
 #lose timer, setup in ready
 @export var loseTimer: Timer
 #lose timer time till lose
-@export var timeTillLoss = randi() % 10 + 5
+@export var timeTillLoss = randi() % 60 + 45
 
-#update for the win and lose conditions
+#sets a limit for the amount of blocks that can be placed
+@export var blockLoseCondition: bool = randi() % 2
+#for purposes of counting placed blocks, we will use the spawning of a block to measure
+@export var blocksUsed = 0
+#limit of blocks used
+@export var blockLossLimit = randi() % 5 + 10
+
+#sets a limit for the amount of bombs that can go off
+@export var tooManyBombsCondition: bool = randi() % 2
+#for purposes of counting bombs used, any bomb that goes off is counted
+@export var bombsBlown = 0
+#limit of blocks used
+@export var bombLimit = randi() % 2 + 1
+
+#sets a limit for the amount of enemies on the board
+@export var tooManyEnemiesCondition: bool = randi() % 2
+#for purposes of counting bombs used, any bomb that goes off is counted
+@export var enemiesAlive = 0
+#limit of blocks used
+@export var enemyLimit = randi() % 4 + 2
+
+
+#win if you have a certain score on the board
+@export var scoreOnBoardWinCondition: bool = randi() % 2
+#if the win condition is present, a color can be chosen to specifically look for
+#[-1,2]
+@export var scoreColorOnBoardWinCondition: bool = randi() % 2
+var targetColor = randi() % 4 - 1
+
+#lose if you have a certain score on the board (must be equal to scoreOnBoardLimit + scoreOnBoardTarget)
+#This allows both conditions to exist at the same time
+@export var scoreOnBoardLoseCondition: bool = randi() % 2
+#the score on board is always the value of all blocks in the board
+@export var scoreOnBoard = 0
+#limit of blocks used
+@export var scoreOnBoardTarget = randi() % 20 + 7
+@export var scoreOnBoardLimit = scoreOnBoardTarget + randi() % 20 + 7
+
+#update for the win and lose conditions (mostly for debugging)
 func _process(delta: float) -> void:
+	
+	if(listWins != null && listLoses != null || (scoreOnBoardLoseCondition || scoreOnBoardWinCondition) ):
+		scoreOnBoard = 0
+		var board = boxGrid.get_all_blocks_in_board()
+		for block in board:
+			if(!block.placed):
+				continue
+			if(scoreColorOnBoardWinCondition && block.bColor != targetColor):
+				continue
+			scoreOnBoard += block.blockValue
+	
 	if(listWins != null):
 		winConString = "Win conditions: \n"
 		var winConExists: bool = false
@@ -72,9 +128,21 @@ func _process(delta: float) -> void:
 			winConExists = true
 			winConditionPresent = true
 		if(achieveScoreCondition && targetScore > score):
-			winConString += "achieve score: " + str(targetScore-score) + "\n"
+			winConString += "Achieve score: " + str(targetScore-score) + "\n"
 			winConExists = true
 			winConditionPresent = true
+		if(removeBlocksCondition && targetRemovedBlocks > removedBlocks):
+			winConString += "Remove blocks: " + str(targetRemovedBlocks - removedBlocks) + "\n"
+			winConExists = true
+			winConditionPresent = true
+		if(scoreOnBoardWinCondition && scoreOnBoardTarget > scoreOnBoard):
+			if(!scoreColorOnBoardWinCondition):
+				winConString += "score on board: " + str(scoreOnBoardTarget - scoreOnBoard) + "\n"
+			else:
+				winConString += "color " + str(targetColor) +  " score: " + str(scoreOnBoardTarget - scoreOnBoard) + "\n"
+			winConExists = true
+			winConditionPresent = true
+			
 		if(!winConExists):
 			winConString += "empty"
 		listWins.text = winConString
@@ -82,10 +150,29 @@ func _process(delta: float) -> void:
 	if(listLoses != null):
 		loseConString = "Lose conditions:\n"
 		var loseConExists: bool = false
-		#only show if not beaten
 		if(timerLoseCondition && loseTimer != null):
 			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
 			loseConExists = true
+		if(blockLoseCondition && blocksUsed  < blockLossLimit):
+			loseConString += "Blocks left: " + str(blockLossLimit-blocksUsed ) + "\n"
+			loseConExists = true
+		elif(blockLoseCondition && blockLossLimit <= blocksUsed):
+			loss()
+		if(tooManyBombsCondition && bombLimit > bombsBlown):
+			loseConString += "Bombs: " + str(bombLimit-bombsBlown) + "\n"
+			loseConExists = true
+		elif(tooManyBombsCondition && bombLimit <= bombsBlown):
+			loss()
+		if(tooManyEnemiesCondition && enemyLimit > enemiesAlive):
+			loseConString += "Enemies: " + str(enemyLimit-enemiesAlive) + "\n"
+			loseConExists = true
+		elif(tooManyEnemiesCondition && enemyLimit <= enemiesAlive):
+			loss()
+		if(scoreOnBoardLoseCondition && scoreOnBoardLimit > scoreOnBoard):
+			loseConString += "Score on board: " + str(scoreOnBoardLimit - scoreOnBoard) + "\n"
+			loseConExists = true
+		elif(scoreOnBoardLoseCondition && scoreOnBoardLimit <= scoreOnBoard):
+			loss()
 		if(!loseConExists):
 			loseConString += "empty"
 		listLoses.text = loseConString
@@ -101,11 +188,17 @@ func checkConditions():
 	
 	if(achieveScoreCondition && targetScore > score):
 		win = false
-	
+		
+	if(removeBlocksCondition && targetRemovedBlocks > removedBlocks):
+		win = false
+		
+	if(scoreOnBoardWinCondition && scoreOnBoardTarget > scoreOnBoard):
+		win = false
+		
 	if(win):
 		winlosescreen.winGame()
 
-func timerLoss():
+func loss():
 	if(winlosescreen != null):
 		winlosescreen.loseGame()
 
@@ -129,7 +222,7 @@ func _ready() -> void:
 		loseTimer = Timer.new()
 		loseTimer.one_shot = true
 		loseTimer.wait_time = timeTillLoss
-		loseTimer.timeout.connect(timerLoss)
+		loseTimer.timeout.connect(loss)
 		add_child(loseTimer)
 		loseTimer.start()
 
@@ -163,6 +256,7 @@ func getBlock() -> BoxHandler:
 func spawnBlock(autoSpawn = true) -> BoxHandler:
 	if(!spawnBlocks && autoSpawn):
 		return
+	blocksUsed += 1
 	var new_block = createBlock()
 	boxFiller.fillBlock(new_block)
 	
@@ -260,6 +354,7 @@ func spawnRandomEnemy():
 	boxGrid.add_child(enemy)
 
 	# Spawn into grid
+	enemiesAlive += 1
 	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)
 
 #Spawns a specific type of enemy

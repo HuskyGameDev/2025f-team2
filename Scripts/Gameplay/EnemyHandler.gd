@@ -68,6 +68,7 @@ func _remove_self_from_grid() -> void:
 			if levelGrid.blocks[bPosition.y][bPosition.x] == self:
 				levelGrid.blocks[bPosition.y][bPosition.x] = null
 	lvlMngr.enemiesKilled += 1
+	lvlMngr.enemiesAlive -= 1
 	call_deferred("queue_free")
 
 func _set_color(index: int) -> void:

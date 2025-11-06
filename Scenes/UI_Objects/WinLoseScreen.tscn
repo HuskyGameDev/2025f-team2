@@ -20,39 +20,47 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 script = ExtResource("1_q4ug7")
-panel = NodePath("Panel")
-canvas = NodePath("Panel/CanvasLayer")
-winScreen = NodePath("Panel/CanvasLayer/Winning")
-loseScreen = NodePath("Panel/CanvasLayer/Losing")
-metadata/_edit_group_ = true
+panel = NodePath("CanvasLayer/Panel")
+canvas = NodePath("CanvasLayer")
+winScreen = NodePath("CanvasLayer/Winning")
+loseScreen = NodePath("CanvasLayer/Losing")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
 self_modulate = Color(0.110318, 1.92523e-07, 0.61891, 1)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -68.0
+offset_top = -66.0
 offset_right = 96.0
-offset_bottom = 68.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Panel"]
-
-[node name="Winning" type="Control" parent="Panel/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -96.0
-offset_top = -72.0
-offset_right = -96.0
-offset_bottom = -72.0
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Panel/CanvasLayer/Winning"]
+[node name="Winning" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -66.0
+offset_right = -96.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="CanvasLayer/Winning"]
 layout_mode = 2
 offset_left = 64.0
 offset_top = 24.0
@@ -62,7 +70,7 @@ theme_override_font_sizes/font_size = 15
 text = "You win!"
 horizontal_alignment = 1
 
-[node name="NextLevel" type="Button" parent="Panel/CanvasLayer/Winning"]
+[node name="NextLevel" type="Button" parent="CanvasLayer/Winning"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
@@ -72,7 +80,7 @@ theme_override_font_sizes/font_size = 11
 text = "Next level"
 script = ExtResource("1_4pe0c")
 
-[node name="Menu" type="Button" parent="Panel/CanvasLayer/Winning"]
+[node name="Menu" type="Button" parent="CanvasLayer/Winning"]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 96.0
@@ -84,15 +92,22 @@ text = "Main menu
 script = ExtResource("1_4pe0c")
 targetScene = "res://Scenes/TestScenes/MainMenu.tscn"
 
-[node name="Losing" type="Control" parent="Panel/CanvasLayer"]
+[node name="Losing" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -96.0
-offset_top = -72.0
+offset_top = -66.0
 offset_right = 96.0
-offset_bottom = 64.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/CanvasLayer/Losing"]
+[node name="Label" type="Label" parent="CanvasLayer/Losing"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 24.0
@@ -102,7 +117,7 @@ theme_override_font_sizes/font_size = 15
 text = "You lose!"
 horizontal_alignment = 1
 
-[node name="Restart" type="Button" parent="Panel/CanvasLayer/Losing"]
+[node name="Restart" type="Button" parent="CanvasLayer/Losing"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
@@ -112,7 +127,7 @@ theme_override_font_sizes/font_size = 11
 text = "Restart"
 script = ExtResource("1_4pe0c")
 
-[node name="Menu" type="Button" parent="Panel/CanvasLayer/Losing"]
+[node name="Menu" type="Button" parent="CanvasLayer/Losing"]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 96.0
@@ -124,7 +139,7 @@ text = "Main menu
 script = ExtResource("1_4pe0c")
 targetScene = "res://Scenes/TestScenes/MainMenu.tscn"
 
-[connection signal="pressed" from="Panel/CanvasLayer/Winning/NextLevel" to="Panel/CanvasLayer/Winning/NextLevel" method="_on_pressed"]
-[connection signal="pressed" from="Panel/CanvasLayer/Winning/Menu" to="Panel/CanvasLayer/Winning/Menu" method="_on_pressed"]
-[connection signal="pressed" from="Panel/CanvasLayer/Losing/Restart" to="Panel/CanvasLayer/Losing/Restart" method="_on_pressed"]
-[connection signal="pressed" from="Panel/CanvasLayer/Losing/Menu" to="Panel/CanvasLayer/Losing/Menu" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Winning/NextLevel" to="CanvasLayer/Winning/NextLevel" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Winning/Menu" to="CanvasLayer/Winning/Menu" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Losing/Restart" to="CanvasLayer/Losing/Restart" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Losing/Menu" to="CanvasLayer/Losing/Menu" method="_on_pressed"]

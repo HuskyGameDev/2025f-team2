@@ -77,7 +77,7 @@ func _addToBlock():
 func _removeToBlock():
 	blockValue -= 1
 	_updateBoxText()
-	if blockValue < 0:
+	if blockValue <= 0:
 		levelGrid.removeBlock(self)
 
 func mergeBox(downBlock:BoxHandler):
