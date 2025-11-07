@@ -18,6 +18,7 @@ var oneBlockPlaced = false
 # Complete control of everything that happens within the tutorial level
 
 func _ready() -> void:
+	await GlobalSceneLoader.onTransitionDone
 	setText("Welcome to Ribbon in the Wacky Warehouse!")
 	get_tree().paused = true
 
@@ -211,3 +212,9 @@ func _process(delta: float) -> void:
 	if(phase == 18):
 		if(enemy == null):
 			_on_next_button_pressed()
+
+func _input(event: InputEvent) -> void:
+	if textbox.visible == false:
+		return
+	if event.is_action_released("release"):
+		_on_next_button_pressed()

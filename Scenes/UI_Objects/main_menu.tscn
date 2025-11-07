@@ -35,6 +35,7 @@ focus_next = NodePath("../Settings")
 theme = ExtResource("1_nskxk")
 text = "Play Game"
 script = ExtResource("1_wsnrw")
+targetScene = "res://Scenes/WorldMap/worldMap.tscn"
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 0

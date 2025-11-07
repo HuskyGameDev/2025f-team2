@@ -1,5 +1,7 @@
 extends Node
 
+signal onTransitionDone
+
 func debug_load(targetScene: String):
 	get_tree().change_scene_to_file(targetScene)
 
@@ -34,4 +36,8 @@ func load_level(targetScene: String):
 		# When done loading, change to the target scene:
 		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(targetScene))
 		transition.lowerTransition()
+		transition.animator.animation_finished.connect(emitTransDone)
 		transition.kill_on_finish()
+
+func emitTransDone(name:String):
+	onTransitionDone.emit()

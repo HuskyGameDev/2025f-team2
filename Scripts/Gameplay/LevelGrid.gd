@@ -25,7 +25,8 @@ func _ready() -> void:
 func addBlock(block : BoxHandler):
 	block.levelGrid = self
 	block.onAdd()
-	block.get_parent().remove_child(block)
+	if block.get_parent() != null:
+		block.get_parent().remove_child(block)
 	add_child(block)
 	blocks[block.bPosition.y][block.bPosition.x] = block
 	levelManager.fallTimer.timeout.connect(block._onFallTick)

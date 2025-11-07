@@ -1,21 +1,100 @@
-[gd_scene load_steps=26 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=41 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="2_kjb2r"]
 [ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/Testing/DefaultPlacementOrder.tres" id="2_p83bp"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
 [ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="3_e7vnt"]
 [ext_resource type="Resource" uid="uid://c066ou12nqlnb" path="res://Resources/Testing/DefaultEnemyStats.tres" id="3_j3c8t"]
+[ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="3_keqyh"]
+[ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="4_2ni0w"]
 [ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
 [ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="4_nxyhc"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="5_thksi"]
 [ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="6_j3c8t"]
 [ext_resource type="Script" uid="uid://c3qfxtnd08lrf" path="res://Scripts/Gameplay/RibbonAnimator.gd" id="6_qk1kx"]
 [ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="7_qk1kx"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="8_mqddd"]
 [ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="8_nxyhc"]
-[ext_resource type="PackedScene" uid="uid://dnr1ycyay0p0u" path="res://Scenes/BackgroundAssets/cloud_background.tscn" id="13_72xxr"]
 [ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="14_qk1kx"]
+
+[sub_resource type="Resource" id="Resource_l0m60"]
+script = ExtResource("3_keqyh")
+blockType = 0
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_wo0q1"]
+script = ExtResource("4_2ni0w")
+enemyType = 2
+blockType = 2
+blockColor = 2
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_kjb2r"]
+script = ExtResource("3_keqyh")
+blockType = 1
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_2ni0w"]
+script = ExtResource("4_2ni0w")
+enemyType = 0
+blockType = 2
+blockColor = 1
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_thksi"]
+script = ExtResource("4_2ni0w")
+enemyType = 1
+blockType = 2
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_mqddd"]
+script = ExtResource("3_keqyh")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_1eptf"]
+script = ExtResource("2_kjb2r")
+blocks = Array[ExtResource("3_keqyh")]([SubResource("Resource_l0m60"), SubResource("Resource_wo0q1"), SubResource("Resource_kjb2r"), SubResource("Resource_2ni0w"), SubResource("Resource_thksi"), SubResource("Resource_mqddd")])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_keqyh"]
+script = ExtResource("3_keqyh")
+blockType = 0
+blockColor = 1
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_c414l"]
+script = ExtResource("2_kjb2r")
+blocks = Array[ExtResource("3_keqyh")]([null, null, null, SubResource("Resource_keqyh"), null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_au50a"]
+script = ExtResource("5_thksi")
+levelOrder = Array[ExtResource("2_kjb2r")]([SubResource("Resource_1eptf"), SubResource("Resource_c414l")])
+metadata/_custom_type_script = "uid://dysfew0ala1lg"
+
+[sub_resource type="Resource" id="Resource_gujet"]
+script = ExtResource("8_mqddd")
+levelOrder = ExtResource("2_p83bp")
+blockOrder = SubResource("Resource_au50a")
+enemyStats = ExtResource("3_j3c8t")
+wlconditions = ExtResource("4_nxyhc")
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -47,7 +126,7 @@ tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.25, 0.416667, 1, 1.16667),
+"times": PackedFloat32Array(0, 0.166667, 0.25, 0.416667, 1, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5, 0]
@@ -59,7 +138,7 @@ tracks/2/path = NodePath("Ribbon-faces:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.333333, 0.916666, 1.08333),
+"times": PackedFloat32Array(0, 0.166667, 0.25, 0.416667, 0.916666, 1.08333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 3, 0]
@@ -72,7 +151,7 @@ tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.166667, 0.583333, 1.08333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"transitions": PackedFloat32Array(1e-05, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -52), Vector2(0, 0)]
 }
@@ -283,9 +362,7 @@ script = ExtResource("1_g28u0")
 fallSpeed = 0.6
 boxFiller = NodePath("BoxFiller")
 boxGrid = NodePath("BaseGridPos")
-levelOrder = ExtResource("2_p83bp")
-enemyStats = ExtResource("3_j3c8t")
-wlconditions = ExtResource("4_nxyhc")
+currentLevelState = SubResource("Resource_gujet")
 winlosescreen = NodePath("WinLoseScreen")
 listWins = NodePath("ListConditions/WinCons")
 listLoses = NodePath("ListConditions/LoseCons")
@@ -373,8 +450,6 @@ offset_bottom = 1.0
 script = ExtResource("3_635xr")
 
 [node name="WinLoseScreen" parent="." instance=ExtResource("14_qk1kx")]
-
-[node name="Background" parent="." instance=ExtResource("13_72xxr")]
 
 [node name="ListConditions" type="Control" parent="."]
 layout_mode = 3

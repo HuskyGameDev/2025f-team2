@@ -1,10 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://4fw2d44pjwu8"]
+[gd_scene load_steps=24 format=3 uid="uid://4fw2d44pjwu8"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
-[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="2_1yxxt"]
-[ext_resource type="Resource" uid="uid://b1ne1ap25mign" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0EnemyStats.tres" id="3_t3c2j"]
+[ext_resource type="Resource" uid="uid://cjdqe6klu8mrp" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0LevelState.tres" id="2_tmr10"]
 [ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="4_5aqag"]
-[ext_resource type="Resource" uid="uid://yrs1yb5ng3nm" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0WinLossConditions.tres" id="4_a6sio"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="5_08tqb"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="6_ve7s6"]
 [ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="7_bu5an"]
@@ -283,9 +281,7 @@ script = ExtResource("1_l4uv0")
 fallSpeed = 0.6
 boxFiller = NodePath("BoxFiller")
 boxGrid = NodePath("BaseGridPos")
-levelOrder = ExtResource("2_1yxxt")
-enemyStats = ExtResource("3_t3c2j")
-wlconditions = ExtResource("4_a6sio")
+currentLevelState = ExtResource("2_tmr10")
 winlosescreen = NodePath("WinLoseScreen")
 listWins = NodePath("ListConditions/WinCons")
 listLoses = NodePath("ListConditions/LoseCons")
