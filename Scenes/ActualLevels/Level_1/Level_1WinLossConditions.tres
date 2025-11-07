@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WinLossConditions" load_steps=2 format=3 uid="uid://d4hoy1pxdw7wa"]
+
+[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="1_p2trn"]
+
+[resource]
+script = ExtResource("1_p2trn")
+killEnemiesCondition = true
+killEnemies = 5
+achieveScoreCondition = false
+targetScore = 0
+removeBlocksCondition = false
+targetRemovedBlocks = 0
+scoreOnBoardWinCondition = false
+scoreColorOnBoardWinCondition = false
+targetColor = 1
+scoreOnBoardTarget = 0
+timerLoseCondition = false
+timeTillLoss = 90
+blockLoseCondition = false
+blockLossLimit = 0
+tooManyBombsCondition = false
+bombLimit = 2
+tooManyEnemiesCondition = false
+enemyLimit = 5
+scoreOnBoardLoseCondition = false
+scoreOnBoardLimit = 0

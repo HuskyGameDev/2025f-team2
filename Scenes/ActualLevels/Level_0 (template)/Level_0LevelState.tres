@@ -1,112 +1,21 @@
-[gd_resource type="Resource" script_class="LevelState" load_steps=23 format=3 uid="uid://cjdqe6klu8mrp"]
+[gd_resource type="Resource" script_class="LevelState" load_steps=8 format=3 uid="uid://cjdqe6klu8mrp"]
 
 [ext_resource type="Resource" uid="uid://b1ne1ap25mign" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0EnemyStats.tres" id="1_86uu3"]
 [ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_kj2ys"]
 [ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="1_ttqcw"]
-[ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_emgia"]
 [ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="2_twxbd"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="3_l7iy4"]
 [ext_resource type="Resource" uid="uid://yrs1yb5ng3nm" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0WinLossConditions.tres" id="4_7qf73"]
 
-[sub_resource type="Resource" id="Resource_xm5v2"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 0
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_e2w60"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 0
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_bs22u"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 0
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_l3awb"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 0
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_t0o56"]
-script = ExtResource("1_kj2ys")
-blocks = Array[ExtResource("2_emgia")]([SubResource("Resource_xm5v2"), SubResource("Resource_e2w60"), SubResource("Resource_bs22u"), SubResource("Resource_l3awb"), null, null])
-metadata/_custom_type_script = "uid://38vanp3lsifc"
-
-[sub_resource type="Resource" id="Resource_bnes5"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 1
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_0uxfl"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 1
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_46wlu"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 1
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_2ewu3"]
-script = ExtResource("1_kj2ys")
-blocks = Array[ExtResource("2_emgia")]([SubResource("Resource_bnes5"), SubResource("Resource_0uxfl"), SubResource("Resource_46wlu"), null, null, null])
-metadata/_custom_type_script = "uid://38vanp3lsifc"
-
-[sub_resource type="Resource" id="Resource_71ore"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 2
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_5e50x"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 2
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_x7yle"]
-script = ExtResource("1_kj2ys")
-blocks = Array[ExtResource("2_emgia")]([SubResource("Resource_71ore"), SubResource("Resource_5e50x"), null, null, null, null])
-metadata/_custom_type_script = "uid://38vanp3lsifc"
-
-[sub_resource type="Resource" id="Resource_y2r4a"]
-script = ExtResource("2_emgia")
-blockType = 0
-blockColor = 0
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
-
-[sub_resource type="Resource" id="Resource_150pf"]
-script = ExtResource("1_kj2ys")
-blocks = Array[ExtResource("2_emgia")]([SubResource("Resource_y2r4a"), null, null, null, null, null])
-metadata/_custom_type_script = "uid://38vanp3lsifc"
-
-[sub_resource type="Resource" id="Resource_2xwni"]
+[sub_resource type="Resource" id="Resource_7qf73"]
 script = ExtResource("3_l7iy4")
-levelOrder = Array[ExtResource("1_kj2ys")]([SubResource("Resource_t0o56"), SubResource("Resource_2ewu3"), SubResource("Resource_x7yle"), SubResource("Resource_150pf")])
+levelOrder = Array[ExtResource("1_kj2ys")]([])
 metadata/_custom_type_script = "uid://dysfew0ala1lg"
 
 [resource]
 script = ExtResource("1_ttqcw")
 levelOrder = ExtResource("2_twxbd")
-blockOrder = SubResource("Resource_2xwni")
+blockOrder = SubResource("Resource_7qf73")
 enemyStats = ExtResource("1_86uu3")
 wlconditions = ExtResource("4_7qf73")
 background = 0

@@ -5,7 +5,7 @@ signal onTransitionDone
 func debug_load(targetScene: String):
 	get_tree().change_scene_to_file(targetScene)
 
-func load_level(targetScene: String):
+func load_level(targetScene: String, levelState : LevelState = null):
 	var transition : Transition = load("res://Scenes/UI_Objects/Transitions/transition1.tscn").instantiate()
 	add_child(transition)
 	await transition.animator.animation_finished
@@ -34,10 +34,22 @@ func load_level(targetScene: String):
 	await get_tree().create_timer(0.25).timeout
 	if success:
 		# When done loading, change to the target scene:
-		get_tree().change_scene_to_packed(ResourceLoader.load_threaded_get(targetScene))
+		var scene = ResourceLoader.load_threaded_get(targetScene)
+		get_tree().change_scene_to_packed(scene)
 		transition.lowerTransition()
 		transition.animator.animation_finished.connect(emitTransDone)
 		transition.kill_on_finish()
+		if levelState != null:
+			while(get_tree().current_scene == null):
+				await get_tree().process_frame
+			print("called")
+			if get_tree().current_scene is LevelManager:
+				print("called2")
+				get_tree().current_scene.setLevelState(levelState)
+				return
+			if get_tree().current_scene.get_child(0) is LevelManager:
+				get_tree().current_scene.get_child(0).setLevelState(levelState)
+				return
 
 func emitTransDone(name:String):
 	onTransitionDone.emit()

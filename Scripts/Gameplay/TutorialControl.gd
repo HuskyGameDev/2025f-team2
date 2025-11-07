@@ -18,9 +18,9 @@ var oneBlockPlaced = false
 # Complete control of everything that happens within the tutorial level
 
 func _ready() -> void:
-	await GlobalSceneLoader.onTransitionDone
-	setText("Welcome to Ribbon in the Wacky Warehouse!")
 	get_tree().paused = true
+	setText("Welcome to Ribbon in the Wacky Warehouse!")
+	
 
 #easy way to set text
 func setText(s: String):

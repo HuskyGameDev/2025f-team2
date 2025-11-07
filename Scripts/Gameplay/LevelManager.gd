@@ -144,12 +144,20 @@ func _create_background(index:int):
 			add_child(bg)
 
 func _ready() -> void:
+	fallTimer = Timer.new()
+	fallTimer.wait_time = fallSpeed
+	fallTimer.autostart = true
+	add_child(fallTimer)
+
+func setLevelState(ste : LevelState):
+	currentLevelState = ste
+	setupLevel()
+
+func setupLevel():
 	if currentLevelState == null:
 		push_error("No level state found! Aborting...")
 		return
-	
 	_create_background(currentLevelState.background)
-	
 	if currentLevelState.wlconditions == null:
 		push_error("No win loss conditions!")
 	if currentLevelState.levelOrder == null:
@@ -161,10 +169,7 @@ func _ready() -> void:
 	bid = randi_range(0, 2147483647) % len(currentLevelState.levelOrder.typeOrder)
 	cid = randi_range(0, 2147483647) % len(currentLevelState.levelOrder.colorOrder)
 
-	fallTimer = Timer.new()
-	fallTimer.wait_time = fallSpeed
-	fallTimer.autostart = true
-	add_child(fallTimer)
+
 	
 	#sets the lose timer if that condition is active
 	if(currentLevelState.wlconditions.timerLoseCondition):
@@ -180,6 +185,7 @@ func _ready() -> void:
 		spawnBlock()
 	
 	createLevel(currentLevelState.blockOrder)
+
 
 func createBlock() -> BoxHandler:
 	bid += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=32 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -7,9 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://b6nqrwth8c0lr" path="res://Artwork/WorldMap/worldMapPing.png" id="3_ujvki"]
 [ext_resource type="Script" uid="uid://cvmu0sqsv1v3h" path="res://Scripts/WorldMap/WorldPoint.gd" id="4_ggnbf"]
 [ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="5_rt317"]
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="6_wupwk"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="7_1hco5"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="8_inlqg"]
+[ext_resource type="Resource" uid="uid://cejm8735qadr8" path="res://Scenes/ActualLevels/Level_1/Level_1LevelState.tres" id="8_sforw"]
 [ext_resource type="Theme" uid="uid://ded1rpxa401uw" path="res://Resources/ButtonTheme.tres" id="9_cs4vs"]
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="9_hin85"]
 [ext_resource type="Script" uid="uid://bl7ii30g00b5l" path="res://Scripts/WorldMap/LevelSelectUI.gd" id="9_qlyio"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="10_ff06i"]
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="10_qlyio"]
+[ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="11_wupwk"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
 background_mode = 1
@@ -32,18 +39,51 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_2ry0s"]
 size = Vector2(36.25, 36.25)
 
+[sub_resource type="Resource" id="Resource_e7gs1"]
+script = ExtResource("7_1hco5")
+levelOrder = Array[ExtResource("6_wupwk")]([])
+metadata/_custom_type_script = "uid://dysfew0ala1lg"
+
+[sub_resource type="Resource" id="Resource_pcoav"]
+script = ExtResource("8_inlqg")
+enemyPerBlock = Vector2i(3, 5)
+staticHealth = Vector2i(5, 10)
+floaterHealth = Vector2i(3, 5)
+floaterActionSpeed = Vector2(2, 4)
+painterHealth = Vector2i(3, 5)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
+
+[sub_resource type="Resource" id="Resource_23pus"]
+script = ExtResource("9_hin85")
+typeOrder = Array[int]([0])
+colorOrder = Array[int]([0])
+enemyTypeOrder = Array[String](["StaticEnemy", "FloaterEnemy", "PainterEnemy"])
+metadata/_custom_type_script = "uid://bq1lexixywh21"
+
+[sub_resource type="Resource" id="Resource_eubyf"]
+script = ExtResource("10_ff06i")
+levelOrder = SubResource("Resource_23pus")
+blockOrder = SubResource("Resource_e7gs1")
+enemyStats = SubResource("Resource_pcoav")
+wlconditions = ExtResource("11_wupwk")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
+
 [sub_resource type="Resource" id="Resource_q1dlp"]
 script = ExtResource("5_rt317")
 levelName = "Tutorial"
 levelType = 0
 scene = "res://Scenes/TestScenes/TutorialLevel.tscn"
+levelObject = SubResource("Resource_eubyf")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="Resource" id="Resource_wupwk"]
 script = ExtResource("5_rt317")
 levelName = "1st level"
 levelType = 2
-scene = "res://Scenes/ActualLevels/Level_1/Level_1.tscn"
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = ExtResource("8_sforw")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]

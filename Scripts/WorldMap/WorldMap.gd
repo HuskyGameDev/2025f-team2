@@ -47,4 +47,4 @@ func enterLevel():
 	#camera.setPositionOfCameraInCutscene(worldPoints[pos])
 	await create_tween().tween_property(camera, "rotation_degrees:x", 90, 0.25).finished
 	await uiScreen.wait()
-	GlobalSceneLoader.load_level(worldPoints[pos].level.scene)
+	GlobalSceneLoader.load_level(worldPoints[pos].level.scene, worldPoints[pos].level.levelObject)
