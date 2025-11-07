@@ -22,7 +22,7 @@ func _ready() -> void:
 		for j in grid_size.x:
 			blocks[i].append(null) # Set a starter value for each position
 
-func addBlock(block : BoxHandler):
+func addBlock(block : BoxHandler, active: bool = true):
 	block.levelGrid = self
 	block.onAdd()
 	if block.get_parent() != null:
@@ -30,8 +30,9 @@ func addBlock(block : BoxHandler):
 	add_child(block)
 	blocks[block.bPosition.y][block.bPosition.x] = block
 	levelManager.fallTimer.timeout.connect(block._onFallTick)
-	if block.bType != BoxHandler.BlockType.Arrow:
-		setActiveBlock(block)
+	if active == true:
+		if block.bType != BoxHandler.BlockType.Arrow:
+			setActiveBlock(block)
 	setPositionOfBlockOnBoard(block)
 
 func removeBlock(block : BoxHandler):

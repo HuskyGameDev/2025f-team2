@@ -94,6 +94,7 @@ levelOrder = ExtResource("2_p83bp")
 blockOrder = SubResource("Resource_au50a")
 enemyStats = ExtResource("3_j3c8t")
 wlconditions = ExtResource("4_nxyhc")
+background = 0
 metadata/_custom_type_script = "uid://4qlmb4eym05e"
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]

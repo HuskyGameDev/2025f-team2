@@ -3,7 +3,12 @@
 class_name LevelState
 extends Resource
 
+enum Backgrounds{
+	Clouds
+}
+
 @export var levelOrder : PlacementOrder
 @export var blockOrder : BlockOrder
 @export var enemyStats: LevelEnemyStats
 @export var wlconditions: WinLossConditions
+@export var background : Backgrounds

@@ -12,9 +12,6 @@ spawnBlocks = false
 [node name="Border" parent="LevelManager" index="0"]
 default_color = Color(1, 0, 1, 1)
 
-[node name="Background" parent="LevelManager" index="5"]
-visible = false
-
 [node name="TutorialController" type="Control" parent="." node_paths=PackedStringArray("label", "textbox", "levelmngr", "boxfill", "levelgrid")]
 process_mode = 3
 layout_mode = 3

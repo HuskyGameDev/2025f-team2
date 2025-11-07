@@ -16,6 +16,10 @@ var bColor : BlockColor = BlockColor.Green
 var bType : BlockType = BlockType.Block
 
 var placed : bool
+
+var prePlaced : bool = false
+var prePlaceInvinc : int = 5
+
 var floating : bool = true
 
 signal on_placed
@@ -35,10 +39,16 @@ func _ready() -> void:
 func _onFallTick():
 	if floating:
 		return
+	if prePlaced:
+		if prePlaceInvinc <= 0:
+			prePlaced = false
+		prePlaceInvinc -= 1
+		return
 	if bType == BlockType.Block:
 		if levelGrid != null and levelGrid.get_all_blocks_in_board().find(self) == -1:
 			# debugging fallback
 			print("BoxHandler: not found in board list: color=", str(bColor), " value=", str(blockValue))
+		
 		if levelGrid != null:
 			levelGrid.setPositionOfBlockOnBoard(self)
 		if blockValue >= bombThreshold:
@@ -95,14 +105,14 @@ func mergeBox(downBlock:BoxHandler):
 func moveDown(control : bool = true):
 	if (bPosition.y - 1) < 0:
 		await levelGrid.place_block(self)
-		if control:
+		if control and not prePlaced:
 			levelGrid.next_block()
 		return
 
 	var below = levelGrid.blocks[bPosition.y - 1][bPosition.x]
 	if below != null:
 		# --- Enemy collision ---
-		if below.bType == BlockType.Enemy:
+		if below.bType == BlockType.Enemy and not prePlaced:
 			# call enemy collision logic (enemy will handle color check/damage)
 			if below.has_method("on_block_collision"):
 				below.on_block_collision(self)
@@ -117,7 +127,7 @@ func moveDown(control : bool = true):
 			return
 
 		# --- Indestructible handling ---
-		if below.bType == BlockType.Indestructible:
+		if below.bType == BlockType.Indestructible and not prePlaced:
 			if control:
 				await levelGrid.place_block(self)
 				levelGrid.next_block()
@@ -126,7 +136,7 @@ func moveDown(control : bool = true):
 			return
 
 		# --- Merge handling ---
-		elif levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], below):
+		elif levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], below) and not prePlaced:
 			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], below)
 			if control:
 				levelGrid.next_block()
@@ -136,7 +146,7 @@ func moveDown(control : bool = true):
 
 		# --- Normal stop ---
 		else:
-			if control:
+			if control and not prePlaced:
 				await levelGrid.place_block(self)
 				levelGrid.next_block()
 			if has_signal("on_placed"):

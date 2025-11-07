@@ -2,7 +2,6 @@ extends BoxHandler
 
 func _init() -> void:
 	bType = BlockType.Indestructible
-	bColor = 255
 
 func _ready() -> void:
 	_updateBoxText()

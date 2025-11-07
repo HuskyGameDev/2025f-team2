@@ -15,25 +15,6 @@ winlosescreen = NodePath("../WinLoseScreen")
 listWins = NodePath("../ListConditions/WinCons")
 listLoses = NodePath("../ListConditions/LoseCons")
 
-[node name="Background" parent="Level" index="5"]
-self_modulate = Color(0.784916, 0.440414, 0.523723, 1)
-
-[node name="Cloud4" parent="Level/Background/Node2D" index="0"]
-modulate = Color(1, 0.101961, 0.054902, 1)
-
-[node name="Cloud3" parent="Level/Background/Node2D" index="1"]
-modulate = Color(1, 0.101961, 0.054902, 1)
-
-[node name="Cloud2" parent="Level/Background/Node2D" index="2"]
-modulate = Color(1, 0.101961, 0.054902, 1)
-
-[node name="Cloud1" parent="Level/Background/Node2D" index="3"]
-modulate = Color(1, 0.101961, 0.054902, 1)
-
-[node name="CloudyBG" parent="Level/Background/Node2D" index="4"]
-self_modulate = Color(1, 0.241491, 0.841193, 1)
-material = null
-
 [node name="ListConditions" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -101,5 +82,4 @@ targetScene = "res://Scenes/TestScenes/WinLoseTesting.tscn"
 [connection signal="pressed" from="Reset/Restart" to="Reset/Restart" method="_on_pressed"]
 
 [editable path="Level"]
-[editable path="Level/Background"]
 [editable path="WinLoseScreen"]

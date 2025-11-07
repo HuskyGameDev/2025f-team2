@@ -137,7 +137,19 @@ func loss():
 	if(winlosescreen != null):
 		winlosescreen.loseGame()
 
+func _create_background(index:int):
+	match index:
+		0:
+			var bg = GlobalNodeLoader.clouds.instantiate()
+			add_child(bg)
+
 func _ready() -> void:
+	if currentLevelState == null:
+		push_error("No level state found! Aborting...")
+		return
+	
+	_create_background(currentLevelState.background)
+	
 	if currentLevelState.wlconditions == null:
 		push_error("No win loss conditions!")
 	if currentLevelState.levelOrder == null:
@@ -228,14 +240,15 @@ func spawnSpecificBlock(node) -> BoxHandler:
 
 func spawnBlockAtPosition(type, bposition:Vector2i, color, value : int):
 	var new_block = getSpeficBlock(type)
-	print(type)
 	new_block.lvlMngr = self
 	new_block._set_color(color)
 	new_block.bPosition = bposition
 	new_block.levelGrid = boxGrid
 	new_block.blockValue = value
-	boxGrid.addBlock(new_block)
+	boxGrid.addBlock(new_block, false)
+	await get_tree().process_frame
 	new_block.placed = true
+	new_block.prePlaced = true
 
 func spawnEnemyAtPosition(type, bposition:Vector2i, color):
 	var enemy_scene: PackedScene = get_enemy_scene(type)
@@ -263,7 +276,6 @@ func createLevel(order : BlockOrder):
 				if block.blockType != block.BlockType.Enemy:
 					spawnBlockAtPosition(translatedBlockType(block.blockType), pos, block.blockColor, block.value)
 				else:
-					print(block.blockType)
 					spawnEnemyAtPosition(block.enemyType, pos, block.blockColor)
 			pos.x += 1
 		pos.x = 0
