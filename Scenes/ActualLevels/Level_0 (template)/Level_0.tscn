@@ -1,21 +1,21 @@
-[gd_scene load_steps=26 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=26 format=3 uid="uid://4fw2d44pjwu8"]
 
-[ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
-[ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
-[ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/Testing/DefaultPlacementOrder.tres" id="2_p83bp"]
-[ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
-[ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
-[ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="3_e7vnt"]
-[ext_resource type="Resource" uid="uid://c066ou12nqlnb" path="res://Resources/Testing/DefaultEnemyStats.tres" id="3_j3c8t"]
-[ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
-[ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
-[ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="4_nxyhc"]
-[ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="6_j3c8t"]
-[ext_resource type="Script" uid="uid://c3qfxtnd08lrf" path="res://Scripts/Gameplay/RibbonAnimator.gd" id="6_qk1kx"]
-[ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="7_qk1kx"]
-[ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="8_nxyhc"]
-[ext_resource type="PackedScene" uid="uid://dnr1ycyay0p0u" path="res://Scenes/BackgroundAssets/cloud_background.tscn" id="13_72xxr"]
-[ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="14_qk1kx"]
+[ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
+[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="2_1yxxt"]
+[ext_resource type="Resource" uid="uid://b1ne1ap25mign" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0EnemyStats.tres" id="3_t3c2j"]
+[ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="4_5aqag"]
+[ext_resource type="Resource" uid="uid://yrs1yb5ng3nm" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0WinLossConditions.tres" id="4_a6sio"]
+[ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="5_08tqb"]
+[ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="6_ve7s6"]
+[ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="7_bu5an"]
+[ext_resource type="Script" uid="uid://c3qfxtnd08lrf" path="res://Scripts/Gameplay/RibbonAnimator.gd" id="8_ojvbg"]
+[ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="9_5h57o"]
+[ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="10_qdhxq"]
+[ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="11_6ge3b"]
+[ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="12_ig5go"]
+[ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="13_3in4i"]
+[ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="14_b2ivo"]
+[ext_resource type="PackedScene" uid="uid://dnr1ycyay0p0u" path="res://Scenes/BackgroundAssets/cloud_background.tscn" id="15_2x6fn"]
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -279,13 +279,13 @@ spacing_bottom = -470
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid", "winlosescreen", "listWins", "listLoses")]
 texture_filter = 1
-script = ExtResource("1_g28u0")
+script = ExtResource("1_l4uv0")
 fallSpeed = 0.6
 boxFiller = NodePath("BoxFiller")
 boxGrid = NodePath("BaseGridPos")
-levelOrder = ExtResource("2_p83bp")
-enemyStats = ExtResource("3_j3c8t")
-wlconditions = ExtResource("4_nxyhc")
+levelOrder = ExtResource("2_1yxxt")
+enemyStats = ExtResource("3_t3c2j")
+wlconditions = ExtResource("4_a6sio")
 winlosescreen = NodePath("WinLoseScreen")
 listWins = NodePath("ListConditions/WinCons")
 listLoses = NodePath("ListConditions/LoseCons")
@@ -295,7 +295,7 @@ texture_repeat = 2
 position = Vector2(107, 30)
 points = PackedVector2Array(-2, -6, -2, 135, 105, 135, 105, -6)
 width = 4.0
-texture = ExtResource("3_e7vnt")
+texture = ExtResource("4_5aqag")
 texture_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -310,7 +310,7 @@ region_rect = Rect2(0, 0, 108, 142)
 
 [node name="BaseGridPos" type="Node2D" parent="." node_paths=PackedStringArray("levelManager", "ribbon")]
 position = Vector2(116, 154)
-script = ExtResource("4_fe8sf")
+script = ExtResource("5_08tqb")
 levelManager = NodePath("..")
 ribbon = NodePath("../BoxFiller/Ribbon")
 grid_space = 17
@@ -318,7 +318,7 @@ grid_size = Vector2i(6, 9)
 
 [node name="BoxFiller" type="Node2D" parent="." node_paths=PackedStringArray("levelGrid")]
 position = Vector2(66, 141)
-script = ExtResource("3_1omkh")
+script = ExtResource("6_ve7s6")
 levelGrid = NodePath("../BaseGridPos")
 
 [node name="Button" type="Button" parent="BoxFiller"]
@@ -330,11 +330,11 @@ offset_bottom = -44.0
 theme_override_font_sizes/font_size = 9
 disabled = true
 text = "Reroll Block"
-script = ExtResource("4_36qpc")
+script = ExtResource("7_bu5an")
 
 [node name="Ribbon" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -5)
-script = ExtResource("6_qk1kx")
+script = ExtResource("8_ojvbg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BoxFiller/Ribbon"]
 root_node = NodePath("../RibbonTest")
@@ -344,14 +344,14 @@ libraries = {
 autoplay = "idle"
 
 [node name="RibbonTest" type="Sprite2D" parent="BoxFiller/Ribbon"]
-texture = ExtResource("6_j3c8t")
+texture = ExtResource("9_5h57o")
 hframes = 5
 vframes = 4
 frame = 8
 
 [node name="Ribbon-faces" type="Sprite2D" parent="BoxFiller/Ribbon/RibbonTest"]
 position = Vector2(0, -16)
-texture = ExtResource("7_qk1kx")
+texture = ExtResource("10_qdhxq")
 hframes = 4
 vframes = 4
 frame = 8
@@ -359,22 +359,22 @@ frame = 8
 [node name="RibbonArms" type="Sprite2D" parent="BoxFiller/Ribbon/RibbonTest"]
 visible = false
 z_index = 6
-texture = ExtResource("8_nxyhc")
+texture = ExtResource("11_6ge3b")
 
 [node name="SpawnPoint" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -140)
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_5qkg8")]
+[node name="PauseMenu" parent="." instance=ExtResource("12_ig5go")]
 visible = false
 offset_left = -1.0
 offset_top = 1.0
 offset_right = -1.0
 offset_bottom = 1.0
-script = ExtResource("3_635xr")
+script = ExtResource("13_3in4i")
 
-[node name="WinLoseScreen" parent="." instance=ExtResource("14_qk1kx")]
+[node name="WinLoseScreen" parent="." instance=ExtResource("14_b2ivo")]
 
-[node name="Background" parent="." instance=ExtResource("13_72xxr")]
+[node name="Background" parent="." instance=ExtResource("15_2x6fn")]
 
 [node name="ListConditions" type="Control" parent="."]
 layout_mode = 3
@@ -408,3 +408,5 @@ horizontal_alignment = 2
 
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller/Button" method="_on_pressed"]
+
+[editable path="Background"]

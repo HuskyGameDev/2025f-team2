@@ -41,9 +41,9 @@ metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="Resource" id="Resource_wupwk"]
 script = ExtResource("5_rt317")
-levelName = "Test Level"
-levelType = 1
-scene = "res://Scenes/TestScenes/TestScene.tscn"
+levelName = "1st level"
+levelType = 2
+scene = "res://Scenes/ActualLevels/Level_1/Level_1.tscn"
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]

@@ -97,7 +97,7 @@ func _process(delta: float) -> void:
 	if(wlconditions):
 		loseConString = "Lose conditions:\n"
 		var loseConExists: bool = false
-		if(wlconditions.timerLoseCondition && wlconditions.loseTimer != null):
+		if(wlconditions.timerLoseCondition && loseTimer != null):
 			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
 			loseConExists = true
 		if(wlconditions.blockLoseCondition && blocksUsed < wlconditions.blockLossLimit):
