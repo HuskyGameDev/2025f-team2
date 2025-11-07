@@ -26,7 +26,7 @@ func fillBlock(block : BoxHandler):
 		if !dropCrystals:
 			break
 			return
-		if fblock.blockValue >= 20:
+		if fblock.blockValue >= BoxHandler.bombThreshold:
 			break
 			return
 		if bok != fblock and bok != null:
@@ -52,7 +52,7 @@ func _input(event: InputEvent) -> void:
 		#stops release when block is at value 0
 		if fblock.blockValue < 1 && fblock.bType == BoxHandler.BlockType.Block:
 			return
-		if fblock.blockValue >= 20:
+		if fblock.blockValue >= BoxHandler.bombThreshold:
 			return
 		var aBlock : BoxHandler = fblock
 		fblock = null
@@ -82,3 +82,13 @@ func addToFBlock(Cys : Crystal):
 	if fblock != null:
 		if fblock.material == Cys.material:
 			fblock._addToBlock()
+			if fblock.has_node("Explosion") && fblock.blockValue > BoxHandler.bombThreshold-1:
+				var explo = fblock.get_child(1)
+				if explo != null:
+					fblock.remove_child(explo)
+					get_parent().add_child(explo)
+					fblock.queue_free()
+					ribbon.queue_free()
+					explo.position = position
+					explo.emitting = true
+					levelGrid.levelManager.loss()

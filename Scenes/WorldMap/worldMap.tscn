@@ -36,14 +36,14 @@ size = Vector2(36.25, 36.25)
 script = ExtResource("5_rt317")
 levelName = "Tutorial"
 levelType = 0
-scene = "res://Scenes/TestScenes/TestScene.tscn"
+scene = "res://Scenes/TestScenes/TutorialLevel.tscn"
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="Resource" id="Resource_wupwk"]
 script = ExtResource("5_rt317")
 levelName = "Test Level"
 levelType = 1
-scene = "res://Scenes/TestScenes/TutorialLevel.tscn"
+scene = "res://Scenes/TestScenes/TestScene.tscn"
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]

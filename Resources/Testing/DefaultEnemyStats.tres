@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelEnemyStats" load_steps=2 format=3 uid="uid://c066ou12nqlnb"]
 
-[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Scripts/Gameplay/LevelEnemyStats.gd" id="1_4vpgw"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="1_4vpgw"]
 
 [resource]
 script = ExtResource("1_4vpgw")

@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=3 uid="uid://co48nl1f8gywv"]
+[gd_scene load_steps=25 format=3 uid="uid://co48nl1f8gywv"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
-[ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/test_Order.tres" id="2_p83bp"]
+[ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/Testing/test_Order.tres" id="2_p83bp"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
 [ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="3_e7vnt"]
-[ext_resource type="Resource" uid="uid://c066ou12nqlnb" path="res://Resources/DefaultEnemyStats.tres" id="3_j3c8t"]
+[ext_resource type="Resource" uid="uid://c066ou12nqlnb" path="res://Resources/Testing/DefaultEnemyStats.tres" id="3_j3c8t"]
 [ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="4_36qpc"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="4_fe8sf"]
 [ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="6_j3c8t"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="7_qk1kx"]
 [ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="8_nxyhc"]
 [ext_resource type="PackedScene" uid="uid://dnr1ycyay0p0u" path="res://Scenes/BackgroundAssets/cloud_background.tscn" id="13_72xxr"]
+[ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="14_qk1kx"]
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -271,7 +272,11 @@ _data = {
 &"idle": SubResource("Animation_j3c8t")
 }
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid")]
+[sub_resource type="FontVariation" id="FontVariation_qk1kx"]
+spacing_top = -5
+spacing_bottom = -470
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid", "winlosescreen", "listWins", "listLoses")]
 texture_filter = 1
 script = ExtResource("1_g28u0")
 fallSpeed = 0.6
@@ -279,6 +284,9 @@ boxFiller = NodePath("BoxFiller")
 boxGrid = NodePath("BaseGridPos")
 levelOrder = ExtResource("2_p83bp")
 enemyStats = ExtResource("3_j3c8t")
+winlosescreen = NodePath("WinLoseScreen")
+listWins = NodePath("ListConditions/WinCons")
+listLoses = NodePath("ListConditions/LoseCons")
 
 [node name="Border" type="Line2D" parent="."]
 texture_repeat = 2
@@ -362,7 +370,39 @@ offset_right = -1.0
 offset_bottom = 1.0
 script = ExtResource("3_635xr")
 
+[node name="WinLoseScreen" parent="." instance=ExtResource("14_qk1kx")]
+
 [node name="Background" parent="." instance=ExtResource("13_72xxr")]
+
+[node name="ListConditions" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 85.0
+offset_bottom = 113.0
+
+[node name="WinCons" type="Label" parent="ListConditions"]
+layout_mode = 0
+offset_right = 74.0
+offset_bottom = 45.0
+theme_override_fonts/font = SubResource("FontVariation_qk1kx")
+text = "Win cons:
+score:
+kill enemies
+score on board
+_ color blocks"
+
+[node name="LoseCons" type="Label" parent="ListConditions"]
+layout_mode = 0
+offset_left = 163.0
+offset_right = 320.0
+offset_bottom = 45.0
+theme_override_fonts/font = SubResource("FontVariation_qk1kx")
+text = "Lose conditions:
+Timer: 10.000
+Bombs: 1
+Enemies alive: 10
+Score on board: 20"
+horizontal_alignment = 2
 
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller/Button" method="_on_pressed"]

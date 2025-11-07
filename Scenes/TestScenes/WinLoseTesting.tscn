@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://w6jod3lo3e68"]
+[gd_scene load_steps=7 format=3 uid="uid://w6jod3lo3e68"]
 
 [ext_resource type="PackedScene" uid="uid://co48nl1f8gywv" path="res://Scenes/TestScenes/TestScene.tscn" id="1_vkc1n"]
-[ext_resource type="Resource" uid="uid://nsmuugkeisja" path="res://Resources/EnemyStatsWinLoseTest.tres" id="2_fgqlq"]
+[ext_resource type="Resource" uid="uid://nsmuugkeisja" path="res://Resources/Testing/EnemyStatsWinLoseTest.tres" id="2_fgqlq"]
+[ext_resource type="Resource" uid="uid://c5btv2ydoplu5" path="res://Resources/Testing/WinLossTesting.tres" id="3_3k18l"]
 [ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="3_mkag2"]
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="5_1aw2l"]
 
@@ -13,11 +14,12 @@ spacing_bottom = -470
 
 [node name="Level" parent="." node_paths=PackedStringArray("winlosescreen", "listWins", "listLoses") instance=ExtResource("1_vkc1n")]
 enemyStats = ExtResource("2_fgqlq")
+wlconditions = ExtResource("3_3k18l")
 winlosescreen = NodePath("../WinLoseScreen")
 listWins = NodePath("../ListConditions/WinCons")
 listLoses = NodePath("../ListConditions/LoseCons")
 
-[node name="Background" parent="Level" index="4"]
+[node name="Background" parent="Level" index="5"]
 self_modulate = Color(0.784916, 0.440414, 0.523723, 1)
 
 [node name="Cloud4" parent="Level/Background/Node2D" index="0"]

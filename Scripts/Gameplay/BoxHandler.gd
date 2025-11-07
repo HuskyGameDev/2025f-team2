@@ -6,6 +6,8 @@ enum BlockType { Block, Arrow, Indestructible, Enemy }
 
 @export var palletes : Array[Material]
 
+const bombThreshold = 20
+
 var blockValue : int = 0
 var levelGrid : LevelGrid
 var bPosition : Vector2i
@@ -39,7 +41,7 @@ func _onFallTick():
 			print("BoxHandler: not found in board list: color=", str(bColor), " value=", str(blockValue))
 		if levelGrid != null:
 			levelGrid.setPositionOfBlockOnBoard(self)
-		if blockValue >= 20:
+		if blockValue >= bombThreshold:
 			if has_node("Explosion"):
 				var explo = $Explosion
 				if explo != null:

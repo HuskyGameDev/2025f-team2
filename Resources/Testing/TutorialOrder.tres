@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlacementOrder" load_steps=2 format=3 uid="uid://bybgsal6s5ns2"]
 
-[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Scripts/Gameplay/PlacementOrder.gd" id="1_tepg2"]
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="1_tepg2"]
 
 [resource]
 script = ExtResource("1_tepg2")

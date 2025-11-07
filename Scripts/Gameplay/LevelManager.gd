@@ -18,6 +18,7 @@ var fallTimer: Timer
 @export var boxGrid: LevelGrid
 @export var levelOrder: PlacementOrder
 @export var enemyStats: LevelEnemyStats
+@export var wlconditions: WinLossConditions
 @export var winlosescreen: WinLose
 
 #disable spawning for tutorial
@@ -29,170 +30,116 @@ var cid = 0
 var blocks_placed_since_enemy = 0
 var last_enemy_type = -1
 
-@export_group("Win cons")
+
 var winConditionPresent = false
 @export var listWins: Label
 var winConString: String = "Win conditions: \n"
-#randomize for continuous playtesting
-#probably should move this to resource tbh #will do that after testing
-
-#for purposes of testing: enemies killed will be incremented everytime an enemy is lowered to 0 health
-@export var enemiesKilledCondition: bool = randi() % 2
-#target enemies to kill
-@export var killEnemies = randi() % 3 + 3
-#track how many enemies killed
-@export var enemiesKilled = 0
-
-#for purposes of testing: score will increase by every point of block placed or merged onto board, does not go down
-@export var achieveScoreCondition: bool = randi() % 2
-#target score to get
-@export var targetScore = randi() % 31 + 30
-#track score
-@export var score = 0
-
-#adds a win condition for removing blocks from the board
-@export var removeBlocksCondition: bool = randi() % 2
-#target score to get
-@export var targetRemovedBlocks = randi() % 3 + 1
-#track score
-@export var removedBlocks = 0
-
-@export_group("Lose cons")
 @export var listLoses: Label
 var loseConString: String = "Lose conditions: \n"
 
-#sets a timer to win before
-@export var timerLoseCondition: bool = randi() % 2
+#track how many enemies killed
+var enemiesKilled = 0
+#track score
+var score = 0
+#track score
+var removedBlocks = 0
 #lose timer, setup in ready
-@export var loseTimer: Timer
-#lose timer time till lose
-@export var timeTillLoss = randi() % 60 + 45
-
-#sets a limit for the amount of blocks that can be placed
-@export var blockLoseCondition: bool = randi() % 2
+var loseTimer: Timer
 #for purposes of counting placed blocks, we will use the spawning of a block to measure
-@export var blocksUsed = 0
-#limit of blocks used
-@export var blockLossLimit = randi() % 5 + 10
-
-#sets a limit for the amount of bombs that can go off
-@export var tooManyBombsCondition: bool = randi() % 2
+var blocksUsed = 0
 #for purposes of counting bombs used, any bomb that goes off is counted
-@export var bombsBlown = 0
-#limit of blocks used
-@export var bombLimit = randi() % 2 + 1
-
-#sets a limit for the amount of enemies on the board
-@export var tooManyEnemiesCondition: bool = randi() % 2
-#for purposes of counting bombs used, any bomb that goes off is counted
-@export var enemiesAlive = 0
-#limit of blocks used
-@export var enemyLimit = randi() % 4 + 2
-
-
-#win if you have a certain score on the board
-@export var scoreOnBoardWinCondition: bool = randi() % 2
-#if the win condition is present, a color can be chosen to specifically look for
-#[-1,2]
-@export var scoreColorOnBoardWinCondition: bool = randi() % 2
-var targetColor = randi() % 4 - 1
-
-#lose if you have a certain score on the board (must be equal to scoreOnBoardLimit + scoreOnBoardTarget)
-#This allows both conditions to exist at the same time
-@export var scoreOnBoardLoseCondition: bool = randi() % 2
+var bombsBlown = 0
+#the amount of enemies on the board
+var enemiesAlive = 0
 #the score on board is always the value of all blocks in the board
-@export var scoreOnBoard = 0
-#limit of blocks used
-@export var scoreOnBoardTarget = randi() % 20 + 7
-@export var scoreOnBoardLimit = scoreOnBoardTarget + randi() % 20 + 7
+var scoreOnBoard = 0
 
-#update for the win and lose conditions (mostly for debugging)
+#update for the win and lose conditions
 func _process(delta: float) -> void:
 	
-	if(listWins != null && listLoses != null || (scoreOnBoardLoseCondition || scoreOnBoardWinCondition) ):
+	if(wlconditions != null && (wlconditions.scoreOnBoardLoseCondition || wlconditions.scoreOnBoardWinCondition) ):
 		scoreOnBoard = 0
 		var board = boxGrid.get_all_blocks_in_board()
 		for block in board:
 			if(!block.placed):
 				continue
-			if(scoreColorOnBoardWinCondition && block.bColor != targetColor):
+			if(wlconditions.scoreColorOnBoardWinCondition && block.bColor != wlconditions.targetColor):
 				continue
 			scoreOnBoard += block.blockValue
 	
-	if(listWins != null):
+	if(wlconditions != null):
 		winConString = "Win conditions: \n"
 		var winConExists: bool = false
 		#only show if not beaten
-		if(enemiesKilledCondition && killEnemies > enemiesKilled):
-			winConString += "Kill enemies: " + str(killEnemies-enemiesKilled) + "\n"
+		if(wlconditions.killEnemiesCondition && wlconditions.killEnemies > enemiesKilled):
+			winConString += "Kill enemies: " + str(wlconditions.killEnemies-enemiesKilled) + "\n"
 			winConExists = true
 			winConditionPresent = true
-		if(achieveScoreCondition && targetScore > score):
-			winConString += "Achieve score: " + str(targetScore-score) + "\n"
+		if(wlconditions.achieveScoreCondition && wlconditions.targetScore > score):
+			winConString += "Achieve score: " + str(wlconditions.targetScore-score) + "\n"
 			winConExists = true
 			winConditionPresent = true
-		if(removeBlocksCondition && targetRemovedBlocks > removedBlocks):
-			winConString += "Remove blocks: " + str(targetRemovedBlocks - removedBlocks) + "\n"
+		if(wlconditions.removeBlocksCondition && wlconditions.targetRemovedBlocks > removedBlocks):
+			winConString += "Remove blocks: " + str(wlconditions.targetRemovedBlocks - removedBlocks) + "\n"
 			winConExists = true
 			winConditionPresent = true
-		if(scoreOnBoardWinCondition && scoreOnBoardTarget > scoreOnBoard):
-			if(!scoreColorOnBoardWinCondition):
-				winConString += "score on board: " + str(scoreOnBoardTarget - scoreOnBoard) + "\n"
+		if(wlconditions.scoreOnBoardWinCondition && wlconditions.scoreOnBoardTarget > scoreOnBoard):
+			if(!wlconditions.scoreColorOnBoardWinCondition):
+				winConString += "score on board: " + str(wlconditions.scoreOnBoardTarget - scoreOnBoard) + "\n"
 			else:
-				winConString += "color " + str(targetColor) +  " score: " + str(scoreOnBoardTarget - scoreOnBoard) + "\n"
+				winConString += "color " + str(wlconditions.targetColor) +  " score: " + str(wlconditions.scoreOnBoardTarget - scoreOnBoard) + "\n"
 			winConExists = true
 			winConditionPresent = true
-			
 		if(!winConExists):
 			winConString += "empty"
 		listWins.text = winConString
 		
-	if(listLoses != null):
+	if(wlconditions):
 		loseConString = "Lose conditions:\n"
 		var loseConExists: bool = false
-		if(timerLoseCondition && loseTimer != null):
+		if(wlconditions.timerLoseCondition && wlconditions.loseTimer != null):
 			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
 			loseConExists = true
-		if(blockLoseCondition && blocksUsed  < blockLossLimit):
-			loseConString += "Blocks left: " + str(blockLossLimit-blocksUsed ) + "\n"
+		if(wlconditions.blockLoseCondition && blocksUsed < wlconditions.blockLossLimit):
+			loseConString += "Blocks left: " + str(wlconditions.blockLossLimit-blocksUsed ) + "\n"
 			loseConExists = true
-		elif(blockLoseCondition && blockLossLimit <= blocksUsed):
+		elif(wlconditions.blockLoseCondition && wlconditions.blockLossLimit <= blocksUsed):
 			loss()
-		if(tooManyBombsCondition && bombLimit > bombsBlown):
-			loseConString += "Bombs: " + str(bombLimit-bombsBlown) + "\n"
+		if(wlconditions.tooManyBombsCondition && wlconditions.bombLimit > bombsBlown):
+			loseConString += "Bombs: " + str(wlconditions.bombLimit-bombsBlown) + "\n"
 			loseConExists = true
-		elif(tooManyBombsCondition && bombLimit <= bombsBlown):
+		elif(wlconditions.tooManyBombsCondition && wlconditions.bombLimit <= bombsBlown):
 			loss()
-		if(tooManyEnemiesCondition && enemyLimit > enemiesAlive):
-			loseConString += "Enemies: " + str(enemyLimit-enemiesAlive) + "\n"
+		if(wlconditions.tooManyEnemiesCondition && wlconditions.enemyLimit > enemiesAlive):
+			loseConString += "Enemies: " + str(wlconditions.enemyLimit-enemiesAlive) + "\n"
 			loseConExists = true
-		elif(tooManyEnemiesCondition && enemyLimit <= enemiesAlive):
+		elif(wlconditions.tooManyEnemiesCondition && wlconditions.enemyLimit <= enemiesAlive):
 			loss()
-		if(scoreOnBoardLoseCondition && scoreOnBoardLimit > scoreOnBoard):
-			loseConString += "Score on board: " + str(scoreOnBoardLimit - scoreOnBoard) + "\n"
+		if(wlconditions.scoreOnBoardLoseCondition && wlconditions.scoreOnBoardLimit > scoreOnBoard):
+			loseConString += "Score on board: " + str(wlconditions.scoreOnBoardLimit - scoreOnBoard) + "\n"
 			loseConExists = true
-		elif(scoreOnBoardLoseCondition && scoreOnBoardLimit <= scoreOnBoard):
+		elif(wlconditions.scoreOnBoardLoseCondition && wlconditions.scoreOnBoardLimit <= scoreOnBoard):
 			loss()
 		if(!loseConExists):
 			loseConString += "empty"
 		listLoses.text = loseConString
 	
-	if(winConditionPresent && winlosescreen != null):
+	if(wlconditions):
 		checkConditions()
 	
 func checkConditions():
 	var win = true
 
-	if(enemiesKilledCondition && killEnemies > enemiesKilled):
+	if(wlconditions.killEnemiesCondition && wlconditions.killEnemies > enemiesKilled):
 		win = false
 	
-	if(achieveScoreCondition && targetScore > score):
+	if(wlconditions.achieveScoreCondition && wlconditions.targetScore > score):
 		win = false
 		
-	if(removeBlocksCondition && targetRemovedBlocks > removedBlocks):
+	if(wlconditions.removeBlocksCondition && wlconditions.targetRemovedBlocks > removedBlocks):
 		win = false
 		
-	if(scoreOnBoardWinCondition && scoreOnBoardTarget > scoreOnBoard):
+	if(wlconditions.scoreOnBoardWinCondition && wlconditions.scoreOnBoardTarget > scoreOnBoard):
 		win = false
 		
 	if(win):
@@ -203,6 +150,8 @@ func loss():
 		winlosescreen.loseGame()
 
 func _ready() -> void:
+	if wlconditions == null:
+		push_error("No win loss conditions!")
 	if levelOrder == null:
 		push_error("Level Order is null!")
 	# safe guard
@@ -218,10 +167,10 @@ func _ready() -> void:
 	add_child(fallTimer)
 	
 	#sets the lose timer if that condition is active
-	if(timerLoseCondition):
+	if(wlconditions.timerLoseCondition):
 		loseTimer = Timer.new()
 		loseTimer.one_shot = true
-		loseTimer.wait_time = timeTillLoss
+		loseTimer.wait_time = wlconditions.timeTillLoss
 		loseTimer.timeout.connect(loss)
 		add_child(loseTimer)
 		loseTimer.start()

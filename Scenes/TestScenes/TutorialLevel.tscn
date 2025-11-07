@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgqkp7hs1rt6s"]
 
 [ext_resource type="PackedScene" uid="uid://co48nl1f8gywv" path="res://Scenes/TestScenes/TestScene.tscn" id="1_e6cgc"]
-[ext_resource type="Resource" uid="uid://bybgsal6s5ns2" path="res://Resources/TutorialOrder.tres" id="2_rsw4r"]
+[ext_resource type="Resource" uid="uid://bybgsal6s5ns2" path="res://Resources/Testing/TutorialOrder.tres" id="2_rsw4r"]
 [ext_resource type="Script" uid="uid://4yc2xwcc25wf" path="res://Scripts/Gameplay/TutorialControl.gd" id="3_e01v6"]
 [ext_resource type="Texture2D" uid="uid://c0bk8drpiwjwo" path="res://Artwork/UI/Arrow.png" id="4_ft24j"]
 
