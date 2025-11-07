@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_g28u0"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="2_5qkg8"]
-[ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/Testing/DefaultPlacementOrder.tres" id="2_p83bp"]
+[ext_resource type="Resource" uid="uid://0y53pk7v6ewm" path="res://Resources/Testing/ArrowFun.tres" id="2_nxyhc"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="3_1omkh"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="3_635xr"]
 [ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="3_e7vnt"]
@@ -283,7 +283,7 @@ script = ExtResource("1_g28u0")
 fallSpeed = 0.6
 boxFiller = NodePath("BoxFiller")
 boxGrid = NodePath("BaseGridPos")
-levelOrder = ExtResource("2_p83bp")
+levelOrder = ExtResource("2_nxyhc")
 enemyStats = ExtResource("3_j3c8t")
 wlconditions = ExtResource("4_nxyhc")
 winlosescreen = NodePath("WinLoseScreen")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlacementOrder" load_steps=2 format=3 uid="uid://0y53pk7v6ewm"]
+
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="1_q5383"]
+
+[resource]
+script = ExtResource("1_q5383")
+typeOrder = Array[int]([1, 0, 0])
+colorOrder = Array[int]([0, 2])
+enemyTypeOrder = Array[String](["null"])
+metadata/_custom_type_script = "uid://bq1lexixywh21"

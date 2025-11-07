@@ -29,8 +29,7 @@ func addBlock(block : BoxHandler):
 	add_child(block)
 	blocks[block.bPosition.y][block.bPosition.x] = block
 	levelManager.fallTimer.timeout.connect(block._onFallTick)
-	if block.bType != BoxHandler.BlockType.Arrow:
-		setActiveBlock(block)
+	setActiveBlock(block)
 	setPositionOfBlockOnBoard(block)
 
 func removeBlock(block : BoxHandler):
@@ -95,8 +94,9 @@ func place_block(block : BoxHandler):
 	if block == active_block:
 		block.placeBlock()
 
-func next_block():
-	removeActiveBlock()
+func next_block(calledFrom: BoxHandler = null):
+	if calledFrom == null || calledFrom == active_block:
+		removeActiveBlock()
 	await get_tree().create_timer(.5).timeout
 	levelManager.spawnBlock()
 
@@ -137,6 +137,18 @@ func move_all_blocks_right():
 	var vaildBlocks : Array[BoxHandler] = get_all_blocks_in_board(true)
 	for block in vaildBlocks:
 		moveBlockRight(block, true)
+		
+func move_row_blocks_left(arrowThatCalled: BoxHandler):
+	var vaildBlocks : Array[BoxHandler] = get_all_blocks_in_board()
+	for block in vaildBlocks:
+		if(block.bPosition.y == arrowThatCalled.bPosition.y):
+			moveBlockLeft(block, true)
+
+func move_row_blocks_right(arrowThatCalled: BoxHandler):
+	var vaildBlocks : Array[BoxHandler] = get_all_blocks_in_board(true)
+	for block in vaildBlocks:
+		if(block.bPosition.y == arrowThatCalled.bPosition.y):
+			moveBlockRight(block, true)
 
 func disable_input():
 	if !can_input:
@@ -151,6 +163,15 @@ func _input(event: InputEvent) -> void:
 		return
 	if active_block == null:
 		return
+	if event.is_action_pressed("release", false):
+		#go into freefall
+		if(active_block.bType == BoxHandler.BlockType.Block):
+			next_block()
+			return
+		if(active_block.bType == BoxHandler.BlockType.Arrow):
+			active_block.moveRow()
+			next_block()
+			return
 	if event.is_action_pressed("left", false):
 		if !can_input:
 			return

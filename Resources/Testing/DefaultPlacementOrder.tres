@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PlacementOrder" load_steps=2 format=3 uid="uid://0x0hxn48adha"]
 
-[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="1_ek2ol"]
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="1_cjrya"]
 
 [resource]
-script = ExtResource("1_ek2ol")
+script = ExtResource("1_cjrya")
 typeOrder = Array[int]([0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0])
 colorOrder = Array[int]([0, 0, 1, 1, 2, 1, 0, 1, 2, 0, 1, 0, 2, 1, 0, 2])
 enemyTypeOrder = Array[String](["StaticEnemy", "FloaterEnemy", "PainterEnemy"])

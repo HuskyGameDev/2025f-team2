@@ -1,6 +1,7 @@
 extends BoxHandler
 
 var side = "left"
+var oneRowArrow: bool = true
 
 func _init() -> void:
 	bType = BlockType.Arrow
@@ -19,16 +20,16 @@ func _updateBoxText():
 	$Label.text = ""
 
 func moveLeft(merge : bool = false):
-	return
+	super.moveLeft()
 
 func moveRight(merge : bool = false):
-	return
+	super.moveRight()
 
 func mergeBox(downBlock:BoxHandler):
 	return
 
 func placeBlock():
-	return
+	moveRow()
 
 func _addToBlock():
 	return
@@ -47,10 +48,25 @@ func moveNext():
 	await get_tree().create_timer(0.5,false).timeout
 	queue_free()
 
+func moveRow():
+	placed = true
+	z_index = 255
+	if side == "left":
+		levelGrid.move_row_blocks_left(self)
+	elif side == "right":
+		levelGrid.move_row_blocks_right(self)
+	var s_tween = create_tween().tween_property(self, "scale", Vector2(50, 50), 0.9).set_trans(Tween.TRANS_QUINT)
+	create_tween().tween_property(self, "modulate:a", 0.0, 0.9).set_trans(Tween.TRANS_QUINT)
+	await get_tree().create_timer(0.5,false).timeout
+	queue_free()
 
 func moveDown(control : bool = true):
-	return
+	super.moveDown()
 
 func onAdd():
-	floating = false
-	moveNext()
+	if(!oneRowArrow):
+		floating = false
+		moveNext()
+	else:
+		placed = false
+		floating = false

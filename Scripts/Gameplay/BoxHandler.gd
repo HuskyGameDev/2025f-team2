@@ -6,7 +6,7 @@ enum BlockType { Block, Arrow, Indestructible, Enemy }
 
 @export var palletes : Array[Material]
 
-const bombThreshold = 20
+const bombThreshold = 10
 
 var blockValue : int = 0
 var levelGrid : LevelGrid
@@ -96,7 +96,7 @@ func moveDown(control : bool = true):
 	if (bPosition.y - 1) < 0:
 		await levelGrid.place_block(self)
 		if control:
-			levelGrid.next_block()
+			levelGrid.next_block(self)
 		return
 
 	var below = levelGrid.blocks[bPosition.y - 1][bPosition.x]
@@ -111,7 +111,7 @@ func moveDown(control : bool = true):
 				emit_signal("on_enemy_collide")
 			await levelGrid.place_block(self)
 			if control:
-				levelGrid.next_block()
+				levelGrid.next_block(self)
 			if has_signal("on_placed"):
 				emit_signal("on_placed")
 			return
@@ -120,7 +120,7 @@ func moveDown(control : bool = true):
 		if below.bType == BlockType.Indestructible:
 			if control:
 				await levelGrid.place_block(self)
-				levelGrid.next_block()
+				levelGrid.next_block(self)
 			if has_signal("on_placed"):
 				emit_signal("on_placed")
 			return
@@ -129,7 +129,7 @@ func moveDown(control : bool = true):
 		elif levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], below):
 			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], below)
 			if control:
-				levelGrid.next_block()
+				levelGrid.next_block(self)
 			if has_signal("on_placed"):
 				emit_signal("on_placed")
 			return
@@ -138,7 +138,7 @@ func moveDown(control : bool = true):
 		else:
 			if control:
 				await levelGrid.place_block(self)
-				levelGrid.next_block()
+				levelGrid.next_block(self)
 			if has_signal("on_placed"):
 				emit_signal("on_placed")
 			return
@@ -191,7 +191,7 @@ func hardDrop():
 			levelGrid.blocks[bPosition.y][bPosition.x] = self
 			levelGrid.setPositionOfBlockOnBoard(self)
 			await levelGrid.place_block(self)
-			levelGrid.next_block()
+			levelGrid.next_block(self)
 			emit_signal("on_placed")
 			return
 		if (levelGrid.blocks[y - 1][bPosition.x] == null):
@@ -206,7 +206,7 @@ func hardDrop():
 			levelGrid.blocks[bPosition.y][bPosition.x] = self
 			levelGrid.setPositionOfBlockOnBoard(self)
 			await levelGrid.place_block(self)
-			levelGrid.next_block()
+			levelGrid.next_block(self)
 			emit_signal("on_placed")
 			return
 		if levelGrid.blocks[y - 1][bPosition.x].bType == BlockType.Enemy:
@@ -215,13 +215,13 @@ func hardDrop():
 				enemy.on_block_collision(self)
 			emit_signal("on_enemy_collide")
 			await levelGrid.place_block(self)
-			levelGrid.next_block()
+			levelGrid.next_block(self)
 			emit_signal("on_placed")
 			return
 		# merge or place at landing spot
 		if levelGrid.blockCheck(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[y - 1][bPosition.x]):
 			levelGrid.mergeBlocks(levelGrid.blocks[bPosition.y][bPosition.x], levelGrid.blocks[y - 1][bPosition.x])
-			levelGrid.next_block()
+			levelGrid.next_block(self)
 			emit_signal("on_placed")
 			return
 		else:
@@ -230,7 +230,7 @@ func hardDrop():
 			levelGrid.blocks[bPosition.y][bPosition.x] = self
 			levelGrid.setPositionOfBlockOnBoard(self)
 			await levelGrid.place_block(self)
-			levelGrid.next_block()
+			levelGrid.next_block(self)
 			emit_signal("on_placed")
 			return
 
