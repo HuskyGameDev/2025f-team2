@@ -375,6 +375,7 @@ script = ExtResource("13_3in4i")
 [node name="WinLoseScreen" parent="." instance=ExtResource("14_b2ivo")]
 
 [node name="Background" parent="." instance=ExtResource("15_2x6fn")]
+visible = false
 
 [node name="ListConditions" type="Control" parent="."]
 layout_mode = 3
