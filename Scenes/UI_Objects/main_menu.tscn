@@ -13,24 +13,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Level Select" type="Button" parent="."]
-layout_mode = 0
-offset_left = 244.0
-offset_top = 54.0
-offset_right = 308.0
-offset_bottom = 78.0
-focus_next = NodePath("../PlayGame")
-theme = ExtResource("1_nskxk")
-text = "Level Select"
-script = ExtResource("1_wsnrw")
-targetScene = "res://Scenes/TestScenes/LevelSelect.tscn"
-
 [node name="PlayGame" type="Button" parent="."]
 layout_mode = 0
-offset_left = 244.0
-offset_top = 85.0
-offset_right = 308.0
-offset_bottom = 109.0
+offset_left = 9.0
+offset_top = 78.0
+offset_right = 75.0
+offset_bottom = 102.0
 focus_next = NodePath("../Settings")
 theme = ExtResource("1_nskxk")
 text = "Play Game"
@@ -39,29 +27,28 @@ targetScene = "res://Scenes/WorldMap/worldMap.tscn"
 
 [node name="Settings" type="Button" parent="."]
 layout_mode = 0
-offset_left = 244.0
-offset_top = 117.0
-offset_right = 308.0
-offset_bottom = 141.0
+offset_left = 128.0
+offset_top = 141.0
+offset_right = 192.0
+offset_bottom = 165.0
 focus_next = NodePath("../Quit")
 theme = ExtResource("1_nskxk")
 text = "Settings"
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 244.0
-offset_top = 149.0
-offset_right = 308.0
-offset_bottom = 173.0
+offset_left = 247.0
+offset_top = 80.0
+offset_right = 311.0
+offset_bottom = 104.0
 theme = ExtResource("1_nskxk")
 text = "Quit"
 script = ExtResource("2_ou1s8")
 
 [node name="ProtoLogo" type="Sprite2D" parent="."]
-position = Vector2(153, 39)
-scale = Vector2(0.05, 0.05)
+position = Vector2(159, 91)
+scale = Vector2(0.055, 0.055)
 texture = ExtResource("3_eepvo")
 
-[connection signal="pressed" from="Level Select" to="Level Select" method="_on_pressed"]
 [connection signal="pressed" from="PlayGame" to="PlayGame" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

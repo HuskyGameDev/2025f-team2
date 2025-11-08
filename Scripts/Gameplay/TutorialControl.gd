@@ -83,7 +83,7 @@ func _on_next_button_pressed() -> void:
 			makeTextDisappear()
 			if(boxfill.fblock != null):
 				boxfill.fblock.queue_free()
-			arrow = levelmngr.spawnSpecificBlock(levelmngr.arrow_node)
+			arrow = levelmngr.spawnSpecificBlock(GlobalNodeLoader.arrow_node)
 		10:
 			makeTextReappear()
 			setText("Pretty cool huh?")
@@ -126,7 +126,7 @@ func _on_next_button_pressed() -> void:
 			setText("You have beaten the tutorial! Have fun playing Ribbon in the Wacky Warehouse!")
 		20:
 			makeTextDisappear()
-			get_tree().change_scene_to_file("res://Scenes/TestScenes/LevelSelect.tscn")
+			GlobalSceneLoader.load_level("res://Scenes/TestScenes/LevelSelect.tscn")
 		_:
 			pass
 

@@ -18,6 +18,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
+mouse_filter = 1
 script = ExtResource("3_e01v6")
 label = NodePath("TextBox/Text")
 textbox = NodePath("TextBox")
@@ -31,6 +32,7 @@ offset_left = 37.0
 offset_top = 21.0
 offset_right = 288.0
 offset_bottom = 168.0
+mouse_filter = 2
 
 [node name="Text" type="Label" parent="TutorialController/TextBox"]
 layout_mode = 0
