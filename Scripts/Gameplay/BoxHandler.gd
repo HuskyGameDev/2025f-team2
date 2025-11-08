@@ -99,7 +99,7 @@ func mergeBox(downBlock:BoxHandler):
 	downBlock._updateBoxText()
 	if levelGrid != null:
 		levelGrid.blocks[bPosition.y][bPosition.x] = null
-	lvlMngr.score += blockValue
+	lvlMngr.add_score(downBlock.blockValue,downBlock,true)
 	queue_free()
 
 func moveDown(control : bool = true):
@@ -251,7 +251,7 @@ func _safe_remove_from_grid():
 
 func placeBlock():
 	placed = true
-	lvlMngr.score += blockValue
+	lvlMngr.add_score(blockValue, self)
 	emit_signal("on_placed")
 
 func onAdd():

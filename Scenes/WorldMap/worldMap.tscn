@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=36 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="10_ff06i"]
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="10_qlyio"]
 [ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="11_wupwk"]
+[ext_resource type="Resource" uid="uid://cfywshg1rjgny" path="res://Scenes/ActualLevels/Level_2/Level_2LevelState.tres" id="14_1hco5"]
+[ext_resource type="Resource" uid="uid://b5su1klim8mvt" path="res://Scenes/ActualLevels/Level_3/Level_3LevelState.tres" id="15_inlqg"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
 background_mode = 1
@@ -80,10 +82,26 @@ metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="Resource" id="Resource_wupwk"]
 script = ExtResource("5_rt317")
-levelName = "1st level"
-levelType = 2
+levelName = "Big scores"
+levelType = 3
 scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
 levelObject = ExtResource("8_sforw")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_inlqg"]
+script = ExtResource("5_rt317")
+levelName = "Target practice"
+levelType = 2
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = ExtResource("14_1hco5")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
+[sub_resource type="Resource" id="Resource_hin85"]
+script = ExtResource("5_rt317")
+levelName = "Green thumb"
+levelType = 3
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = ExtResource("15_inlqg")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
@@ -119,7 +137,7 @@ font_color = Color(0.169245, 0.169245, 0.169245, 1)
 script = ExtResource("1_3gro2")
 camera = NodePath("WorldCamera")
 uiScreen = NodePath("CanvasLayer/LevelSelectUI")
-worldPoints = [NodePath("Point"), NodePath("Point2")]
+worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kayuu")
@@ -146,7 +164,7 @@ texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
 level = SubResource("Resource_q1dlp")
 
-[node name="Point2" type="Sprite3D" parent="."]
+[node name="Level 1" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.63014, 3.40277, -9.63972)
 pixel_size = 0.066
 billboard = 1
@@ -154,6 +172,24 @@ texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
 level = SubResource("Resource_wupwk")
+
+[node name="Level 2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.54043, 3.40277, -9.15432)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_inlqg")
+
+[node name="Level 3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45113, 3.40277, -8.31966)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_hin85")
 
 [node name="Cloud" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)

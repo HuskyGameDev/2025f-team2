@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_7u7bf")
-killEnemiesCondition = true
+killEnemiesCondition = false
 killEnemies = 5
-achieveScoreCondition = false
-targetScore = 0
+achieveScoreCondition = true
+targetScore = 30
 removeBlocksCondition = false
 targetRemovedBlocks = 0
 scoreOnBoardWinCondition = false

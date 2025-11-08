@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ddm7h")
-enemyPerBlock = Vector2i(3, 5)
+enemyPerBlock = Vector2i(2, 3)
 staticHealth = Vector2i(5, 10)
 floaterHealth = Vector2i(3, 5)
 floaterActionSpeed = Vector2(2, 4)

@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_p2trn")
-killEnemiesCondition = true
+killEnemiesCondition = false
 killEnemies = 5
-achieveScoreCondition = false
-targetScore = 0
+achieveScoreCondition = true
+targetScore = 150
 removeBlocksCondition = false
 targetRemovedBlocks = 0
 scoreOnBoardWinCondition = false
@@ -16,11 +16,11 @@ targetColor = 1
 scoreOnBoardTarget = 0
 timerLoseCondition = false
 timeTillLoss = 90
-blockLoseCondition = false
-blockLossLimit = 0
+blockLoseCondition = true
+blockLossLimit = 11
 tooManyBombsCondition = false
 bombLimit = 2
-tooManyEnemiesCondition = false
-enemyLimit = 5
+tooManyEnemiesCondition = true
+enemyLimit = 3
 scoreOnBoardLoseCondition = false
 scoreOnBoardLimit = 0

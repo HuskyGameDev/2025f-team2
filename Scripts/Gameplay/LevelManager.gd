@@ -9,6 +9,7 @@ var fallTimer: Timer
 @export var currentLevelState : LevelState
 @export var winlosescreen: WinLose
 
+
 #disable spawning for tutorial
 @export var spawnBlocks = true
 
@@ -29,9 +30,10 @@ var loseConString: String = "Lose conditions: \n"
 var enemiesKilled = 0
 #track score
 var score = 0
+var score_indicator = preload("res://Scenes/GameObjects/Score_Indicator.tscn")
 #track score
 var removedBlocks = 0
-#lose timer, setup in ready
+#lose timer, setup in setupLevel
 var loseTimer: Timer
 #for purposes of counting placed blocks, we will use the spawning of a block to measure
 var blocksUsed = 0
@@ -49,11 +51,20 @@ func _process(delta: float) -> void:
 		scoreOnBoard = 0
 		var board = boxGrid.get_all_blocks_in_board()
 		for block in board:
+			if(block.bType == block.BlockType.Enemy):
+				continue
 			if(!block.placed):
 				continue
 			if(currentLevelState.wlconditions.scoreColorOnBoardWinCondition && block.bColor != currentLevelState.wlconditions.targetColor):
 				continue
-			scoreOnBoard += block.blockValue
+			var multiplier = 1.0
+			if( block.blockValue < 10):
+				multiplier = 1
+			elif(block.blockValue >= 10 ||  block.blockValue < 15):
+				multiplier = 1.75
+			elif( block.blockValue >= 15):
+				multiplier = 2.15
+			scoreOnBoard += block.blockValue * multiplier
 	
 	if(currentLevelState.wlconditions != null):
 		winConString = "Win conditions: \n"
@@ -136,6 +147,24 @@ func checkConditions():
 func loss():
 	if(winlosescreen != null):
 		winlosescreen.loseGame()
+
+func add_score(value: int, block: BoxHandler, isMerge = false):
+	#multiplier rewards players for placing and using bigger blocks
+	var multiplier = 1.0
+	if(value < 10):
+		multiplier = 1
+	elif(value >= 10 || value < 15):
+		multiplier = 1.5
+	elif(value >= 15):
+		multiplier = 2.0
+	if(isMerge):
+		multiplier += 0.25
+	score += value * multiplier
+	print("instantiate")
+	var scoreText = score_indicator.instantiate()
+	scoreText.position = block.global_position
+	scoreText.scoreText = "+" + str(value * multiplier) + " x%.1f" % [multiplier]
+	add_child(scoreText)
 
 func _create_background(index:int):
 	match index:

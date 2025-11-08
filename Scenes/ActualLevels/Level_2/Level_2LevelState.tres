@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="LevelState" load_steps=6 format=3 uid="uid://cfywshg1rjgny"]
+
+[ext_resource type="Resource" uid="uid://fcsbgf5bk3b1" path="res://Scenes/ActualLevels/Level_2/Level_2BlockOrder.tres" id="1_5tid0"]
+[ext_resource type="Resource" uid="uid://cl552bx50ky2h" path="res://Scenes/ActualLevels/Level_2/Level_2EnemyStats.tres" id="2_380h8"]
+[ext_resource type="Resource" uid="uid://c83p2670rov5l" path="res://Scenes/ActualLevels/Level_2/Level_2PlacementOrder.tres" id="3_mkkcr"]
+[ext_resource type="Resource" uid="uid://bl2t68iwwobcp" path="res://Scenes/ActualLevels/Level_2/Level_2WinLossConditions.tres" id="5_td6fy"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="6_kml2y"]
+
+[resource]
+script = ExtResource("6_kml2y")
+levelOrder = ExtResource("3_mkkcr")
+blockOrder = ExtResource("1_5tid0")
+enemyStats = ExtResource("2_380h8")
+wlconditions = ExtResource("5_td6fy")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"

@@ -9,7 +9,12 @@ class_name EnemyHandler
 #reference to enemyStats passed in by level manager, or manually if needed
 var enemyStats: LevelEnemyStats
 
-var health: int = 0
+var health: int = 0:
+	set(value):
+		health = value
+		if(health > highestHealth):
+			highestHealth = health
+var highestHealth = 0
 var action_timer: Timer
 
 # Use the shared palletes from BoxHandler (palletes)
@@ -69,6 +74,7 @@ func _remove_self_from_grid() -> void:
 				levelGrid.blocks[bPosition.y][bPosition.x] = null
 	lvlMngr.enemiesKilled += 1
 	lvlMngr.enemiesAlive -= 1
+	lvlMngr.add_score(highestHealth,self)
 	call_deferred("queue_free")
 
 func _set_color(index: int) -> void:
