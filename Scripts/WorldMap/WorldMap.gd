@@ -1,4 +1,5 @@
 extends Node3D
+class_name WorldMap
 
 @export var camera : WorldCamera
 @export var uiScreen : LevelSelectUI
@@ -9,6 +10,8 @@ var pos : int = 0
 
 func _ready() -> void:
 	sets()
+	await uiScreen.animationUp()
+	camera.setPositionOfCameraFromPoint(worldPoints[pos])
 
 func _input(event: InputEvent) -> void:
 	if !vaild:
@@ -21,6 +24,7 @@ func _input(event: InputEvent) -> void:
 		await sets()
 	if event.is_action_released("release"):
 		enterLevel()
+
 func next():
 	pos += 1
 	if pos >= len(worldPoints):
@@ -47,4 +51,5 @@ func enterLevel():
 	#camera.setPositionOfCameraInCutscene(worldPoints[pos])
 	await create_tween().tween_property(camera, "rotation_degrees:x", 90, 0.25).finished
 	await uiScreen.wait()
+	worldPoints[pos].level.levelObject.worldMapPos = pos
 	GlobalSceneLoader.load_level(worldPoints[pos].level.scene, worldPoints[pos].level.levelObject)

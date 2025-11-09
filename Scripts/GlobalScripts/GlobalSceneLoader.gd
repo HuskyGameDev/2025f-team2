@@ -5,7 +5,7 @@ signal onTransitionDone
 func debug_load(targetScene: String):
 	get_tree().change_scene_to_file(targetScene)
 
-func load_level(targetScene: String, levelState : LevelState = null):
+func load_level(targetScene: String, levelState : LevelState = null, worldMapPos: int = -1):
 	var transition : Transition = load("res://Scenes/UI_Objects/Transitions/transition1.tscn").instantiate()
 	add_child(transition)
 	await transition.animator.animation_finished
@@ -49,6 +49,17 @@ func load_level(targetScene: String, levelState : LevelState = null):
 				return
 			if get_tree().current_scene.get_child(0) is LevelManager:
 				get_tree().current_scene.get_child(0).setLevelState(levelState)
+				return
+		if worldMapPos != -1:
+			while(get_tree().current_scene == null):
+				await get_tree().process_frame
+			print("called")
+			if get_tree().current_scene is WorldMap:
+				print("called2")
+				get_tree().current_scene.pos = worldMapPos
+				return
+			if get_tree().current_scene.get_child(0) is WorldMap:
+				get_tree().current_scene.get_child(0).current_scene.pos = worldMapPos
 				return
 
 func emitTransDone(name:String):

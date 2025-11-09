@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwepxmyofmf4r"]
+[gd_scene load_steps=4 format=3 uid="uid://cwepxmyofmf4r"]
 
 [ext_resource type="Script" uid="uid://cng520ljsj2ox" path="res://Scripts/UI_Scripts/Paused_Resume.gd" id="1_2hj8d"]
-[ext_resource type="Script" uid="uid://ckmkqwgmabwnx" path="res://Scripts/UI_Scripts/Paused_MainMenu.gd" id="1_ho1k2"]
+[ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="2_2hj8d"]
+[ext_resource type="Script" uid="uid://cu2brcrsxiqb5" path="res://Scripts/UI_Scripts/Return_World_Map.gd" id="2_yuavk"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -15,9 +16,9 @@ grow_vertical = 2
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 112.0
-offset_top = 48.0
+offset_top = 24.0
 offset_right = 208.0
-offset_bottom = 144.0
+offset_bottom = 152.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -37,15 +38,27 @@ theme_override_font_sizes/font_size = 10
 text = "Resume"
 script = ExtResource("1_2hj8d")
 
-[node name="Main_Menu" type="Button" parent="Panel"]
+[node name="World_Map" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 64.0
 offset_right = 72.0
 offset_bottom = 88.0
 theme_override_font_sizes/font_size = 7
+text = "World Map"
+script = ExtResource("2_yuavk")
+
+[node name="Main_Menu" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 96.0
+offset_right = 72.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 7
 text = "Main Menu"
-script = ExtResource("1_ho1k2")
+script = ExtResource("2_2hj8d")
+targetScene = "res://Scenes/UI_Objects/main_menu.tscn"
 
 [connection signal="pressed" from="Panel/Resume" to="Panel/Resume" method="_on_pressed"]
+[connection signal="pressed" from="Panel/World_Map" to="Panel/World_Map" method="_on_pressed"]
 [connection signal="pressed" from="Panel/Main_Menu" to="Panel/Main_Menu" method="_on_pressed"]

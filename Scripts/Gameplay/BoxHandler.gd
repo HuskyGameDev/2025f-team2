@@ -225,6 +225,7 @@ func hardDrop():
 				enemy.on_block_collision(self)
 			emit_signal("on_enemy_collide")
 			await levelGrid.place_block(self)
+			bPosition.y = y
 			levelGrid.next_block()
 			emit_signal("on_placed")
 			return

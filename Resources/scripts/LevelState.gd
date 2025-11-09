@@ -12,3 +12,6 @@ enum Backgrounds{
 @export var enemyStats: LevelEnemyStats
 @export var wlconditions: WinLossConditions
 @export var background : Backgrounds
+
+#automatically set
+var worldMapPos: int = -1
