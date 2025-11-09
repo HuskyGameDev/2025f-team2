@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=37 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="11_wupwk"]
 [ext_resource type="Resource" uid="uid://cfywshg1rjgny" path="res://Scenes/ActualLevels/Level_2/Level_2LevelState.tres" id="14_1hco5"]
 [ext_resource type="Resource" uid="uid://b5su1klim8mvt" path="res://Scenes/ActualLevels/Level_3/Level_3LevelState.tres" id="15_inlqg"]
+[ext_resource type="Resource" uid="uid://d0wf78n5e165d" path="res://Scenes/ActualLevels/Level_4/Level_4.tres" id="16_hin85"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
 background_mode = 1
@@ -137,7 +138,7 @@ font_color = Color(0.169245, 0.169245, 0.169245, 1)
 script = ExtResource("1_3gro2")
 camera = NodePath("WorldCamera")
 uiScreen = NodePath("CanvasLayer/LevelSelectUI")
-worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3")]
+worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3"), NodePath("Level 4")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kayuu")
@@ -190,6 +191,15 @@ texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
 level = SubResource("Resource_hin85")
+
+[node name="Level 4" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65093, 3.40277, -7.72307)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = ExtResource("16_hin85")
 
 [node name="Cloud" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)

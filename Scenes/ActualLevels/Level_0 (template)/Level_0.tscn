@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://4fw2d44pjwu8"]
+[gd_scene load_steps=23 format=3 uid="uid://4fw2d44pjwu8"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
 [ext_resource type="Resource" uid="uid://cjdqe6klu8mrp" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0LevelState.tres" id="2_tmr10"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="12_ig5go"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="13_3in4i"]
 [ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="14_b2ivo"]
-[ext_resource type="PackedScene" uid="uid://dmw52u5e4oohv" path="res://Scenes/GameObjects/Score_Indicator.tscn" id="14_tmr10"]
 
 [sub_resource type="Gradient" id="Gradient_j3c8t"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -399,9 +398,6 @@ Bombs: 1
 Enemies alive: 10
 Score on board: 20"
 horizontal_alignment = 2
-
-[node name="Node2D" parent="." instance=ExtResource("14_tmr10")]
-position = Vector2(68, 0)
 
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller" method="_on_reroll_button_pressed"]
 [connection signal="pressed" from="BoxFiller/Button" to="BoxFiller/Button" method="_on_pressed"]

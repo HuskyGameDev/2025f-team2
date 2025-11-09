@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://citcs1qcfo0ru"]
+[gd_scene load_steps=4 format=3 uid="uid://citcs1qcfo0ru"]
 
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="1_4pe0c"]
 [ext_resource type="Script" uid="uid://brses00l1g30s" path="res://Scripts/UI_Scripts/WinLose.gd" id="1_q4ug7"]
+[ext_resource type="Script" uid="uid://dwgsv6prxmih3" path="res://Scripts/UI_Scripts/RestartLevel.gd" id="3_uejiw"]
 
 [node name="WinLoseScreen" type="Control" node_paths=PackedStringArray("panel", "canvas", "winScreen", "loseScreen")]
 process_mode = 3
@@ -26,7 +27,6 @@ winScreen = NodePath("CanvasLayer/Winning")
 loseScreen = NodePath("CanvasLayer/Losing")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 visible = false
@@ -93,7 +93,6 @@ script = ExtResource("1_4pe0c")
 targetScene = "res://Scenes/TestScenes/MainMenu.tscn"
 
 [node name="Losing" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -125,8 +124,7 @@ offset_right = 80.0
 offset_bottom = 120.0
 theme_override_font_sizes/font_size = 11
 text = "Restart"
-script = ExtResource("1_4pe0c")
-targetScene = " = res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+script = ExtResource("3_uejiw")
 
 [node name="Menu" type="Button" parent="CanvasLayer/Losing"]
 layout_mode = 0

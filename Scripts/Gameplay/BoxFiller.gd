@@ -37,6 +37,7 @@ func fillBlock(block : BoxHandler):
 			cts.material = fblock.material
 			cts.block = self
 			await get_tree().create_timer(time, false).timeout
+			continue
 			if time > 0.25 and time < 7.0:
 				time *= 1.095
 		else:
