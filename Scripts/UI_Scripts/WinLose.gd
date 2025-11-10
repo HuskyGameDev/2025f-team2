@@ -5,19 +5,24 @@ class_name WinLose
 
 @export var panel: Panel
 @export var canvas: CanvasLayer
+@export var pauseMenu : PauseMenu
 
 @export var winScreen: Node
 
 func winGame():
+	pauseMenu.canPause = false
 	panel.visible = true
 	canvas.visible = true
-	get_tree().paused = true
+	if get_tree().paused == false:
+		get_tree().paused = true
 	winScreen.visible = true
 
 @export var loseScreen: Node
 
 func loseGame():
+	pauseMenu.canPause = false
 	panel.visible = true
 	canvas.visible = true
-	get_tree().paused = true
+	if get_tree().paused == false:
+		get_tree().paused = true
 	loseScreen.visible = true

@@ -1,6 +1,8 @@
 extends Node2D
 class_name LevelManager
 
+enum LoseType{None, time, blockLose, tooManyBombs, tooManyEnemies, scoreONBoard}
+
 @export var fallSpeed: float = 1.25
 var fallTimer: Timer
 
@@ -43,6 +45,10 @@ var bombsBlown = 0
 var enemiesAlive = 0
 #the score on board is always the value of all blocks in the board
 var scoreOnBoard = 0
+
+var lastChance = false
+var loseCondition : LoseType = LoseType.None
+var lastTimer = 0.5
 
 #update for the win and lose conditions
 func _process(delta: float) -> void:
@@ -94,38 +100,62 @@ func _process(delta: float) -> void:
 		listWins.text = winConString
 		
 	if(currentLevelState.wlconditions):
+		if lastChance:
+			lastTimer -= delta
 		loseConString = "Lose conditions:\n"
+		if lastChance:
+			loseConString += "Last Chance " + "%.2f" % [lastTimer] + "\n"
+			
 		var loseConExists: bool = false
+		
 		if(currentLevelState.wlconditions.timerLoseCondition && loseTimer != null):
 			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
 			loseConExists = true
+			
 		if(currentLevelState.wlconditions.blockLoseCondition && blocksUsed < currentLevelState.wlconditions.blockLossLimit):
 			loseConString += "Blocks left: " + str(currentLevelState.wlconditions.blockLossLimit-blocksUsed ) + "\n"
 			loseConExists = true
+			if loseCondition == LoseType.blockLose:
+				loseCondition = LoseType.None
 		elif(currentLevelState.wlconditions.blockLoseCondition && currentLevelState.wlconditions.blockLossLimit <= blocksUsed):
+			loseCondition = LoseType.blockLose
 			loss()
+			
 		if(currentLevelState.wlconditions.tooManyBombsCondition && currentLevelState.wlconditions.bombLimit > bombsBlown):
 			loseConString += "Bombs: " + str(currentLevelState.wlconditions.bombLimit-bombsBlown) + "\n"
 			loseConExists = true
+			if loseCondition == LoseType.tooManyBombs:
+				loseCondition = LoseType.None
 		elif(currentLevelState.wlconditions.tooManyBombsCondition && currentLevelState.wlconditions.bombLimit <= bombsBlown):
+			loseCondition = LoseType.tooManyBombs
 			loss()
+		
 		if(currentLevelState.wlconditions.tooManyEnemiesCondition && currentLevelState.wlconditions.enemyLimit > enemiesAlive):
 			loseConString += "Enemies: " + str(currentLevelState.wlconditions.enemyLimit-enemiesAlive) + "\n"
 			loseConExists = true
+			if loseCondition == LoseType.tooManyEnemies:
+				loseCondition = LoseType.None
 		elif(currentLevelState.wlconditions.tooManyEnemiesCondition && currentLevelState.wlconditions.enemyLimit <= enemiesAlive):
+			loseCondition = LoseType.tooManyEnemies
 			loss()
+			
 		if(currentLevelState.wlconditions.scoreOnBoardLoseCondition && currentLevelState.wlconditions.scoreOnBoardLimit > scoreOnBoard):
 			loseConString += "Score on board: " + str(currentLevelState.wlconditions.scoreOnBoardLimit - scoreOnBoard) + "\n"
 			loseConExists = true
+			if loseCondition == LoseType.scoreONBoard:
+				loseCondition = LoseType.None
 		elif(currentLevelState.wlconditions.scoreOnBoardLoseCondition && currentLevelState.wlconditions.scoreOnBoardLimit <= scoreOnBoard):
+			loseCondition = LoseType.scoreONBoard
 			loss()
+			
 		if(!loseConExists):
 			loseConString += "empty"
 		listLoses.text = loseConString
-	
+
+func conditonCheck():
 	if(currentLevelState.wlconditions):
 		checkConditions()
-	
+
 func checkConditions():
 	var win = true
 
@@ -144,9 +174,17 @@ func checkConditions():
 	if(win):
 		winlosescreen.winGame()
 
+
 func loss():
+	if lastChance == true:
+		if lastTimer > 0:
+			return
 	if(winlosescreen != null):
-		winlosescreen.loseGame()
+		if lastChance == false:
+			lastChance = true
+			return
+		if loseCondition != LoseType.None:
+			winlosescreen.loseGame()
 
 func add_score(value: int, block: BoxHandler, isMerge = false):
 	#multiplier rewards players for placing and using bigger blocks
@@ -176,6 +214,7 @@ func _ready() -> void:
 	fallTimer = Timer.new()
 	fallTimer.wait_time = fallSpeed
 	fallTimer.autostart = true
+	fallTimer.timeout.connect(conditonCheck)
 	add_child(fallTimer)
 
 func setLevelState(ste : LevelState):

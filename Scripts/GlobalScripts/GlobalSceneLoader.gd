@@ -36,15 +36,14 @@ func load_level(targetScene: String, levelState : LevelState = null, worldMapPos
 		# When done loading, change to the target scene:
 		var scene = ResourceLoader.load_threaded_get(targetScene)
 		get_tree().change_scene_to_packed(scene)
+		get_tree().paused = false
 		transition.lowerTransition()
 		transition.animator.animation_finished.connect(emitTransDone)
 		transition.kill_on_finish()
 		if levelState != null:
 			while(get_tree().current_scene == null):
 				await get_tree().process_frame
-			print("called")
 			if get_tree().current_scene is LevelManager:
-				print("called2")
 				get_tree().current_scene.setLevelState(levelState)
 				return
 			if get_tree().current_scene.get_child(0) is LevelManager:
@@ -53,9 +52,7 @@ func load_level(targetScene: String, levelState : LevelState = null, worldMapPos
 		if worldMapPos != -1:
 			while(get_tree().current_scene == null):
 				await get_tree().process_frame
-			print("called")
 			if get_tree().current_scene is WorldMap:
-				print("called2")
 				get_tree().current_scene.pos = worldMapPos
 				return
 			if get_tree().current_scene.get_child(0) is WorldMap:

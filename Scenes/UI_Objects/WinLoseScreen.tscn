@@ -28,7 +28,6 @@ winScreen = NodePath("CanvasLayer/Winning")
 loseScreen = NodePath("CanvasLayer/Losing")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 visible = false

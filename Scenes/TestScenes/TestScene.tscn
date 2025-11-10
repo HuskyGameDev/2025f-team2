@@ -450,7 +450,8 @@ offset_right = -1.0
 offset_bottom = 1.0
 script = ExtResource("3_635xr")
 
-[node name="WinLoseScreen" parent="." instance=ExtResource("14_qk1kx")]
+[node name="WinLoseScreen" parent="." node_paths=PackedStringArray("pauseMenu") instance=ExtResource("14_qk1kx")]
+pauseMenu = NodePath("../PauseMenu")
 
 [node name="ListConditions" type="Control" parent="."]
 layout_mode = 3
