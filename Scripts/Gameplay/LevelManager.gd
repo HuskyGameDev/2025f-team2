@@ -49,6 +49,7 @@ var scoreOnBoard = 0
 var lastChance = false
 var loseCondition : LoseType = LoseType.None
 var lastTimer = 0.5
+var chanceTime = 0.5
 
 #update for the win and lose conditions
 func _process(delta: float) -> void:
@@ -117,6 +118,8 @@ func _process(delta: float) -> void:
 			loseConExists = true
 			if loseCondition == LoseType.blockLose:
 				loseCondition = LoseType.None
+				lastChance = false
+				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.blockLoseCondition && currentLevelState.wlconditions.blockLossLimit <= blocksUsed):
 			loseCondition = LoseType.blockLose
 			loss()
@@ -126,6 +129,8 @@ func _process(delta: float) -> void:
 			loseConExists = true
 			if loseCondition == LoseType.tooManyBombs:
 				loseCondition = LoseType.None
+				lastChance = false
+				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.tooManyBombsCondition && currentLevelState.wlconditions.bombLimit <= bombsBlown):
 			loseCondition = LoseType.tooManyBombs
 			loss()
@@ -135,6 +140,8 @@ func _process(delta: float) -> void:
 			loseConExists = true
 			if loseCondition == LoseType.tooManyEnemies:
 				loseCondition = LoseType.None
+				lastChance = false
+				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.tooManyEnemiesCondition && currentLevelState.wlconditions.enemyLimit <= enemiesAlive):
 			loseCondition = LoseType.tooManyEnemies
 			loss()
@@ -144,6 +151,8 @@ func _process(delta: float) -> void:
 			loseConExists = true
 			if loseCondition == LoseType.scoreONBoard:
 				loseCondition = LoseType.None
+				lastChance = false
+				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.scoreOnBoardLoseCondition && currentLevelState.wlconditions.scoreOnBoardLimit <= scoreOnBoard):
 			loseCondition = LoseType.scoreONBoard
 			loss()
@@ -211,6 +220,7 @@ func _create_background(index:int):
 			add_child(bg)
 
 func _ready() -> void:
+	lastTimer = chanceTime
 	fallTimer = Timer.new()
 	fallTimer.wait_time = fallSpeed
 	fallTimer.autostart = true
