@@ -195,6 +195,9 @@ func loss():
 		if loseCondition != LoseType.None:
 			winlosescreen.loseGame()
 
+func forceLoss():
+	winlosescreen.loseGame()
+
 func add_score(value: int, block: BoxHandler, isMerge = false):
 	#multiplier rewards players for placing and using bigger blocks
 	var multiplier = 1.0
@@ -254,7 +257,7 @@ func setupLevel():
 		loseTimer = Timer.new()
 		loseTimer.one_shot = true
 		loseTimer.wait_time = currentLevelState.wlconditions.timeTillLoss
-		loseTimer.timeout.connect(loss)
+		loseTimer.timeout.connect(forceLoss)
 		add_child(loseTimer)
 		loseTimer.start()
 

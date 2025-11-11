@@ -89,7 +89,8 @@ func addToFBlock(Cys : Crystal):
 					fblock.remove_child(explo)
 					get_parent().add_child(explo)
 					fblock.queue_free()
-					ribbon.queue_free()
+					ribbon.setExplode()
 					explo.position = position
 					explo.emitting = true
-					levelGrid.levelManager.loss()
+					await ribbon.waitUntilFinish()
+					levelGrid.levelManager.forceLoss()

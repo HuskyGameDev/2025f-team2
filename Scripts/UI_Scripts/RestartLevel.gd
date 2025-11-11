@@ -9,4 +9,4 @@ func _ready() -> void:
 #When the button is pressed, loads the next scene
 func _on_pressed() -> void:
 	get_tree().paused = false
-	GlobalSceneLoader.load_level(targetScene, get_node("/root/Level").currentLevelState)
+	GlobalSceneLoader.load_level(get_tree().current_scene.scene_file_path, get_node("/root/Level").currentLevelState)

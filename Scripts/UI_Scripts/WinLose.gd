@@ -13,6 +13,7 @@ func winGame():
 	pauseMenu.canPause = false
 	panel.visible = true
 	canvas.visible = true
+	$CanvasLayer/Winning/WorldMap.grab_focus()
 	if get_tree().paused == false:
 		get_tree().paused = true
 	winScreen.visible = true
@@ -23,6 +24,7 @@ func loseGame():
 	pauseMenu.canPause = false
 	panel.visible = true
 	canvas.visible = true
+	$CanvasLayer/Losing/Restart.grab_focus()
 	if get_tree().paused == false:
 		get_tree().paused = true
 	loseScreen.visible = true

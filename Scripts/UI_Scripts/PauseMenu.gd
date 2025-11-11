@@ -19,6 +19,7 @@ func _pausePressed():
 		gamePaused = true
 		get_tree().paused = true
 		self.visible = true
+		$Panel/Resume.grab_focus()
 	else:
 		gamePaused = false
 		get_tree().paused = false

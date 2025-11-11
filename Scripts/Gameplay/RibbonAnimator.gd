@@ -15,5 +15,8 @@ func setHop():
 func setControl():
 	animatior.play("control")
 
+func setExplode():
+	animatior.play("explode")
+
 func waitUntilFinish():
 	await animatior.animation_finished
