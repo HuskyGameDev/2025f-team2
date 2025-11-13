@@ -2,7 +2,7 @@ extends Sprite2D
 
 class_name MagicSquareUI
 
-var rrot = 0.0
+@export var rrot = 0.0
 @export var rotSpeed = 0.5
 @export var rote = 0.0
 
