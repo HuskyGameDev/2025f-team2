@@ -20,6 +20,7 @@ var oneBlockPlaced = false
 func _ready() -> void:
 	get_tree().paused = true
 	setText("Welcome to Ribbon in the Wacky Warehouse!")
+	levelmngr.enemiesAllowed = false
 	
 
 #easy way to set text
@@ -126,7 +127,7 @@ func _on_next_button_pressed() -> void:
 			setText("You have beaten the tutorial! Have fun playing Ribbon in the Wacky Warehouse!")
 		20:
 			makeTextDisappear()
-			GlobalSceneLoader.load_level("res://Scenes/TestScenes/LevelSelect.tscn")
+			GlobalSceneLoader.load_level("res://Scenes/WorldMap/worldMap.tscn", null, 0)
 		_:
 			pass
 

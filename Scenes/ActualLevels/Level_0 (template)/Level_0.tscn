@@ -522,6 +522,7 @@ rote = 0.785
 circlePosition = Vector4(0, 0, 44, 22)
 
 [node name="ItemNode" type="Node2D" parent="MagicSquare"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-46, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSquare/ItemNode"]
@@ -541,6 +542,7 @@ label_settings = SubResource("LabelSettings_cemlb")
 horizontal_alignment = 1
 
 [node name="ItemNode2" type="Node2D" parent="MagicSquare"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-46, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSquare/ItemNode2"]
@@ -560,6 +562,7 @@ label_settings = SubResource("LabelSettings_cemlb")
 horizontal_alignment = 1
 
 [node name="ItemNode3" type="Node2D" parent="MagicSquare"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-46, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSquare/ItemNode3"]
@@ -579,6 +582,7 @@ label_settings = SubResource("LabelSettings_cemlb")
 horizontal_alignment = 1
 
 [node name="ItemNode4" type="Node2D" parent="MagicSquare"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(-46, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSquare/ItemNode4"]

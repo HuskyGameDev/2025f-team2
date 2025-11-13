@@ -14,6 +14,7 @@ var fallTimer: Timer
 
 #disable spawning for tutorial
 @export var spawnBlocks = true
+var enemiesAllowed = true
 
 var bid = 0
 var cid = 0
@@ -50,6 +51,11 @@ var lastChance = false
 var loseCondition : LoseType = LoseType.None
 var lastTimer = 0.5
 var chanceTime = 0.5
+
+#UI handling
+var firstRun : bool = true
+var ids = [-1, -1, -1, -1]
+
 
 #update for the win and lose conditions
 func _process(delta: float) -> void:
@@ -103,9 +109,8 @@ func _process(delta: float) -> void:
 	if(currentLevelState.wlconditions):
 		if lastChance:
 			lastTimer -= delta
-		loseConString = "Lose conditions:\n"
 		if lastChance:
-			loseConString += "Last Chance " + "%.2f" % [lastTimer] + "\n"
+			loseConString = "Last Chance " + "%.2f" % [lastTimer] + "\n"
 			
 		var loseConExists: bool = false
 		
@@ -115,7 +120,8 @@ func _process(delta: float) -> void:
 			loseConExists = true
 			
 		if(currentLevelState.wlconditions.blockLoseCondition && blocksUsed < currentLevelState.wlconditions.blockLossLimit):
-			loseConString += "Blocks left: " + str(currentLevelState.wlconditions.blockLossLimit-blocksUsed ) + "\n"
+			magicSquareUI.setUI(0, 5, currentLevelState.wlconditions.blockLossLimit-blocksUsed)
+			#loseConString += "Blocks left: " + str(currentLevelState.wlconditions.blockLossLimit-blocksUsed ) + "\n"
 			loseConExists = true
 			if loseCondition == LoseType.blockLose:
 				loseCondition = LoseType.None
@@ -126,7 +132,8 @@ func _process(delta: float) -> void:
 			loss()
 			
 		if(currentLevelState.wlconditions.tooManyBombsCondition && currentLevelState.wlconditions.bombLimit > bombsBlown):
-			loseConString += "Bombs: " + str(currentLevelState.wlconditions.bombLimit-bombsBlown) + "\n"
+			magicSquareUI.setUI(1, 1, currentLevelState.wlconditions.bombLimit-bombsBlown)
+			#loseConString += "Bombs: " + str(currentLevelState.wlconditions.bombLimit-bombsBlown) + "\n"
 			loseConExists = true
 			if loseCondition == LoseType.tooManyBombs:
 				loseCondition = LoseType.None
@@ -137,7 +144,8 @@ func _process(delta: float) -> void:
 			loss()
 		
 		if(currentLevelState.wlconditions.tooManyEnemiesCondition && currentLevelState.wlconditions.enemyLimit > enemiesAlive):
-			loseConString += "Enemies: " + str(currentLevelState.wlconditions.enemyLimit-enemiesAlive) + "\n"
+			magicSquareUI.setUI(2, 0, currentLevelState.wlconditions.enemyLimit-enemiesAlive)
+			#loseConString += "Enemies: " + str(currentLevelState.wlconditions.enemyLimit-enemiesAlive) + "\n"
 			loseConExists = true
 			if loseCondition == LoseType.tooManyEnemies:
 				loseCondition = LoseType.None
@@ -148,7 +156,8 @@ func _process(delta: float) -> void:
 			loss()
 			
 		if(currentLevelState.wlconditions.scoreOnBoardLoseCondition && currentLevelState.wlconditions.scoreOnBoardLimit > scoreOnBoard):
-			loseConString += "Score on board: " + str(currentLevelState.wlconditions.scoreOnBoardLimit - scoreOnBoard) + "\n"
+			magicSquareUI.setUI(3, 2, currentLevelState.wlconditions.scoreOnBoardLimit - scoreOnBoard)
+			#loseConString += "Score on board: " + str(currentLevelState.wlconditions.scoreOnBoardLimit - scoreOnBoard) + "\n"
 			loseConExists = true
 			if loseCondition == LoseType.scoreONBoard:
 				loseCondition = LoseType.None
@@ -157,9 +166,7 @@ func _process(delta: float) -> void:
 		elif(currentLevelState.wlconditions.scoreOnBoardLoseCondition && currentLevelState.wlconditions.scoreOnBoardLimit <= scoreOnBoard):
 			loseCondition = LoseType.scoreONBoard
 			loss()
-			
-		if(!loseConExists):
-			loseConString += "empty"
+		firstRun = false
 		listLoses.text = loseConString
 
 func conditonCheck():
@@ -312,10 +319,11 @@ func spawnBlock(autoSpawn = true) -> BoxHandler:
 	new_block.lvlMngr = self
 
 	blocks_placed_since_enemy += 1
-	#assumes enemyStats is formatted correctly
-	if blocks_placed_since_enemy >= randi_range(currentLevelState.enemyStats.enemyPerBlock.x, currentLevelState.enemyStats.enemyPerBlock.y):
-		spawnRandomEnemy()
-		blocks_placed_since_enemy = 0
+	if enemiesAllowed:
+		#assumes enemyStats is formatted correctly
+		if blocks_placed_since_enemy >= randi_range(currentLevelState.enemyStats.enemyPerBlock.x, currentLevelState.enemyStats.enemyPerBlock.y):
+			spawnRandomEnemy()
+			blocks_placed_since_enemy = 0
 	return new_block
 	
 #may help later, I just need to spawn an arrow specifically in the tutorial
@@ -506,6 +514,7 @@ func spawnSpecificEnemy(enemy_type: int, color = -1) -> EnemyHandler:
 
 	# Spawn into grid
 	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color)
+	enemy.lvlMngr = self
 	return enemy
 
 func get_enemy_scene(enemy_type) -> PackedScene:

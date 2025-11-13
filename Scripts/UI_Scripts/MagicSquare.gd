@@ -8,6 +8,10 @@ var rrot = 0.0
 
 @export var circlePosition : Vector4
 
+@onready var places = [$ItemNode, $ItemNode2, $ItemNode3, $ItemNode4]
+
+var ids = [false, false, false, false]
+
 var activateOnce = false
 func _process(delta: float) -> void:
 	if not (material is ShaderMaterial):
@@ -65,3 +69,12 @@ func clockOn():
 	activateOnce = true
 	await GlobalSceneLoader.onTransitionDone
 	create_tween().tween_property($Clock, "modulate", Color.WHITE, 1.75)
+
+
+
+func setUI(id : int = 0, type : int = 0, value : int = 0):
+	if !ids[id]:
+		create_tween().tween_property(places[id], "modulate", Color.WHITE, 1.75)
+		ids[id] = true
+	places[id].get_child(0).frame = type
+	places[id].get_child(0).get_child(0).text = str(value)

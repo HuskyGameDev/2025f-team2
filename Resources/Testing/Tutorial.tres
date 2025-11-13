@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="LevelState" load_steps=20 format=3 uid="uid://bhrbuveaqspjr"]
+
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_wjt3l"]
+[ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_6poau"]
+[ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_roef7"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="4_w8bdx"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="5_wjt3l"]
+[ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/Testing/DefaultPlacementOrder.tres" id="6_va63f"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="7_anq4g"]
+[ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="8_wji0r"]
+
+[sub_resource type="Resource" id="Resource_l0m60"]
+script = ExtResource("2_6poau")
+blockType = 0
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_wo0q1"]
+script = ExtResource("3_roef7")
+enemyType = 2
+blockType = 2
+blockColor = 2
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_kjb2r"]
+script = ExtResource("2_6poau")
+blockType = 1
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_2ni0w"]
+script = ExtResource("3_roef7")
+enemyType = 0
+blockType = 2
+blockColor = 1
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_thksi"]
+script = ExtResource("3_roef7")
+enemyType = 1
+blockType = 2
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_mqddd"]
+script = ExtResource("2_6poau")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_1eptf"]
+script = ExtResource("1_wjt3l")
+blocks = Array[ExtResource("2_6poau")]([SubResource("Resource_l0m60"), SubResource("Resource_wo0q1"), SubResource("Resource_kjb2r"), SubResource("Resource_2ni0w"), SubResource("Resource_thksi"), SubResource("Resource_mqddd")])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_keqyh"]
+script = ExtResource("2_6poau")
+blockType = 0
+blockColor = 1
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_c414l"]
+script = ExtResource("1_wjt3l")
+blocks = Array[ExtResource("2_6poau")]([null, null, null, SubResource("Resource_keqyh"), null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_au50a"]
+script = ExtResource("4_w8bdx")
+levelOrder = Array[ExtResource("1_wjt3l")]([SubResource("Resource_1eptf"), SubResource("Resource_c414l")])
+metadata/_custom_type_script = "uid://dysfew0ala1lg"
+
+[sub_resource type="Resource" id="Resource_6poau"]
+script = ExtResource("5_wjt3l")
+enemyPerBlock = Vector2i(1188, 2955)
+staticHealth = Vector2i(5, 10)
+floaterHealth = Vector2i(3, 5)
+floaterActionSpeed = Vector2(2, 4)
+painterHealth = Vector2i(3, 5)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
+
+[resource]
+script = ExtResource("7_anq4g")
+levelOrder = ExtResource("6_va63f")
+blockOrder = SubResource("Resource_au50a")
+enemyStats = SubResource("Resource_6poau")
+wlconditions = ExtResource("8_wji0r")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
