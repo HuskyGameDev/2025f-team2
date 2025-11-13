@@ -11,6 +11,7 @@ var fallTimer: Timer
 @export var currentLevelState : LevelState
 @export var winlosescreen: WinLose
 @export var magicSquareUI : MagicSquareUI
+@export var winningMagicSquareUI : MagicSquareUI
 
 #disable spawning for tutorial
 @export var spawnBlocks = true
@@ -52,10 +53,6 @@ var loseCondition : LoseType = LoseType.None
 var lastTimer = 0.5
 var chanceTime = 0.5
 
-#UI handling
-var firstRun : bool = true
-var ids = [-1, -1, -1, -1]
-
 
 #update for the win and lose conditions
 func _process(delta: float) -> void:
@@ -80,26 +77,32 @@ func _process(delta: float) -> void:
 			scoreOnBoard += block.blockValue * multiplier
 	
 	if(currentLevelState.wlconditions != null):
-		winConString = "Win conditions: \n"
+		winConString = "\n"
 		var winConExists: bool = false
 		#only show if not beaten
 		if(currentLevelState.wlconditions.killEnemiesCondition && currentLevelState.wlconditions.killEnemies > enemiesKilled):
-			winConString += "Kill enemies: " + str(currentLevelState.wlconditions.killEnemies-enemiesKilled) + "\n"
+			#winConString += "Kill enemies: " + str(currentLevelState.wlconditions.killEnemies-enemiesKilled) + "\n"
+			winningMagicSquareUI.setUI(0, 3, currentLevelState.wlconditions.killEnemies-enemiesKilled)
 			winConExists = true
 			winConditionPresent = true
 		if(currentLevelState.wlconditions.achieveScoreCondition && currentLevelState.wlconditions.targetScore > score):
-			winConString += "Achieve score: " + str(currentLevelState.wlconditions.targetScore-score) + "\n"
+			winningMagicSquareUI.setUI(1, 4, currentLevelState.wlconditions.targetScore-score)
+			#winConString += "Achieve score: " + str(currentLevelState.wlconditions.targetScore-score) + "\n"
 			winConExists = true
 			winConditionPresent = true
 		if(currentLevelState.wlconditions.removeBlocksCondition && currentLevelState.wlconditions.targetRemovedBlocks > removedBlocks):
-			winConString += "Remove blocks: " + str(currentLevelState.wlconditions.targetRemovedBlocks - removedBlocks) + "\n"
+			winningMagicSquareUI.setUI(2, 6, currentLevelState.wlconditions.targetRemovedBlocks - removedBlocks)
+			#winConString += "Remove blocks: " + str(currentLevelState.wlconditions.targetRemovedBlocks - removedBlocks) + "\n"
 			winConExists = true
 			winConditionPresent = true
 		if(currentLevelState.wlconditions.scoreOnBoardWinCondition && currentLevelState.wlconditions.scoreOnBoardTarget > scoreOnBoard):
 			if(!currentLevelState.wlconditions.scoreColorOnBoardWinCondition):
-				winConString += "score on board: " + str(currentLevelState.wlconditions.scoreOnBoardTarget - scoreOnBoard) + "\n"
+				winningMagicSquareUI.setUI(3, 7, currentLevelState.wlconditions.scoreOnBoardTarget - scoreOnBoard)
+				#winConString += "score on board: " + str(currentLevelState.wlconditions.scoreOnBoardTarget - scoreOnBoard) + "\n"
 			else:
-				winConString += "color " + str(currentLevelState.wlconditions.targetColor) +  " score: " + str(currentLevelState.wlconditions.scoreOnBoardTarget - scoreOnBoard) + "\n"
+				winningMagicSquareUI.places[3].material = load("res://Materials/Palletes/GreenBox.tres")
+				winningMagicSquareUI.setUI(3, 8, currentLevelState.wlconditions.scoreOnBoardTarget - scoreOnBoard)
+				#winConString += "color " + str(currentLevelState.wlconditions.targetColor) +  " score: " + str(currentLevelState.wlconditions.scoreOnBoardTarget - scoreOnBoard) + "\n"
 			winConExists = true
 			winConditionPresent = true
 		if(!winConExists):
@@ -128,6 +131,7 @@ func _process(delta: float) -> void:
 				lastChance = false
 				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.blockLoseCondition && currentLevelState.wlconditions.blockLossLimit <= blocksUsed):
+			magicSquareUI.setUI(0, 5, currentLevelState.wlconditions.blockLossLimit-blocksUsed)
 			loseCondition = LoseType.blockLose
 			loss()
 			
@@ -140,6 +144,7 @@ func _process(delta: float) -> void:
 				lastChance = false
 				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.tooManyBombsCondition && currentLevelState.wlconditions.bombLimit <= bombsBlown):
+			magicSquareUI.setUI(1, 1, currentLevelState.wlconditions.bombLimit-bombsBlown)
 			loseCondition = LoseType.tooManyBombs
 			loss()
 		
@@ -152,6 +157,7 @@ func _process(delta: float) -> void:
 				lastChance = false
 				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.tooManyEnemiesCondition && currentLevelState.wlconditions.enemyLimit <= enemiesAlive):
+			magicSquareUI.setUI(2, 0, currentLevelState.wlconditions.enemyLimit-enemiesAlive)
 			loseCondition = LoseType.tooManyEnemies
 			loss()
 			
@@ -164,9 +170,9 @@ func _process(delta: float) -> void:
 				lastChance = false
 				lastTimer = chanceTime
 		elif(currentLevelState.wlconditions.scoreOnBoardLoseCondition && currentLevelState.wlconditions.scoreOnBoardLimit <= scoreOnBoard):
+			magicSquareUI.setUI(3, 2, currentLevelState.wlconditions.scoreOnBoardLimit - scoreOnBoard)
 			loseCondition = LoseType.scoreONBoard
 			loss()
-		firstRun = false
 		listLoses.text = loseConString
 
 func conditonCheck():
@@ -233,6 +239,8 @@ func _create_background(index:int):
 func _ready() -> void:
 	if magicSquareUI == null:
 		push_error("No Magic Square!")
+	if winningMagicSquareUI == null:
+		push_error("No Winning Magic Square!")
 	lastTimer = chanceTime
 	fallTimer = Timer.new()
 	fallTimer.wait_time = fallSpeed

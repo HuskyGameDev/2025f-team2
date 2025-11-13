@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="LevelState" load_steps=20 format=3 uid="uid://bhrbuveaqspjr"]
+[gd_resource type="Resource" script_class="LevelState" load_steps=19 format=3 uid="uid://bhrbuveaqspjr"]
 
 [ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_wjt3l"]
 [ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_6poau"]
 [ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_roef7"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="4_w8bdx"]
-[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="5_wjt3l"]
+[ext_resource type="Resource" uid="uid://c066ou12nqlnb" path="res://Resources/Testing/DefaultEnemyStats.tres" id="5_4csxt"]
 [ext_resource type="Resource" uid="uid://0x0hxn48adha" path="res://Resources/Testing/DefaultPlacementOrder.tres" id="6_va63f"]
 [ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="7_anq4g"]
 [ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="8_wji0r"]
@@ -76,21 +76,11 @@ script = ExtResource("4_w8bdx")
 levelOrder = Array[ExtResource("1_wjt3l")]([SubResource("Resource_1eptf"), SubResource("Resource_c414l")])
 metadata/_custom_type_script = "uid://dysfew0ala1lg"
 
-[sub_resource type="Resource" id="Resource_6poau"]
-script = ExtResource("5_wjt3l")
-enemyPerBlock = Vector2i(1188, 2955)
-staticHealth = Vector2i(5, 10)
-floaterHealth = Vector2i(3, 5)
-floaterActionSpeed = Vector2(2, 4)
-painterHealth = Vector2i(3, 5)
-painterActionSpeed = Vector2(3, 5)
-metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
-
 [resource]
 script = ExtResource("7_anq4g")
 levelOrder = ExtResource("6_va63f")
 blockOrder = SubResource("Resource_au50a")
-enemyStats = SubResource("Resource_6poau")
+enemyStats = ExtResource("5_4csxt")
 wlconditions = ExtResource("8_wji0r")
 background = 0
 metadata/_custom_type_script = "uid://4qlmb4eym05e"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://4fw2d44pjwu8"]
+[gd_scene load_steps=35 format=3 uid="uid://4fw2d44pjwu8"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
 [ext_resource type="Resource" uid="uid://cjdqe6klu8mrp" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0LevelState.tres" id="2_tmr10"]
@@ -383,7 +383,16 @@ shader_parameter/rotation = 0.0
 font = ExtResource("18_a6sio")
 font_color = Color(0.989709, 9.81867e-06, 0.624586, 1)
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid", "winlosescreen", "magicSquareUI", "listWins", "listLoses")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cemlb"]
+shader = ExtResource("14_tmr10")
+shader_parameter/fov = 1.0
+shader_parameter/cull_back = false
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 60.0
+shader_parameter/inset = 0.0
+shader_parameter/rotation = 0.79
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("boxFiller", "boxGrid", "winlosescreen", "magicSquareUI", "winningMagicSquareUI", "listWins", "listLoses")]
 texture_filter = 1
 script = ExtResource("1_l4uv0")
 fallSpeed = 0.6
@@ -392,6 +401,7 @@ boxGrid = NodePath("BaseGridPos")
 currentLevelState = ExtResource("2_tmr10")
 winlosescreen = NodePath("WinLoseScreen")
 magicSquareUI = NodePath("MagicSquare")
+winningMagicSquareUI = NodePath("MagicSquareWin")
 listWins = NodePath("ListConditions/WinCons")
 listLoses = NodePath("ListConditions/LoseCons")
 
@@ -498,6 +508,7 @@ score on board
 _ color blocks"
 
 [node name="LoseCons" type="Label" parent="ListConditions"]
+visible = false
 layout_mode = 0
 offset_left = 163.0
 offset_right = 320.0
@@ -530,7 +541,7 @@ z_index = 2
 position = Vector2(0, -11.5)
 texture = ExtResource("17_t3c2j")
 hframes = 3
-vframes = 2
+vframes = 3
 
 [node name="Label" type="Label" parent="MagicSquare/ItemNode/Sprite2D"]
 offset_left = -7.0
@@ -550,7 +561,7 @@ z_index = 2
 position = Vector2(0, -11.5)
 texture = ExtResource("17_t3c2j")
 hframes = 3
-vframes = 2
+vframes = 3
 
 [node name="Label" type="Label" parent="MagicSquare/ItemNode2/Sprite2D"]
 offset_left = -7.0
@@ -570,7 +581,7 @@ z_index = 2
 position = Vector2(0, -11.5)
 texture = ExtResource("17_t3c2j")
 hframes = 3
-vframes = 2
+vframes = 3
 
 [node name="Label" type="Label" parent="MagicSquare/ItemNode3/Sprite2D"]
 offset_left = -7.0
@@ -590,7 +601,7 @@ z_index = 2
 position = Vector2(0, -11.5)
 texture = ExtResource("17_t3c2j")
 hframes = 3
-vframes = 2
+vframes = 3
 
 [node name="Label" type="Label" parent="MagicSquare/ItemNode4/Sprite2D"]
 offset_left = -7.0
@@ -608,6 +619,115 @@ scale = Vector2(2, 2)
 texture = ExtResource("19_cemlb")
 
 [node name="Label" type="Label" parent="MagicSquare/Clock"]
+offset_left = -10.0
+offset_top = -4.0
+offset_right = 14.0
+offset_bottom = 11.0
+scale = Vector2(1, 0.56)
+text = "1:20"
+label_settings = SubResource("LabelSettings_jcv13")
+vertical_alignment = 1
+
+[node name="MagicSquareWin" type="Sprite2D" parent="."]
+z_index = 3
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_cemlb")
+position = Vector2(263, 96)
+texture = ExtResource("15_f3sbs")
+region_rect = Rect2(0, 0, 64, 64)
+script = ExtResource("16_1yxxt")
+rotSpeed = -0.5
+rote = 0.785
+circlePosition = Vector4(0, 0, 44, 22)
+
+[node name="ItemNode" type="Node2D" parent="MagicSquareWin"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-46, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="MagicSquareWin/ItemNode"]
+z_index = 2
+position = Vector2(0, -11.5)
+texture = ExtResource("17_t3c2j")
+hframes = 3
+vframes = 3
+
+[node name="Label" type="Label" parent="MagicSquareWin/ItemNode/Sprite2D"]
+offset_left = -7.0
+offset_top = -7.5
+offset_right = 7.0
+offset_bottom = 7.5
+text = "00"
+label_settings = SubResource("LabelSettings_cemlb")
+horizontal_alignment = 1
+
+[node name="ItemNode2" type="Node2D" parent="MagicSquareWin"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-46, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="MagicSquareWin/ItemNode2"]
+z_index = 2
+position = Vector2(0, -11.5)
+texture = ExtResource("17_t3c2j")
+hframes = 3
+vframes = 3
+
+[node name="Label" type="Label" parent="MagicSquareWin/ItemNode2/Sprite2D"]
+offset_left = -7.0
+offset_top = -7.5
+offset_right = 7.0
+offset_bottom = 7.5
+text = "00"
+label_settings = SubResource("LabelSettings_cemlb")
+horizontal_alignment = 1
+
+[node name="ItemNode3" type="Node2D" parent="MagicSquareWin"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-46, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="MagicSquareWin/ItemNode3"]
+z_index = 2
+position = Vector2(0, -11.5)
+texture = ExtResource("17_t3c2j")
+hframes = 3
+vframes = 3
+
+[node name="Label" type="Label" parent="MagicSquareWin/ItemNode3/Sprite2D"]
+offset_left = -7.0
+offset_top = -7.5
+offset_right = 7.0
+offset_bottom = 7.5
+text = "00"
+label_settings = SubResource("LabelSettings_cemlb")
+horizontal_alignment = 1
+
+[node name="ItemNode4" type="Node2D" parent="MagicSquareWin"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-46, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="MagicSquareWin/ItemNode4"]
+z_index = 2
+position = Vector2(0, -11.5)
+texture = ExtResource("17_t3c2j")
+hframes = 3
+vframes = 3
+
+[node name="Label" type="Label" parent="MagicSquareWin/ItemNode4/Sprite2D"]
+offset_left = -7.0
+offset_top = -7.5
+offset_right = 7.0
+offset_bottom = 7.5
+text = "00"
+label_settings = SubResource("LabelSettings_cemlb")
+horizontal_alignment = 1
+
+[node name="Clock" type="Sprite2D" parent="MagicSquareWin"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_jcv13")
+scale = Vector2(2, 2)
+texture = ExtResource("19_cemlb")
+
+[node name="Label" type="Label" parent="MagicSquareWin/Clock"]
 offset_left = -10.0
 offset_top = -4.0
 offset_right = 14.0
