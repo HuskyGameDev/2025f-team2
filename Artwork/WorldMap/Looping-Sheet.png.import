@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1khlqrctri0y"
-path.s3tc="res://.godot/imported/Gear.png-c6c50ab8a9950c2fc75d0cd1a2b5c915.s3tc.ctex"
+uid="uid://h1gcopfyok0f"
+path="res://.godot/imported/Looping-Sheet.png-df5f65b6f9c547f4eef9672d73a01835.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Artwork/UI/Gear.png"
-dest_files=["res://.godot/imported/Gear.png-c6c50ab8a9950c2fc75d0cd1a2b5c915.s3tc.ctex"]
+source_file="res://Artwork/WorldMap/Looping-Sheet.png"
+dest_files=["res://.godot/imported/Looping-Sheet.png-df5f65b6f9c547f4eef9672d73a01835.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

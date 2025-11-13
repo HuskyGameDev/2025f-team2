@@ -10,7 +10,7 @@ var fallTimer: Timer
 @export var boxGrid: LevelGrid
 @export var currentLevelState : LevelState
 @export var winlosescreen: WinLose
-
+@export var magicSquareUI : MagicSquareUI
 
 #disable spawning for tutorial
 @export var spawnBlocks = true
@@ -110,7 +110,8 @@ func _process(delta: float) -> void:
 		var loseConExists: bool = false
 		
 		if(currentLevelState.wlconditions.timerLoseCondition && loseTimer != null):
-			loseConString += "Time: " + "%.2f" % [loseTimer.time_left] + "\n"
+			magicSquareUI.clockOn()
+			magicSquareUI.set_Clock_UI(loseTimer.time_left)
 			loseConExists = true
 			
 		if(currentLevelState.wlconditions.blockLoseCondition && blocksUsed < currentLevelState.wlconditions.blockLossLimit):
@@ -223,6 +224,8 @@ func _create_background(index:int):
 			add_child(bg)
 
 func _ready() -> void:
+	if magicSquareUI == null:
+		push_error("No Magic Square!")
 	lastTimer = chanceTime
 	fallTimer = Timer.new()
 	fallTimer.wait_time = fallSpeed

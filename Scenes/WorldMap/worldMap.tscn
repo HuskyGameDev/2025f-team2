@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=52 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -20,6 +20,10 @@
 [ext_resource type="Resource" uid="uid://cfywshg1rjgny" path="res://Scenes/ActualLevels/Level_2/Level_2LevelState.tres" id="14_1hco5"]
 [ext_resource type="Resource" uid="uid://b5su1klim8mvt" path="res://Scenes/ActualLevels/Level_3/Level_3LevelState.tres" id="15_inlqg"]
 [ext_resource type="Resource" uid="uid://d0wf78n5e165d" path="res://Scenes/ActualLevels/Level_4/Level_4.tres" id="16_hin85"]
+[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="17_pcoav"]
+[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="18_23pus"]
+[ext_resource type="Texture2D" uid="uid://h1gcopfyok0f" path="res://Artwork/WorldMap/Looping-Sheet.png" id="21_ff06i"]
+[ext_resource type="Texture2D" uid="uid://d1khlqrctri0y" path="res://Artwork/UI/Gear.png" id="22_50wd3"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
 background_mode = 1
@@ -41,6 +45,14 @@ texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_2ry0s"]
 size = Vector2(36.25, 36.25)
+
+[sub_resource type="Curve3D" id="Curve3D_e7gs1"]
+bake_interval = 0.1
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.181, -0.0553299, -4.945, -0.5, 0, -0.79, 0, 0, 0, 0.269687, 0.00998545, 1.70444, -0.125, 0, -0.115, 0, 0, 0, 1.421, 0, 2.432, 0, 0, 0, 0, 0, 0, 2.468, 0, 2.656, 0, 0, 0, 0, 0, 0, 3.06, 0, 3.516, 0, 0, 0, 0, 0, 0, 2.85064, 0.0140328, 4.83, 0, 0, 0, 0, 0, 0, 2.18113, -0.000976324, 6.15417, -3.485, 0, 0.995, 0, 0, 0, 4.82879, 0.00903535, 8.0998, 0, 0, 0, 0, 0, 0, 6.91732, -5.24521e-06, 7.43115, 0, 0, 0, 0, 0, 0, 7.96647, -5.24521e-06, 6.07114, 0, 0, 0, 0, 0, 0, 9.17106, -5.24521e-06, 5.39114, 0, 0, 0, 0, 0, 0, 10.2354, -5.24521e-06, 5.00051, 0, 0, 0, 0, 0, 0, 11.8536, -5.24521e-06, 5.00051, 0, 0, 0, 0, 0, 0, 14.299, -0.0927787, 5.32417),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
 
 [sub_resource type="Resource" id="Resource_e7gs1"]
 script = ExtResource("7_1hco5")
@@ -105,6 +117,62 @@ scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
 levelObject = ExtResource("15_inlqg")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
+[sub_resource type="Resource" id="Resource_gg3yx"]
+script = ExtResource("7_1hco5")
+levelOrder = Array[ExtResource("6_wupwk")]([])
+metadata/_custom_type_script = "uid://dysfew0ala1lg"
+
+[sub_resource type="Resource" id="Resource_ph5ix"]
+script = ExtResource("8_inlqg")
+enemyPerBlock = Vector2i(3, 5)
+staticHealth = Vector2i(5, 10)
+floaterHealth = Vector2i(3, 5)
+floaterActionSpeed = Vector2(2, 4)
+painterHealth = Vector2i(3, 5)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
+
+[sub_resource type="Resource" id="Resource_a4l4b"]
+script = ExtResource("18_23pus")
+killEnemiesCondition = true
+killEnemies = 3
+achieveScoreCondition = false
+targetScore = 0
+removeBlocksCondition = true
+targetRemovedBlocks = 3
+scoreOnBoardWinCondition = false
+scoreColorOnBoardWinCondition = false
+targetColor = 0
+scoreOnBoardTarget = 0
+timerLoseCondition = true
+timeTillLoss = 120
+blockLoseCondition = false
+blockLossLimit = 0
+tooManyBombsCondition = false
+bombLimit = 0
+tooManyEnemiesCondition = false
+enemyLimit = 0
+scoreOnBoardLoseCondition = true
+scoreOnBoardLimit = 35
+metadata/_custom_type_script = "uid://bk7jy8116kuso"
+
+[sub_resource type="Resource" id="Resource_msl7w"]
+script = ExtResource("10_ff06i")
+levelOrder = ExtResource("17_pcoav")
+blockOrder = SubResource("Resource_gg3yx")
+enemyStats = SubResource("Resource_ph5ix")
+wlconditions = SubResource("Resource_a4l4b")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
+
+[sub_resource type="Resource" id="Resource_slqdr"]
+script = ExtResource("5_rt317")
+levelName = "Make your box go side to side."
+levelType = 1
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = SubResource("Resource_msl7w")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
 transparency = 2
 alpha_scissor_threshold = 0.5
@@ -134,11 +202,111 @@ font = ExtResource("10_qlyio")
 font_size = 11
 font_color = Color(0.169245, 0.169245, 0.169245, 1)
 
+[sub_resource type="Shader" id="Shader_ff06i"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_nearest, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_nearest, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_nearest, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	base_uv.x -= 0.7 * TIME;
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	
+	
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50wd3"]
+render_priority = 0
+shader = SubResource("Shader_ff06i")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("21_ff06i")
+shader_parameter/albedo_texture_size = Vector2i(40, 15)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 7.93, 1)
+shader_parameter/uv1_offset = Vector3(-4.095, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_pcoav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e7gs1"]
+resource_name = "rotate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.959931, 0, 0), Vector3(-0.959931, 0, 6.28319)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_23pus"]
+_data = {
+&"RESET": SubResource("Animation_pcoav"),
+&"rotate": SubResource("Animation_e7gs1")
+}
+
 [node name="World" type="Node3D" node_paths=PackedStringArray("camera", "uiScreen", "worldPoints")]
 script = ExtResource("1_3gro2")
 camera = NodePath("WorldCamera")
 uiScreen = NodePath("CanvasLayer/LevelSelectUI")
-worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3"), NodePath("Level 4")]
+worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3"), NodePath("Level 4"), NodePath("Level 5")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kayuu")
@@ -146,6 +314,11 @@ environment = SubResource("Environment_kayuu")
 [node name="WorldPlane" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_rk2xb")
 mesh = SubResource("PlaneMesh_2ry0s")
+
+[node name="Path3D" type="Path3D" parent="WorldPlane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06029, -0.0275826, -7.51574)
+rotation_order = 0
+curve = SubResource("Curve3D_e7gs1")
 
 [node name="WorldCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.67816, 0.734915, 0, -0.734915, 0.67816, -6.715, 21.8896, -7.54)
@@ -201,13 +374,22 @@ texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
 level = ExtResource("16_hin85")
 
+[node name="Level 5" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.58564, 0.331141, -5.39893)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = SubResource("Resource_slqdr")
+
 [node name="Cloud" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)
 material_override = SubResource("StandardMaterial3D_ujvki")
 mesh = SubResource("PlaneMesh_ggnbf")
 
 [node name="Cloud2" type="MeshInstance3D" parent="Cloud"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.10541, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0397196, -3.07226, -0.0325785)
 material_override = SubResource("StandardMaterial3D_2ry0s")
 mesh = SubResource("PlaneMesh_ggnbf")
 skeleton = NodePath("../..")
@@ -258,3 +440,58 @@ grow_horizontal = 2
 text = "Type of Level"
 label_settings = SubResource("LabelSettings_cs4vs")
 horizontal_alignment = 1
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.15002, -0.0685265, -7.23168)
+polygon = PackedVector2Array(0, 0, 0, 0.1, -1, 0.1, -1, 0)
+mode = 2
+path_node = NodePath("../WorldPlane/Path3D")
+path_interval_type = 0
+path_interval = 0.37
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+material = SubResource("ShaderMaterial_50wd3")
+
+[node name="Gear" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43039, 0, -5.58875)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
+
+[node name="Gear2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.53366, 0, -7.01425)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear2"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
+
+[node name="Gear3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.67647, 0, -3.89869)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear3"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
