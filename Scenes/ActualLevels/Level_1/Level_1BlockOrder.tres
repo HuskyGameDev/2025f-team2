@@ -5,12 +5,13 @@
 [ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_j8wi8"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="4_uc13e"]
 
-[sub_resource type="Resource" id="Resource_bnj5c"]
-script = ExtResource("2_0avxf")
+[sub_resource type="Resource" id="Resource_un4dv"]
+script = ExtResource("3_j8wi8")
+enemyType = 0
 blockType = 0
 blockColor = 0
-value = 15
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_o324u"]
 script = ExtResource("2_0avxf")
@@ -50,7 +51,7 @@ metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_l7i8f"]
 script = ExtResource("1_56qd5")
-blocks = Array[ExtResource("2_0avxf")]([SubResource("Resource_bnj5c"), SubResource("Resource_o324u"), SubResource("Resource_g1i52"), SubResource("Resource_buyln"), SubResource("Resource_cb1ml"), SubResource("Resource_ojkk1")])
+blocks = Array[ExtResource("2_0avxf")]([SubResource("Resource_un4dv"), SubResource("Resource_o324u"), SubResource("Resource_g1i52"), SubResource("Resource_buyln"), SubResource("Resource_cb1ml"), SubResource("Resource_ojkk1")])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [resource]

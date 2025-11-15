@@ -67,14 +67,7 @@ func _process(delta: float) -> void:
 				continue
 			if(currentLevelState.wlconditions.scoreColorOnBoardWinCondition && block.bColor != currentLevelState.wlconditions.targetColor):
 				continue
-			var multiplier = 1.0
-			if( block.blockValue < 10):
-				multiplier = 1
-			elif(block.blockValue >= 10 ||  block.blockValue < 15):
-				multiplier = 1.75
-			elif( block.blockValue >= 15):
-				multiplier = 2.15
-			scoreOnBoard += block.blockValue * multiplier
+			scoreOnBoard += block.blockValue
 	
 	if(currentLevelState.wlconditions != null):
 		winConString = "\n"
@@ -268,8 +261,6 @@ func setupLevel():
 	bid = randi_range(0, 2147483647) % len(currentLevelState.levelOrder.typeOrder)
 	cid = randi_range(0, 2147483647) % len(currentLevelState.levelOrder.colorOrder)
 
-
-	
 	#sets the lose timer if that condition is active
 	if(currentLevelState.wlconditions.timerLoseCondition):
 		loseTimer = Timer.new()

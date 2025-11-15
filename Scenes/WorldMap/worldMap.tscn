@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=49 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -18,11 +18,14 @@
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="10_qlyio"]
 [ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="11_wupwk"]
 [ext_resource type="Resource" uid="uid://cfywshg1rjgny" path="res://Scenes/ActualLevels/Level_2/Level_2LevelState.tres" id="14_1hco5"]
-[ext_resource type="Resource" uid="uid://b5su1klim8mvt" path="res://Scenes/ActualLevels/Level_3/Level_3LevelState.tres" id="15_inlqg"]
-[ext_resource type="Resource" uid="uid://d0wf78n5e165d" path="res://Scenes/ActualLevels/Level_4/Level_4.tres" id="16_hin85"]
-[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="17_pcoav"]
-[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="18_23pus"]
+[ext_resource type="Resource" uid="uid://b2qm1ctpvdxul" path="res://Scenes/ActualLevels/Level_3/Green_thumb.tres" id="15_eubyf"]
+[ext_resource type="Resource" uid="uid://d0wf78n5e165d" path="res://Scenes/ActualLevels/Level_4/Exterminate!.tres" id="16_hin85"]
+[ext_resource type="Resource" uid="uid://mopfbsy0xwfn" path="res://Scenes/ActualLevels/Level_5/Thread_the_needle.tres" id="17_23pus"]
+[ext_resource type="Resource" uid="uid://dxuxvhgdsbvta" path="res://Scenes/ActualLevels/Level_6/Dead_painter_society.tres" id="18_slqdr"]
+[ext_resource type="Resource" uid="uid://rnod1ntko27q" path="res://Scenes/ActualLevels/Level_7/Needles_in_a_haystack.tres" id="19_eubyf"]
+[ext_resource type="Resource" uid="uid://buho5m0ofqu2h" path="res://Scenes/ActualLevels/Level_9/Chain_Reaction.tres" id="20_eubyf"]
 [ext_resource type="Texture2D" uid="uid://h1gcopfyok0f" path="res://Artwork/WorldMap/Looping-Sheet.png" id="21_ff06i"]
+[ext_resource type="Resource" uid="uid://dpwansbbyna21" path="res://Scenes/ActualLevels/Level_8/Diggin_for_gold.tres" id="21_iim3v"]
 [ext_resource type="Texture2D" uid="uid://d1khlqrctri0y" path="res://Artwork/UI/Gear.png" id="22_50wd3"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
@@ -107,70 +110,6 @@ levelName = "Target practice"
 levelType = 2
 scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
 levelObject = ExtResource("14_1hco5")
-metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
-
-[sub_resource type="Resource" id="Resource_hin85"]
-script = ExtResource("5_rt317")
-levelName = "Green thumb"
-levelType = 3
-scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
-levelObject = ExtResource("15_inlqg")
-metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
-
-[sub_resource type="Resource" id="Resource_gg3yx"]
-script = ExtResource("7_1hco5")
-levelOrder = Array[ExtResource("6_wupwk")]([])
-metadata/_custom_type_script = "uid://dysfew0ala1lg"
-
-[sub_resource type="Resource" id="Resource_ph5ix"]
-script = ExtResource("8_inlqg")
-enemyPerBlock = Vector2i(3, 5)
-staticHealth = Vector2i(5, 10)
-floaterHealth = Vector2i(3, 5)
-floaterActionSpeed = Vector2(2, 4)
-painterHealth = Vector2i(3, 5)
-painterActionSpeed = Vector2(3, 5)
-metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
-
-[sub_resource type="Resource" id="Resource_a4l4b"]
-script = ExtResource("18_23pus")
-killEnemiesCondition = true
-killEnemies = 3
-achieveScoreCondition = false
-targetScore = 0
-removeBlocksCondition = true
-targetRemovedBlocks = 3
-scoreOnBoardWinCondition = false
-scoreColorOnBoardWinCondition = false
-targetColor = 0
-scoreOnBoardTarget = 0
-timerLoseCondition = true
-timeTillLoss = 120
-blockLoseCondition = false
-blockLossLimit = 0
-tooManyBombsCondition = false
-bombLimit = 0
-tooManyEnemiesCondition = false
-enemyLimit = 0
-scoreOnBoardLoseCondition = true
-scoreOnBoardLimit = 35
-metadata/_custom_type_script = "uid://bk7jy8116kuso"
-
-[sub_resource type="Resource" id="Resource_msl7w"]
-script = ExtResource("10_ff06i")
-levelOrder = ExtResource("17_pcoav")
-blockOrder = SubResource("Resource_gg3yx")
-enemyStats = SubResource("Resource_ph5ix")
-wlconditions = SubResource("Resource_a4l4b")
-background = 0
-metadata/_custom_type_script = "uid://4qlmb4eym05e"
-
-[sub_resource type="Resource" id="Resource_slqdr"]
-script = ExtResource("5_rt317")
-levelName = "Make your box go side to side."
-levelType = 1
-scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
-levelObject = SubResource("Resource_msl7w")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
@@ -306,7 +245,7 @@ _data = {
 script = ExtResource("1_3gro2")
 camera = NodePath("WorldCamera")
 uiScreen = NodePath("CanvasLayer/LevelSelectUI")
-worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3"), NodePath("Level 4"), NodePath("Level 5")]
+worldPoints = [NodePath("Point"), NodePath("Level 1"), NodePath("Level 2"), NodePath("Level 3"), NodePath("Level 4"), NodePath("Level 5"), NodePath("Level 6"), NodePath("Level 7"), NodePath("Level 8"), NodePath("Level 9")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kayuu")
@@ -363,7 +302,7 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
-level = SubResource("Resource_hin85")
+level = ExtResource("15_eubyf")
 
 [node name="Level 4" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65093, 3.40277, -7.72307)
@@ -381,7 +320,43 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
-level = SubResource("Resource_slqdr")
+level = ExtResource("17_23pus")
+
+[node name="Level 6" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77332, 0.331141, -4.19692)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = ExtResource("18_slqdr")
+
+[node name="Level 7" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01632, 0.331141, -1.80183)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = ExtResource("19_eubyf")
+
+[node name="Level 8" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01632, 0.291341, 0.321621)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = ExtResource("21_iim3v")
+
+[node name="Level 9" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22845, 0.291341, -0.265879)
+pixel_size = 0.066
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_ujvki")
+script = ExtResource("4_ggnbf")
+level = ExtResource("20_eubyf")
 
 [node name="Cloud" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.54338, 3.10958, -8.26654)

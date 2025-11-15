@@ -1,0 +1,114 @@
+[gd_resource type="Resource" script_class="Level" load_steps=21 format=3 uid="uid://mopfbsy0xwfn"]
+
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_cxks0"]
+[ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_yplds"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="3_dla2x"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="4_5k8dl"]
+[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="5_7yf3k"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="6_kwyq4"]
+[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="7_nd7rv"]
+[ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="8_ibfn1"]
+
+[sub_resource type="Resource" id="Resource_pjduo"]
+script = ExtResource("1_cxks0")
+blocks = Array[ExtResource("2_yplds")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_lg268"]
+script = ExtResource("1_cxks0")
+blocks = Array[ExtResource("2_yplds")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_kpc3e"]
+script = ExtResource("1_cxks0")
+blocks = Array[ExtResource("2_yplds")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_sy88w"]
+script = ExtResource("2_yplds")
+blockType = 1
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_xgky3"]
+script = ExtResource("2_yplds")
+blockType = 1
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_aafey"]
+script = ExtResource("2_yplds")
+blockType = 1
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_82tkk"]
+script = ExtResource("2_yplds")
+blockType = 1
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_um2tp"]
+script = ExtResource("1_cxks0")
+blocks = Array[ExtResource("2_yplds")]([SubResource("Resource_sy88w"), SubResource("Resource_xgky3"), null, null, SubResource("Resource_aafey"), SubResource("Resource_82tkk")])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_iumud"]
+script = ExtResource("3_dla2x")
+levelOrder = Array[ExtResource("1_cxks0")]([SubResource("Resource_pjduo"), SubResource("Resource_lg268"), SubResource("Resource_kpc3e"), SubResource("Resource_um2tp")])
+metadata/_custom_type_script = "uid://dysfew0ala1lg"
+
+[sub_resource type="Resource" id="Resource_ph5ix"]
+script = ExtResource("4_5k8dl")
+enemyPerBlock = Vector2i(3, 5)
+staticHealth = Vector2i(5, 10)
+floaterHealth = Vector2i(3, 5)
+floaterActionSpeed = Vector2(2, 4)
+painterHealth = Vector2i(3, 5)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
+
+[sub_resource type="Resource" id="Resource_wl7sy"]
+script = ExtResource("7_nd7rv")
+killEnemiesCondition = false
+killEnemies = 0
+achieveScoreCondition = true
+targetScore = 25
+removeBlocksCondition = false
+targetRemovedBlocks = 0
+scoreOnBoardWinCondition = true
+scoreColorOnBoardWinCondition = false
+targetColor = 0
+scoreOnBoardTarget = 20
+timerLoseCondition = false
+timeTillLoss = 0
+blockLoseCondition = false
+blockLossLimit = 0
+tooManyBombsCondition = false
+bombLimit = 0
+tooManyEnemiesCondition = false
+enemyLimit = 0
+scoreOnBoardLoseCondition = true
+scoreOnBoardLimit = 25
+metadata/_custom_type_script = "uid://bk7jy8116kuso"
+
+[sub_resource type="Resource" id="Resource_msl7w"]
+script = ExtResource("6_kwyq4")
+levelOrder = ExtResource("5_7yf3k")
+blockOrder = SubResource("Resource_iumud")
+enemyStats = SubResource("Resource_ph5ix")
+wlconditions = SubResource("Resource_wl7sy")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
+
+[resource]
+script = ExtResource("8_ibfn1")
+levelName = "Thread the needle"
+levelType = 3
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = SubResource("Resource_msl7w")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"

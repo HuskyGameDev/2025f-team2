@@ -1,20 +1,20 @@
 [gd_resource type="Resource" script_class="Level" load_steps=12 format=3 uid="uid://d0wf78n5e165d"]
 
-[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_0o6hw"]
-[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="2_y88ic"]
-[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="3_iytqe"]
-[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="4_ahbls"]
-[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="5_fccof"]
-[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="6_jacpu"]
-[ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="7_dp1vb"]
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_lhrg3"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="2_0nc40"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="3_dwalq"]
+[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="4_ltd5x"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="5_yrgkw"]
+[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="6_sijvu"]
+[ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="7_erexj"]
 
 [sub_resource type="Resource" id="Resource_gg3yx"]
-script = ExtResource("2_y88ic")
-levelOrder = Array[ExtResource("1_0o6hw")]([])
+script = ExtResource("2_0nc40")
+levelOrder = Array[ExtResource("1_lhrg3")]([])
 metadata/_custom_type_script = "uid://dysfew0ala1lg"
 
 [sub_resource type="Resource" id="Resource_ph5ix"]
-script = ExtResource("3_iytqe")
+script = ExtResource("3_dwalq")
 enemyPerBlock = Vector2i(3, 5)
 staticHealth = Vector2i(5, 10)
 floaterHealth = Vector2i(3, 5)
@@ -24,7 +24,7 @@ painterActionSpeed = Vector2(3, 5)
 metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
 
 [sub_resource type="Resource" id="Resource_a4l4b"]
-script = ExtResource("6_jacpu")
+script = ExtResource("6_sijvu")
 killEnemiesCondition = true
 killEnemies = 3
 achieveScoreCondition = false
@@ -48,8 +48,8 @@ scoreOnBoardLimit = 35
 metadata/_custom_type_script = "uid://bk7jy8116kuso"
 
 [sub_resource type="Resource" id="Resource_msl7w"]
-script = ExtResource("5_fccof")
-levelOrder = ExtResource("4_ahbls")
+script = ExtResource("5_yrgkw")
+levelOrder = ExtResource("4_ltd5x")
 blockOrder = SubResource("Resource_gg3yx")
 enemyStats = SubResource("Resource_ph5ix")
 wlconditions = SubResource("Resource_a4l4b")
@@ -57,8 +57,8 @@ background = 0
 metadata/_custom_type_script = "uid://4qlmb4eym05e"
 
 [resource]
-script = ExtResource("7_dp1vb")
-levelName = "Destroy everything"
+script = ExtResource("7_erexj")
+levelName = "Exterminate!"
 levelType = 2
 scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
 levelObject = SubResource("Resource_msl7w")

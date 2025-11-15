@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://4fw2d44pjwu8"]
+[gd_scene load_steps=36 format=3 uid="uid://4fw2d44pjwu8"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
 [ext_resource type="Resource" uid="uid://cjdqe6klu8mrp" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0LevelState.tres" id="2_tmr10"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="9_5h57o"]
 [ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="10_qdhxq"]
 [ext_resource type="Texture2D" uid="uid://ccfwyp4b2l36j" path="res://Artwork/Player/RibbonArms.png" id="11_6ge3b"]
+[ext_resource type="Texture2D" uid="uid://ce0xt248y0d5x" path="res://Artwork/GameObjects/Box.png" id="11_jcv13"]
 [ext_resource type="PackedScene" uid="uid://cwepxmyofmf4r" path="res://Scenes/UI_Objects/pause_menu.tscn" id="12_ig5go"]
 [ext_resource type="Script" uid="uid://xgdtyc2a8otu" path="res://Scripts/UI_Scripts/PauseMenu.gd" id="13_3in4i"]
 [ext_resource type="PackedScene" uid="uid://citcs1qcfo0ru" path="res://Scenes/UI_Objects/WinLoseScreen.tscn" id="14_b2ivo"]
@@ -475,6 +476,11 @@ frame = 8
 visible = false
 z_index = 6
 texture = ExtResource("11_6ge3b")
+
+[node name="StoreBlocks" type="Sprite2D" parent="BoxFiller/Ribbon"]
+self_modulate = Color(0.0313726, 0, 0, 1)
+position = Vector2(-35, 0)
+texture = ExtResource("11_jcv13")
 
 [node name="SpawnPoint" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -140)

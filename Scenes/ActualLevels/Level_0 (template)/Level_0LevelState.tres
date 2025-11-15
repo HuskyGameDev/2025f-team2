@@ -1,20 +1,27 @@
-[gd_resource type="Resource" script_class="LevelState" load_steps=8 format=3 uid="uid://cjdqe6klu8mrp"]
+[gd_resource type="Resource" script_class="LevelState" load_steps=9 format=3 uid="uid://cjdqe6klu8mrp"]
 
 [ext_resource type="Resource" uid="uid://b1ne1ap25mign" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0EnemyStats.tres" id="1_86uu3"]
 [ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_kj2ys"]
 [ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="1_ttqcw"]
-[ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="2_twxbd"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="3_l7iy4"]
 [ext_resource type="Resource" uid="uid://yrs1yb5ng3nm" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0WinLossConditions.tres" id="4_7qf73"]
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="4_kj2ys"]
 
 [sub_resource type="Resource" id="Resource_7qf73"]
 script = ExtResource("3_l7iy4")
-levelOrder = Array[ExtResource("1_kj2ys")]([])
+levelOrder = Array[ExtResource("1_kj2ys")]([null])
 metadata/_custom_type_script = "uid://dysfew0ala1lg"
+
+[sub_resource type="Resource" id="Resource_emgia"]
+script = ExtResource("4_kj2ys")
+typeOrder = Array[int]([0, 1, 2, 3])
+colorOrder = Array[int]([0, 1, 2])
+enemyTypeOrder = Array[String](["StaticEnemy", "FloaterEnemy", "PainterEnemy"])
+metadata/_custom_type_script = "uid://bq1lexixywh21"
 
 [resource]
 script = ExtResource("1_ttqcw")
-levelOrder = ExtResource("2_twxbd")
+levelOrder = SubResource("Resource_emgia")
 blockOrder = SubResource("Resource_7qf73")
 enemyStats = ExtResource("1_86uu3")
 wlconditions = ExtResource("4_7qf73")
