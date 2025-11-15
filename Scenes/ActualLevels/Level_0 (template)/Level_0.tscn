@@ -528,6 +528,7 @@ Score on board: 20"
 horizontal_alignment = 2
 
 [node name="MagicSquare" type="Sprite2D" parent="."]
+self_modulate = Color(0.768308, 0.291892, 1, 1)
 texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_f3sbs")
@@ -620,6 +621,7 @@ horizontal_alignment = 1
 
 [node name="Clock" type="Sprite2D" parent="MagicSquare"]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 material = SubResource("ShaderMaterial_jcv13")
 scale = Vector2(2, 2)
 texture = ExtResource("19_cemlb")
@@ -635,6 +637,7 @@ label_settings = SubResource("LabelSettings_jcv13")
 vertical_alignment = 1
 
 [node name="MagicSquareWin" type="Sprite2D" parent="."]
+self_modulate = Color(0.14902, 0.913725, 0, 1)
 texture_filter = 1
 texture_repeat = 1
 material = SubResource("ShaderMaterial_cemlb")
