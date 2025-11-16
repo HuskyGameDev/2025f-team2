@@ -17,6 +17,8 @@ var health: int = 0:
 var highestHealth = 0
 var action_timer: Timer
 
+var preplaced: bool = false
+
 # Use the shared palletes from BoxHandler (palletes)
 @export var color_index: int = 0
 
@@ -27,8 +29,31 @@ func _init() -> void:
 	floating = false
 
 func _ready() -> void:
-	# pick health randomly if not already set
-	health = randi_range(min_health, max_health)
+	#set the min and max health to the enemy stats dictated health and action speed
+	if(enemyStats != null):
+		match get_script().get_global_name():
+			"StaticEnemy":
+				min_health = min(enemyStats.staticHealth.x, enemyStats.staticHealth.y)
+				max_health = max(enemyStats.staticHealth.x, enemyStats.staticHealth.y)
+			"FloaterEnemy":
+				#check for if there is an enemy stats resources
+				min_health = min(enemyStats.floaterHealth.x, enemyStats.floaterHealth.y)
+				max_health = max(enemyStats.floaterHealth.x, enemyStats.floaterHealth.y)
+				action_min_seconds = min(enemyStats.floaterActionSpeed.x,enemyStats.floaterActionSpeed.y)
+				action_max_seconds = max(enemyStats.floaterActionSpeed.x,enemyStats.floaterActionSpeed.y)
+			"PainterEnemy":
+				min_health = min(enemyStats.painterHealth.x, enemyStats.painterHealth.y)
+				max_health = max(enemyStats.painterHealth.x, enemyStats.painterHealth.y)
+				action_min_seconds = min(enemyStats.painterActionSpeed.x,enemyStats.painterActionSpeed.y)
+				action_max_seconds = max(enemyStats.painterActionSpeed.x,enemyStats.painterActionSpeed.y)
+			_:
+				pass
+	#if preplaced, ignore the random health
+	if preplaced:
+		pass
+	else:
+		health = randi_range(min_health, max_health)
+		
 	_update_label()
 
 	# setup action timer (enemies act periodically)
@@ -118,8 +143,6 @@ func spawn_in_grid(grid: LevelGrid, pos: Vector2i, col_idx: int = -1) -> void:
 		grid.blocks[bPosition.y][bPosition.x] = self
 		grid.setPositionOfBlockOnBoard(self)
 
-	# randomize health on spawn
-	health = randi_range(min_health, max_health)
 	_update_label()
 
 # Called by BoxHandler when a block collides with this enemy

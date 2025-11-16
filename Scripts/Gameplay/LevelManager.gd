@@ -338,6 +338,9 @@ func spawnSpecificBlock(node) -> BoxHandler:
 func spawnBlockAtPosition(type, bposition:Vector2i, color, value : int):
 	var new_block = getSpeficBlock(type)
 	new_block.lvlMngr = self
+	if(color == Block.BlockColor.Random):
+		color = randi() % len(BoxHandler.BlockColor)
+		print(color)
 	new_block._set_color(color)
 	new_block.bPosition = bposition
 	new_block.levelGrid = boxGrid
@@ -347,7 +350,7 @@ func spawnBlockAtPosition(type, bposition:Vector2i, color, value : int):
 	new_block.placed = true
 	new_block.prePlaced = true
 
-func spawnEnemyAtPosition(type, bposition:Vector2i, color):
+func spawnEnemyAtPosition(type, bposition:Vector2i, color, health):
 	var enemy_scene: PackedScene = get_enemy_scene(type)
 	var enemy: EnemyHandler = enemy_scene.instantiate()
 	if enemy == null:
@@ -357,11 +360,16 @@ func spawnEnemyAtPosition(type, bposition:Vector2i, color):
 	enemy.lvlMngr = self
 	#send in the enemy stats variable
 	enemy.enemyStats = currentLevelState.enemyStats
+	enemy.preplaced = true
+	enemy.health = health
 	# Add enemy to the grid
 	boxGrid.add_child(enemy)
 
 	# Spawn into grid
 	enemiesAlive += 1
+	if(color == Block.BlockColor.Random):
+		color = randi() % len(BoxHandler.BlockColor)
+		print(color)
 	enemy.spawn_in_grid(boxGrid, bposition, color)
 
 func createLevel(order : BlockOrder):
@@ -373,7 +381,7 @@ func createLevel(order : BlockOrder):
 				if block.blockType != block.BlockType.Enemy:
 					spawnBlockAtPosition(translatedBlockType(block.blockType), pos, block.blockColor, block.value)
 				else:
-					spawnEnemyAtPosition(block.enemyType, pos, block.blockColor)
+					spawnEnemyAtPosition(block.enemyType, pos, block.blockColor, block.value)
 			pos.x += 1
 		pos.x = 0
 		pos.y += 1

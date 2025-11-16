@@ -13,7 +13,8 @@ enum BlockColor
 {
 	Green, 
 	Red, 
-	Yellow 
+	Yellow,
+	Random
 }
 
 @export var blockType : BlockType

@@ -50,7 +50,7 @@ metadata/_custom_type_script = "uid://b4802g7da1mrw"
 script = ExtResource("3_uxbrm")
 enemyType = 0
 blockType = 2
-blockColor = 0
+blockColor = 3
 value = 10
 metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
