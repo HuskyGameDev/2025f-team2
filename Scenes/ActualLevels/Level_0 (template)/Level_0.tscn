@@ -435,7 +435,7 @@ grid_size = Vector2i(6, 9)
 position = Vector2(51, 141)
 script = ExtResource("6_ve7s6")
 levelGrid = NodePath("../BaseGridPos")
-storage = NodePath("Ribbon/StoreBlocks")
+storage = NodePath("StoreBlocks")
 
 [node name="Ribbon" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -5)
@@ -466,12 +466,12 @@ visible = false
 z_index = 6
 texture = ExtResource("11_6ge3b")
 
-[node name="StoreBlocks" type="Sprite2D" parent="BoxFiller/Ribbon"]
-position = Vector2(-35, 0)
-texture = ExtResource("11_jcv13")
-
 [node name="SpawnPoint" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -140)
+
+[node name="StoreBlocks" type="Sprite2D" parent="BoxFiller"]
+position = Vector2(-35, -5)
+texture = ExtResource("11_jcv13")
 
 [node name="PauseMenu" parent="." instance=ExtResource("12_ig5go")]
 visible = false

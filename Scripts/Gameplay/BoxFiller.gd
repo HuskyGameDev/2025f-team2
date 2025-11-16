@@ -129,5 +129,7 @@ func addToFBlock(Cys : Crystal):
 					ribbon.setExplode()
 					explo.position = position
 					explo.emitting = true
+					if(randi() % 5 > 3):
+						ribbon.visible = false
 					await ribbon.waitUntilFinish()
 					levelGrid.levelManager.forceLoss()
