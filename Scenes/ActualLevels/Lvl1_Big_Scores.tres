@@ -1,0 +1,121 @@
+[gd_resource type="Resource" script_class="Level" load_steps=22 format=3 uid="uid://bi5uqgrsoglff"]
+
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_na8y6"]
+[ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_fjs71"]
+[ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="2_gk7e3"]
+[ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_uxbrm"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="4_g5amh"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="5_1yd12"]
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="6_bcet5"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="7_olm1c"]
+[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="8_l52my"]
+
+[sub_resource type="Resource" id="Resource_un4dv"]
+script = ExtResource("3_uxbrm")
+enemyType = 0
+blockType = 0
+blockColor = 0
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_o324u"]
+script = ExtResource("2_fjs71")
+blockType = 0
+blockColor = 1
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_g1i52"]
+script = ExtResource("2_fjs71")
+blockType = 0
+blockColor = 2
+value = 7
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_buyln"]
+script = ExtResource("2_fjs71")
+blockType = 0
+blockColor = 1
+value = 5
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_cb1ml"]
+script = ExtResource("2_fjs71")
+blockType = 0
+blockColor = 2
+value = 10
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_ojkk1"]
+script = ExtResource("3_uxbrm")
+enemyType = 0
+blockType = 2
+blockColor = 0
+value = 10
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_l7i8f"]
+script = ExtResource("1_na8y6")
+blocks = Array[ExtResource("2_fjs71")]([SubResource("Resource_un4dv"), SubResource("Resource_o324u"), SubResource("Resource_g1i52"), SubResource("Resource_buyln"), SubResource("Resource_cb1ml"), SubResource("Resource_ojkk1")])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_axeup"]
+script = ExtResource("4_g5amh")
+levelOrder = Array[ExtResource("1_na8y6")]([SubResource("Resource_l7i8f")])
+
+[sub_resource type="Resource" id="Resource_75h2p"]
+script = ExtResource("5_1yd12")
+enemyPerBlock = Vector2i(2, 3)
+staticHealth = Vector2i(5, 10)
+floaterHealth = Vector2i(3, 5)
+floaterActionSpeed = Vector2(2, 4)
+painterHealth = Vector2i(3, 5)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
+
+[sub_resource type="Resource" id="Resource_l8m4k"]
+script = ExtResource("6_bcet5")
+typeOrder = Array[int]([0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
+colorOrder = Array[int]([0, 0, 1, 1, 2, 1, 0, 1, 2, 0, 1, 0, 2, 1, 0, 2])
+enemyTypeOrder = Array[String](["StaticEnemy", "PainterEnemy", "StaticEnemy", "StaticEnemy", "PainterEnemy", "PainterEnemy"])
+metadata/_custom_type_script = "uid://bq1lexixywh21"
+
+[sub_resource type="Resource" id="Resource_67k2v"]
+script = ExtResource("8_l52my")
+killEnemiesCondition = false
+killEnemies = 5
+achieveScoreCondition = true
+targetScore = 150
+removeBlocksCondition = false
+targetRemovedBlocks = 0
+scoreOnBoardWinCondition = false
+scoreColorOnBoardWinCondition = false
+targetColor = 1
+scoreOnBoardTarget = 0
+timerLoseCondition = false
+timeTillLoss = 90
+blockLoseCondition = true
+blockLossLimit = 11
+tooManyBombsCondition = false
+bombLimit = 2
+tooManyEnemiesCondition = true
+enemyLimit = 3
+scoreOnBoardLoseCondition = false
+scoreOnBoardLimit = 0
+
+[sub_resource type="Resource" id="Resource_olhdu"]
+script = ExtResource("7_olm1c")
+levelOrder = SubResource("Resource_l8m4k")
+blockOrder = SubResource("Resource_axeup")
+enemyStats = SubResource("Resource_75h2p")
+wlconditions = SubResource("Resource_67k2v")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
+
+[resource]
+script = ExtResource("2_gk7e3")
+levelName = "Big scores"
+levelType = 3
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = SubResource("Resource_olhdu")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"

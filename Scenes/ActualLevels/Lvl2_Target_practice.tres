@@ -1,0 +1,168 @@
+[gd_resource type="Resource" script_class="Level" load_steps=30 format=3 uid="uid://xdkt64oeq6c3"]
+
+[ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_ljvl2"]
+[ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_6gpne"]
+[ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_uyxr4"]
+[ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="4_d6k74"]
+[ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="5_onloj"]
+[ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="6_p4amq"]
+[ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="7_1a3jm"]
+[ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="8_qauss"]
+[ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="9_sljwh"]
+
+[sub_resource type="Resource" id="Resource_bnj5c"]
+script = ExtResource("2_6gpne")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_o324u"]
+script = ExtResource("2_6gpne")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_g1i52"]
+script = ExtResource("2_6gpne")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_buyln"]
+script = ExtResource("2_6gpne")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_cb1ml"]
+script = ExtResource("2_6gpne")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_f2sb4"]
+script = ExtResource("2_6gpne")
+blockType = 0
+blockColor = 2
+value = 19
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_l7i8f"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([SubResource("Resource_bnj5c"), SubResource("Resource_o324u"), SubResource("Resource_g1i52"), SubResource("Resource_buyln"), SubResource("Resource_cb1ml"), SubResource("Resource_f2sb4")])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_ijm3m"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_njg1g"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_n4e2a"]
+script = ExtResource("3_uyxr4")
+enemyType = 1
+blockType = 2
+blockColor = 2
+value = 5
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_fa8xx"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, SubResource("Resource_n4e2a"), null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_ndsd7"]
+script = ExtResource("3_uyxr4")
+enemyType = 1
+blockType = 2
+blockColor = 2
+value = 1
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_pd7j7"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([null, null, SubResource("Resource_ndsd7"), null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_67w55"]
+script = ExtResource("3_uyxr4")
+enemyType = 1
+blockType = 2
+blockColor = 2
+value = 1
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_mpur8"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([SubResource("Resource_67w55"), null, null, null, null, null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_fpuw0"]
+script = ExtResource("4_d6k74")
+levelOrder = Array[ExtResource("1_ljvl2")]([SubResource("Resource_l7i8f"), SubResource("Resource_ijm3m"), SubResource("Resource_njg1g"), SubResource("Resource_fa8xx"), SubResource("Resource_pd7j7"), SubResource("Resource_mpur8")])
+
+[sub_resource type="Resource" id="Resource_8mvx8"]
+script = ExtResource("5_onloj")
+enemyPerBlock = Vector2i(10, 10)
+staticHealth = Vector2i(5, 10)
+floaterHealth = Vector2i(1, 1)
+floaterActionSpeed = Vector2(2, 2)
+painterHealth = Vector2i(3, 5)
+painterActionSpeed = Vector2(3, 5)
+metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
+
+[sub_resource type="Resource" id="Resource_u7btp"]
+script = ExtResource("6_p4amq")
+typeOrder = Array[int]([0])
+colorOrder = Array[int]([2])
+enemyTypeOrder = Array[String](["Null"])
+metadata/_custom_type_script = "uid://bq1lexixywh21"
+
+[sub_resource type="Resource" id="Resource_fu63u"]
+script = ExtResource("8_qauss")
+killEnemiesCondition = true
+killEnemies = 3
+achieveScoreCondition = false
+targetScore = 50
+removeBlocksCondition = false
+targetRemovedBlocks = 0
+scoreOnBoardWinCondition = false
+scoreColorOnBoardWinCondition = false
+targetColor = 1
+scoreOnBoardTarget = 0
+timerLoseCondition = false
+timeTillLoss = 90
+blockLoseCondition = true
+blockLossLimit = 3
+tooManyBombsCondition = true
+bombLimit = 1
+tooManyEnemiesCondition = false
+enemyLimit = 5
+scoreOnBoardLoseCondition = false
+scoreOnBoardLimit = 0
+
+[sub_resource type="Resource" id="Resource_gm2u6"]
+script = ExtResource("7_1a3jm")
+levelOrder = SubResource("Resource_u7btp")
+blockOrder = SubResource("Resource_fpuw0")
+enemyStats = SubResource("Resource_8mvx8")
+wlconditions = SubResource("Resource_fu63u")
+background = 0
+metadata/_custom_type_script = "uid://4qlmb4eym05e"
+
+[resource]
+script = ExtResource("9_sljwh")
+levelName = "Target practice"
+levelType = 2
+scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
+levelObject = SubResource("Resource_gm2u6")
+metadata/_custom_type_script = "uid://c0ksnm2wcua3q"

@@ -1,11 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://4fw2d44pjwu8"]
+[gd_scene load_steps=35 format=3 uid="uid://4fw2d44pjwu8"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
 [ext_resource type="Resource" uid="uid://cjdqe6klu8mrp" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0LevelState.tres" id="2_tmr10"]
 [ext_resource type="Texture2D" uid="uid://brxlhvqiljfpa" path="res://Artwork/GameObjects/border.png" id="4_5aqag"]
 [ext_resource type="Script" uid="uid://dfe4q4poqeng5" path="res://Scripts/Gameplay/LevelGrid.gd" id="5_08tqb"]
 [ext_resource type="Script" uid="uid://ljmcy60pov5l" path="res://Scripts/Gameplay/BoxFiller.gd" id="6_ve7s6"]
-[ext_resource type="Script" uid="uid://noib4t5r4qax" path="res://Scripts/UI_Scripts/RerollButton.gd" id="7_bu5an"]
 [ext_resource type="Script" uid="uid://c3qfxtnd08lrf" path="res://Scripts/Gameplay/RibbonAnimator.gd" id="8_ojvbg"]
 [ext_resource type="Texture2D" uid="uid://crdrtg5o00e53" path="res://Artwork/Player/Ribbon-Sheet.png" id="9_5h57o"]
 [ext_resource type="Texture2D" uid="uid://bv3dsa5d5scx1" path="res://Artwork/Player/Ribbon-Faces.png" id="10_qdhxq"]
@@ -432,21 +431,11 @@ ribbon = NodePath("../BoxFiller/Ribbon")
 grid_space = 17
 grid_size = Vector2i(6, 9)
 
-[node name="BoxFiller" type="Node2D" parent="." node_paths=PackedStringArray("levelGrid")]
+[node name="BoxFiller" type="Node2D" parent="." node_paths=PackedStringArray("levelGrid", "storage")]
 position = Vector2(51, 141)
 script = ExtResource("6_ve7s6")
 levelGrid = NodePath("../BaseGridPos")
-
-[node name="Button" type="Button" parent="BoxFiller"]
-visible = false
-offset_left = -30.0
-offset_top = -65.0
-offset_right = 30.0
-offset_bottom = -44.0
-theme_override_font_sizes/font_size = 9
-disabled = true
-text = "Reroll Block"
-script = ExtResource("7_bu5an")
+storage = NodePath("Ribbon/StoreBlocks")
 
 [node name="Ribbon" type="Node2D" parent="BoxFiller"]
 position = Vector2(0, -5)
@@ -478,7 +467,6 @@ z_index = 6
 texture = ExtResource("11_6ge3b")
 
 [node name="StoreBlocks" type="Sprite2D" parent="BoxFiller/Ribbon"]
-self_modulate = Color(0.0313726, 0, 0, 1)
 position = Vector2(-35, 0)
 texture = ExtResource("11_jcv13")
 
@@ -745,6 +733,3 @@ scale = Vector2(1, 0.56)
 text = "1:20"
 label_settings = SubResource("LabelSettings_jcv13")
 vertical_alignment = 1
-
-[connection signal="pressed" from="BoxFiller/Button" to="BoxFiller" method="_on_reroll_button_pressed"]
-[connection signal="pressed" from="BoxFiller/Button" to="BoxFiller/Button" method="_on_pressed"]

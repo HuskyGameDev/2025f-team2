@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b2qdkwusiac2o"]
+[gd_scene load_steps=47 format=3 uid="uid://b2qdkwusiac2o"]
 
 [ext_resource type="Script" uid="uid://c8rx1dfgba847" path="res://Scripts/WorldMap/WorldMap.gd" id="1_3gro2"]
 [ext_resource type="Texture2D" uid="uid://hwva5lkvd4l0" path="res://Artwork/WorldMap/WorldMap.png" id="1_kayuu"]
@@ -10,22 +10,22 @@
 [ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="6_wupwk"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="7_1hco5"]
 [ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="8_inlqg"]
-[ext_resource type="Resource" uid="uid://cejm8735qadr8" path="res://Scenes/ActualLevels/Level_1/Level_1LevelState.tres" id="8_sforw"]
 [ext_resource type="Theme" uid="uid://ded1rpxa401uw" path="res://Resources/ButtonTheme.tres" id="9_cs4vs"]
 [ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="9_hin85"]
 [ext_resource type="Script" uid="uid://bl7ii30g00b5l" path="res://Scripts/WorldMap/LevelSelectUI.gd" id="9_qlyio"]
 [ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="10_ff06i"]
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="10_qlyio"]
 [ext_resource type="Resource" uid="uid://t34ss2li5e3d" path="res://Resources/Testing/DefaultWinLossConditions.tres" id="11_wupwk"]
-[ext_resource type="Resource" uid="uid://cfywshg1rjgny" path="res://Scenes/ActualLevels/Level_2/Level_2LevelState.tres" id="14_1hco5"]
-[ext_resource type="Resource" uid="uid://b2qm1ctpvdxul" path="res://Scenes/ActualLevels/Level_3/Green_thumb.tres" id="15_eubyf"]
-[ext_resource type="Resource" uid="uid://d0wf78n5e165d" path="res://Scenes/ActualLevels/Level_4/Exterminate!.tres" id="16_hin85"]
-[ext_resource type="Resource" uid="uid://mopfbsy0xwfn" path="res://Scenes/ActualLevels/Level_5/Thread_the_needle.tres" id="17_23pus"]
-[ext_resource type="Resource" uid="uid://dxuxvhgdsbvta" path="res://Scenes/ActualLevels/Level_6/Dead_painter_society.tres" id="18_slqdr"]
-[ext_resource type="Resource" uid="uid://rnod1ntko27q" path="res://Scenes/ActualLevels/Level_7/Needles_in_a_haystack.tres" id="19_eubyf"]
-[ext_resource type="Resource" uid="uid://buho5m0ofqu2h" path="res://Scenes/ActualLevels/Level_9/Chain_Reaction.tres" id="20_eubyf"]
+[ext_resource type="Resource" uid="uid://bi5uqgrsoglff" path="res://Scenes/ActualLevels/Lvl1_Big_Scores.tres" id="13_eubyf"]
+[ext_resource type="Resource" uid="uid://xdkt64oeq6c3" path="res://Scenes/ActualLevels/Lvl2_Target_practice.tres" id="14_eubyf"]
+[ext_resource type="Resource" uid="uid://b2qm1ctpvdxul" path="res://Scenes/ActualLevels/Lvl3_Green_thumb.tres" id="15_eubyf"]
+[ext_resource type="Resource" uid="uid://d0wf78n5e165d" path="res://Scenes/ActualLevels/Lvl4_Exterminate!.tres" id="16_hin85"]
+[ext_resource type="Resource" uid="uid://mopfbsy0xwfn" path="res://Scenes/ActualLevels/Lvl5_Thread_the_needle.tres" id="17_23pus"]
+[ext_resource type="Resource" uid="uid://dxuxvhgdsbvta" path="res://Scenes/ActualLevels/Lvl6_Dead_painter_society.tres" id="18_slqdr"]
+[ext_resource type="Resource" uid="uid://rnod1ntko27q" path="res://Scenes/ActualLevels/Lvl7_Needles_in_a_haystack.tres" id="19_eubyf"]
+[ext_resource type="Resource" uid="uid://buho5m0ofqu2h" path="res://Scenes/ActualLevels/Lvl9_Chain_Reaction.tres" id="20_eubyf"]
 [ext_resource type="Texture2D" uid="uid://h1gcopfyok0f" path="res://Artwork/WorldMap/Looping-Sheet.png" id="21_ff06i"]
-[ext_resource type="Resource" uid="uid://dpwansbbyna21" path="res://Scenes/ActualLevels/Level_8/Diggin_for_gold.tres" id="21_iim3v"]
+[ext_resource type="Resource" uid="uid://dpwansbbyna21" path="res://Scenes/ActualLevels/Lvl8_Diggin_for_gold.tres" id="21_iim3v"]
 [ext_resource type="Texture2D" uid="uid://d1khlqrctri0y" path="res://Artwork/UI/Gear.png" id="22_50wd3"]
 
 [sub_resource type="Environment" id="Environment_kayuu"]
@@ -94,22 +94,6 @@ levelName = "Tutorial"
 levelType = 0
 scene = "res://Scenes/TestScenes/TutorialLevel.tscn"
 levelObject = SubResource("Resource_eubyf")
-metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
-
-[sub_resource type="Resource" id="Resource_wupwk"]
-script = ExtResource("5_rt317")
-levelName = "Big scores"
-levelType = 3
-scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
-levelObject = ExtResource("8_sforw")
-metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
-
-[sub_resource type="Resource" id="Resource_inlqg"]
-script = ExtResource("5_rt317")
-levelName = "Target practice"
-levelType = 2
-scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
-levelObject = ExtResource("14_1hco5")
 metadata/_custom_type_script = "uid://c0ksnm2wcua3q"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujvki"]
@@ -284,7 +268,7 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
-level = SubResource("Resource_wupwk")
+level = ExtResource("13_eubyf")
 
 [node name="Level 2" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.73707, 3.40277, -9.50375)
@@ -293,7 +277,7 @@ billboard = 1
 texture_filter = 0
 texture = ExtResource("3_ujvki")
 script = ExtResource("4_ggnbf")
-level = SubResource("Resource_inlqg")
+level = ExtResource("14_eubyf")
 
 [node name="Level 3" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45113, 3.40277, -8.31966)
