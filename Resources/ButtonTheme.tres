@@ -1,7 +1,39 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ded1rpxa401uw"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ded1rpxa401uw"]
 
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="1_mt4at"]
 [ext_resource type="Texture2D" uid="uid://bojtibijjqckh" path="res://Artwork/WorldMap/PingUI.png" id="2_alore"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wx2l1"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2kie"]
+bg_color = Color(0.0807832, 0.0807834, 0.0807833, 1)
+border_width_top = 2
+border_color = Color(0.82605, 0.419228, 1, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1qgm"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alore"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rekv5"]
+bg_color = Color(0.0687982, 0.0687983, 0.0687982, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wx2l1"]
 texture = ExtResource("2_alore")
@@ -13,4 +45,9 @@ texture_margin_bottom = 8.0
 [resource]
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_mt4at")
+Button/styles/disabled = SubResource("StyleBoxFlat_wx2l1")
+Button/styles/focus = SubResource("StyleBoxFlat_k2kie")
+Button/styles/hover = SubResource("StyleBoxFlat_c1qgm")
+Button/styles/normal = SubResource("StyleBoxFlat_alore")
+Button/styles/pressed = SubResource("StyleBoxFlat_rekv5")
 Panel/styles/panel = SubResource("StyleBoxTexture_wx2l1")

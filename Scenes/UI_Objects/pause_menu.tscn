@@ -1,8 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwepxmyofmf4r"]
+[gd_scene load_steps=12 format=3 uid="uid://cwepxmyofmf4r"]
 
 [ext_resource type="Script" uid="uid://cng520ljsj2ox" path="res://Scripts/UI_Scripts/Paused_Resume.gd" id="1_2hj8d"]
+[ext_resource type="Theme" uid="uid://ded1rpxa401uw" path="res://Resources/ButtonTheme.tres" id="1_f33le"]
+[ext_resource type="Texture2D" uid="uid://bojtibijjqckh" path="res://Artwork/WorldMap/PingUI.png" id="1_wr33m"]
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="2_2hj8d"]
+[ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="2_8iu4d"]
 [ext_resource type="Script" uid="uid://cu2brcrsxiqb5" path="res://Scripts/UI_Scripts/Return_World_Map.gd" id="2_yuavk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6kkn2"]
+font = ExtResource("2_8iu4d")
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_58tyw"]
+texture = ExtResource("1_wr33m")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+modulate_color = Color(0.438382, 0.00241058, 0.77887, 1)
+
+[sub_resource type="Theme" id="Theme_gip68"]
+Panel/styles/panel = SubResource("StyleBoxTexture_58tyw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wr33m"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.490196)
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_8iu4d"]
+Panel/styles/panel = SubResource("StyleBoxFlat_wr33m")
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -13,52 +40,69 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Label" type="Label" parent="."]
+z_index = 2
 layout_mode = 0
-offset_left = 112.0
-offset_top = 24.0
-offset_right = 208.0
-offset_bottom = 152.0
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 16.0
-offset_right = 80.0
-offset_bottom = 23.0
+offset_left = 17.0
+offset_top = 8.0
+offset_right = 95.0
+offset_bottom = 38.0
 text = "Paused"
+label_settings = SubResource("LabelSettings_6kkn2")
 horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="Panel"]
+[node name="Resume" type="Button" parent="."]
+z_index = 2
 layout_mode = 0
-offset_left = 24.0
-offset_top = 32.0
-offset_right = 72.0
-offset_bottom = 56.0
-theme_override_font_sizes/font_size = 10
+offset_left = 22.0
+offset_top = 36.0
+offset_right = 105.59
+offset_bottom = 51.0
+theme = ExtResource("1_f33le")
 text = "Resume"
 script = ExtResource("1_2hj8d")
 
-[node name="World_Map" type="Button" parent="Panel"]
+[node name="World_Map" type="Button" parent="."]
+z_index = 2
 layout_mode = 0
-offset_left = 24.0
-offset_top = 64.0
-offset_right = 72.0
-offset_bottom = 88.0
-theme_override_font_sizes/font_size = 7
+offset_left = 31.0
+offset_top = 55.0
+offset_right = 114.59
+offset_bottom = 70.0
+theme = ExtResource("1_f33le")
 text = "World Map"
 script = ExtResource("2_yuavk")
 
-[node name="Main_Menu" type="Button" parent="Panel"]
+[node name="Main_Menu" type="Button" parent="."]
+z_index = 2
 layout_mode = 0
-offset_left = 24.0
-offset_top = 96.0
-offset_right = 72.0
-offset_bottom = 120.0
-theme_override_font_sizes/font_size = 7
+offset_left = 39.0
+offset_top = 74.0
+offset_right = 122.59
+offset_bottom = 89.0
+theme = ExtResource("1_f33le")
 text = "Main Menu"
 script = ExtResource("2_2hj8d")
 targetScene = "res://Scenes/UI_Objects/main_menu.tscn"
 
-[connection signal="pressed" from="Panel/Resume" to="Panel/Resume" method="_on_pressed"]
-[connection signal="pressed" from="Panel/World_Map" to="Panel/World_Map" method="_on_pressed"]
-[connection signal="pressed" from="Panel/Main_Menu" to="Panel/Main_Menu" method="_on_pressed"]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-22, 0)
+skew = -0.331613
+
+[node name="Panel" type="Panel" parent="Node2D"]
+z_index = 1
+offset_left = 23.0
+offset_top = 10.0
+offset_right = 35.0
+offset_bottom = 138.0
+theme = SubResource("Theme_gip68")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+theme = SubResource("Theme_8iu4d")
+
+[connection signal="pressed" from="Resume" to="Resume" method="_on_pressed"]
+[connection signal="pressed" from="World_Map" to="World_Map" method="_on_pressed"]
+[connection signal="pressed" from="Main_Menu" to="Main_Menu" method="_on_pressed"]
