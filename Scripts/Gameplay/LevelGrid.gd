@@ -95,6 +95,7 @@ func explode(block : BoxHandler):
 
 func place_block(block : BoxHandler):
 	if block == active_block:
+		levelManager.blocksUsed += 1
 		block.placeBlock()
 
 func next_block():
@@ -103,6 +104,8 @@ func next_block():
 	levelManager.spawnBlock()
 
 func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
+	if active_block == upBlock:
+		levelManager.blocksUsed += 1
 	if downBlock.bType != BoxHandler.BlockType.Block:
 		return
 	if upBlock.bColor != downBlock.bColor:

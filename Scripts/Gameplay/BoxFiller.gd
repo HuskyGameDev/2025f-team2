@@ -49,8 +49,6 @@ func fillBlock(block : BoxHandler):
 func _input(event: InputEvent) -> void:
 	if fblock == null:
 		return
-	if event.is_action_pressed("reroll"):
-		reroll()
 	if event.is_action_pressed("release"):
 		#stops release when block is at value 0
 		if fblock.blockValue < 1 && fblock.bType == BoxHandler.BlockType.Block:
@@ -64,6 +62,7 @@ func _input(event: InputEvent) -> void:
 		create_tween().tween_property(aBlock,"position", Vector2(0, -200), .75)
 		await ribbon.waitUntilFinish()
 		levelGrid.addBlock(aBlock)
+		
 	#store fblock
 	if event.is_action_pressed("left"):
 		#check for already stored block, swap if there is
@@ -71,44 +70,34 @@ func _input(event: InputEvent) -> void:
 			#temporarily stores the fblock
 			var tempblock = storedblock
 			#sets storedblock to the temp block and positions it correctly
+			storedblock.position = fblock.position
 			storedblock = fblock
-			remove_child(storedblock)
-			storage.add_child(storedblock)
+			#remove_child(storedblock)
+			#storage.add_child(storedblock)
+			
 			storedblock.scale = Vector2(0.5,0.5)
+			fblock.position = storage.position
 			fblock = null
 			
 			#tempblock is the new fblock, positions the block correctly and then starts filling
-			storage.remove_child(tempblock)
-			add_child(tempblock)
+			#storage.remove_child(tempblock)
+			#add_child(tempblock)
 			tempblock.scale = Vector2(1,1)
-			
-			await get_tree().create_timer(0.2, false).timeout
-			
 			fblock = tempblock
 			tempblock = null
-			
 		#if there is not a block already stored, store current
 		elif storedblock == null:
 			#set storedblock and unset fblock
 			storedblock = fblock
 			#repositions the stored block
-			remove_child(storedblock)
-			storage.add_child(storedblock)
+			#remove_child(storedblock)
+			#storage.add_child(storedblock)
+			storedblock.position = storage.position
 			storedblock.scale = Vector2(0.5,0.5)
 			
 			#gets next block
 			fblock = null
 			levelGrid.next_block()
-
-func _on_reroll_button_pressed() -> void:
-	reroll()
-	
-func reroll():
-	if fblock == null:
-		return
-	fblock.queue_free()
-	levelGrid.next_block()
-	fblock = null
 	
 func spawnCrystal() -> Crystal:
 	var crys = load("res://Scenes/GameObjects/crystals.tscn").instantiate()

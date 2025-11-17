@@ -51,7 +51,7 @@ var scoreOnBoard = 0
 var lastChance = false
 var loseCondition : LoseType = LoseType.None
 var lastTimer = 0.5
-var chanceTime = 0.5
+var chanceTime = 2
 
 
 #update for the win and lose conditions
@@ -310,7 +310,6 @@ func getSpeficBlock(type:int) -> BoxHandler:
 func spawnBlock(autoSpawn = true) -> BoxHandler:
 	if(!spawnBlocks && autoSpawn):
 		return
-	blocksUsed += 1
 	var new_block = createBlock()
 	boxFiller.fillBlock(new_block)
 	

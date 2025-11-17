@@ -470,7 +470,7 @@ texture = ExtResource("11_6ge3b")
 position = Vector2(0, -140)
 
 [node name="StoreBlocks" type="Sprite2D" parent="BoxFiller"]
-position = Vector2(-35, -5)
+position = Vector2(-35, 3)
 texture = ExtResource("11_jcv13")
 
 [node name="PauseMenu" parent="." instance=ExtResource("12_ig5go")]
