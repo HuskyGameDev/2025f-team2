@@ -64,6 +64,7 @@ func _process(delta: float) -> void:
 		for block in board:
 			if(block.bType == block.BlockType.Enemy):
 				enemiesAlive += 1
+				continue
 			if(!block.placed):
 				continue
 			if(currentLevelState.wlconditions.scoreColorOnBoardWinCondition && block.bColor != currentLevelState.wlconditions.targetColor):
