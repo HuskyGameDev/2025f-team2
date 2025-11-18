@@ -37,6 +37,8 @@ func addBlock(block : BoxHandler, active: bool = true):
 
 func removeBlock(block : BoxHandler):
 	levelManager.removedBlocks += 1
+	if block.bType == BoxHandler.BlockType.Enemy:
+		levelManager.enemiesKilled += 1
 	blocks[block.bPosition.y][block.bPosition.x] = null
 	block.queue_free()
 
@@ -100,12 +102,25 @@ func place_block(block : BoxHandler):
 
 func next_block():
 	removeActiveBlock()
+	levelManager.boxFiller.setHoldCool()
 	await get_tree().create_timer(.5).timeout
 	levelManager.spawnBlock()
 
 func mergeBlocks(upBlock : BoxHandler, downBlock : BoxHandler):
+	print("merge")
 	if active_block == upBlock:
 		levelManager.blocksUsed += 1
+	if downBlock.bType == BoxHandler.BlockType.Enemy && downBlock.bColor == upBlock.bColorz:
+		#enemy collision for arrows
+		var oldPos: Vector2 = upBlock.bPosition
+		upBlock.bPosition = downBlock.bPosition
+		downBlock.on_block_collision(upBlock)
+		blocks[upBlock.bPosition.y][upBlock.bPosition.x] = upBlock
+		blocks[oldPos.y][oldPos.x] = null
+		setPositionOfBlockOnBoard(upBlock)
+		await place_block(upBlock)
+		upBlock.emit_signal("on_placed")
+		return
 	if downBlock.bType != BoxHandler.BlockType.Block:
 		return
 	if upBlock.bColor != downBlock.bColor:

@@ -51,18 +51,19 @@ var scoreOnBoard = 0
 var lastChance = false
 var loseCondition : LoseType = LoseType.None
 var lastTimer = 0.5
-var chanceTime = 2
+var chanceTime = 1.5
 
 
 #update for the win and lose conditions
 func _process(delta: float) -> void:
 	
-	if(currentLevelState.wlconditions != null && (currentLevelState.wlconditions.scoreOnBoardLoseCondition || currentLevelState.wlconditions.scoreOnBoardWinCondition) ):
+	if(currentLevelState.wlconditions != null && (currentLevelState.wlconditions.scoreOnBoardLoseCondition || currentLevelState.wlconditions.scoreOnBoardWinCondition || currentLevelState.wlconditions.tooManyEnemiesCondition) ):
 		scoreOnBoard = 0
+		enemiesAlive = 0
 		var board = boxGrid.get_all_blocks_in_board()
 		for block in board:
 			if(block.bType == block.BlockType.Enemy):
-				continue
+				enemiesAlive += 1
 			if(!block.placed):
 				continue
 			if(currentLevelState.wlconditions.scoreColorOnBoardWinCondition && block.bColor != currentLevelState.wlconditions.targetColor):
@@ -365,7 +366,6 @@ func spawnEnemyAtPosition(type, bposition:Vector2i, color, health):
 	boxGrid.add_child(enemy)
 
 	# Spawn into grid
-	enemiesAlive += 1
 	if(color == Block.BlockColor.Random):
 		color = randi() % len(BoxHandler.BlockColor)
 		print(color)
@@ -396,14 +396,28 @@ func translatedBlockType(blockType) -> int:
 func spawnRandomEnemy():
 	print("Attempted enemy spawn")
 	#I needed a way to not spawn enemies (tutorial)
-	if currentLevelState.levelOrder.enemyTypeOrder[0] == "null":
-		return
 	
-
-	var enemy_type = randi() % 3
-	while enemy_type == last_enemy_type:
+	
+	var enemy_type
+	if(currentLevelState == null):
 		enemy_type = randi() % 3
-	last_enemy_type = enemy_type
+		while enemy_type == last_enemy_type:
+			enemy_type = randi() % 3
+		last_enemy_type = enemy_type
+	else:
+		if currentLevelState.levelOrder.enemyTypeOrder[0] == "null":
+			return
+		enemy_type = randi() % len(currentLevelState.levelOrder.enemyTypeOrder)
+		match currentLevelState.levelOrder.enemyTypeOrder[enemy_type]:
+			"StaticEnemy":
+				enemy_type = 0
+			"FloaterEnemy":
+				enemy_type = 1
+			"PainterEnemy":
+				enemy_type = 2
+			#["StaticEnemy", "FloaterEnemy", "PainterEnemy"]
+		
+	
 
 	var enemy_scene: PackedScene = get_enemy_scene(enemy_type)
 
@@ -464,7 +478,7 @@ func spawnRandomEnemy():
 	boxGrid.add_child(enemy)
 
 	# Spawn into grid
-	enemiesAlive += 1
+	enemy.enemyStats = currentLevelState.enemyStats
 	enemy.spawn_in_grid(boxGrid, Vector2i(spawn_col, spawn_row), color_index)
 
 #Spawns a specific type of enemy

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://4fw2d44pjwu8"]
+[gd_scene load_steps=37 format=3 uid="uid://4fw2d44pjwu8"]
 
 [ext_resource type="Script" uid="uid://cmvw2cbm4tsjx" path="res://Scripts/Gameplay/LevelManager.gd" id="1_l4uv0"]
 [ext_resource type="Resource" uid="uid://cjdqe6klu8mrp" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0LevelState.tres" id="2_tmr10"]
@@ -354,6 +354,8 @@ _data = {
 &"idle": SubResource("Animation_j3c8t")
 }
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cemlb"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_jx660"]
 font = ExtResource("18_a6sio")
 
@@ -473,8 +475,16 @@ texture = ExtResource("11_6ge3b")
 position = Vector2(0, -140)
 
 [node name="StoreBlocks" type="Sprite2D" parent="BoxFiller"]
-position = Vector2(212, -100)
+position = Vector2(213, -101)
 texture = ExtResource("11_jcv13")
+
+[node name="Fill" type="Sprite2D" parent="BoxFiller/StoreBlocks"]
+visible = false
+self_modulate = Color(0, 0, 0, 0.372549)
+position = Vector2(8, 8)
+rotation = 3.14159
+scale = Vector2(16, 16)
+texture = SubResource("AnimatedTexture_cemlb")
 
 [node name="Label" type="Label" parent="BoxFiller"]
 offset_left = 193.0
@@ -695,6 +705,7 @@ position = Vector2(-46, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="MagicSquareWin/ItemNode3"]
 z_index = 2
+use_parent_material = true
 position = Vector2(0, -11.5)
 texture = ExtResource("17_t3c2j")
 hframes = 3

@@ -14,8 +14,8 @@
 script = ExtResource("3_6vlqf")
 enemyType = 0
 blockType = 2
-blockColor = 0
-value = 5
+blockColor = 2
+value = 7
 metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_7ubd4"]

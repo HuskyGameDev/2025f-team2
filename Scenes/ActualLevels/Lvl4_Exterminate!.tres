@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://dysfew0ala1lg"
 
 [sub_resource type="Resource" id="Resource_ph5ix"]
 script = ExtResource("3_dwalq")
-enemyPerBlock = Vector2i(3, 5)
+enemyPerBlock = Vector2i(2, 3)
 staticHealth = Vector2i(5, 10)
 floaterHealth = Vector2i(3, 5)
 floaterActionSpeed = Vector2(2, 4)

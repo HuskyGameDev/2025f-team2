@@ -1,17 +1,40 @@
-[gd_resource type="Resource" script_class="Level" load_steps=21 format=3 uid="uid://mopfbsy0xwfn"]
+[gd_resource type="Resource" script_class="Level" load_steps=25 format=3 uid="uid://mopfbsy0xwfn"]
 
 [ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_cxks0"]
 [ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_yplds"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="3_dla2x"]
+[ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_jjo75"]
 [ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="4_5k8dl"]
 [ext_resource type="Resource" uid="uid://capmwvl2e3a4t" path="res://Scenes/ActualLevels/Level_0 (template)/Level_0PlacementOrder.tres" id="5_7yf3k"]
 [ext_resource type="Script" uid="uid://4qlmb4eym05e" path="res://Resources/scripts/LevelState.gd" id="6_kwyq4"]
 [ext_resource type="Script" uid="uid://bk7jy8116kuso" path="res://Resources/scripts/WinLossConditions.gd" id="7_nd7rv"]
 [ext_resource type="Script" uid="uid://c0ksnm2wcua3q" path="res://Scripts/WorldMap/Level.gd" id="8_ibfn1"]
 
+[sub_resource type="Resource" id="Resource_5hqqj"]
+script = ExtResource("2_yplds")
+blockType = 0
+blockColor = 1
+value = 7
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_a1aur"]
+script = ExtResource("3_jjo75")
+enemyType = 1
+blockType = 2
+blockColor = 3
+value = 10
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
+
+[sub_resource type="Resource" id="Resource_u3gqb"]
+script = ExtResource("2_yplds")
+blockType = 0
+blockColor = 2
+value = 8
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
 [sub_resource type="Resource" id="Resource_pjduo"]
 script = ExtResource("1_cxks0")
-blocks = Array[ExtResource("2_yplds")]([null, null, null, null, null, null])
+blocks = Array[ExtResource("2_yplds")]([SubResource("Resource_5hqqj"), null, null, SubResource("Resource_a1aur"), null, SubResource("Resource_u3gqb")])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [sub_resource type="Resource" id="Resource_lg268"]
@@ -77,7 +100,7 @@ script = ExtResource("7_nd7rv")
 killEnemiesCondition = false
 killEnemies = 0
 achieveScoreCondition = true
-targetScore = 25
+targetScore = 45
 removeBlocksCondition = false
 targetRemovedBlocks = 0
 scoreOnBoardWinCondition = true
@@ -93,7 +116,7 @@ bombLimit = 0
 tooManyEnemiesCondition = false
 enemyLimit = 0
 scoreOnBoardLoseCondition = true
-scoreOnBoardLimit = 25
+scoreOnBoardLimit = 30
 metadata/_custom_type_script = "uid://bk7jy8116kuso"
 
 [sub_resource type="Resource" id="Resource_msl7w"]

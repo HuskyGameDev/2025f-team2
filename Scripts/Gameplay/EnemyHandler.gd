@@ -159,6 +159,7 @@ func on_block_collision(block: BoxHandler) -> void:
 	if block_val == null:
 		return
 
+	print("health check")
 	if block_val > health:
 		# block survives with reduced value
 		block.blockValue = block_val - health

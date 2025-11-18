@@ -93,6 +93,7 @@ func _removeToBlock():
 		levelGrid.removeBlock(self)
 
 func mergeBox(downBlock:BoxHandler):
+	print("merge")
 	if downBlock == null:
 		return
 	downBlock.blockValue += blockValue

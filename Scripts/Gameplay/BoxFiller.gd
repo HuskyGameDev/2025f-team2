@@ -12,10 +12,12 @@ var fblock : BoxHandler
 var storedblock: BoxHandler
 @export var storage: Node
 var startingTime = 0.75
+var holdCooldown = 2
+var canHold = true
 
 
 func fillBlock(block : BoxHandler):
-	var bok = fblock
+	var bok = block
 	if fblock != null:
 		fblock.queue_free()
 	add_child(block)
@@ -32,10 +34,11 @@ func fillBlock(block : BoxHandler):
 			break
 			return
 		if bok != fblock and bok != null:
+			break
 			return
 		if fblock.bType == fblock.BlockType.Block:
 			var cts : Crystal = spawnCrystal()
-			cts.on_die.connect(addToFBlock.bind(cts))
+			cts.on_die.connect(addToFBlock.bind(cts, bok))
 			cts.material = fblock.material
 			cts.block = self
 			await get_tree().create_timer(time, false).timeout
@@ -64,49 +67,52 @@ func _input(event: InputEvent) -> void:
 		levelGrid.addBlock(aBlock)
 		
 	#store fblock
-	if event.is_action_pressed("left"):
+	if event.is_action_pressed("hold") && canHold:
 		#check for already stored block, swap if there is
 		if storedblock != null:
-			#temporarily stores the fblock
+			#temporarily tracks the stored block
 			var tempblock = storedblock
-			#sets storedblock to the temp block and positions it correctly
-			storedblock.position = fblock.position
-			storedblock = fblock
-			#remove_child(storedblock)
-			#storage.add_child(storedblock)
-			
-			storedblock.scale = Vector2(0.5,0.5)
+			#shrink current fblock and move it to storage
+			fblock.scale = Vector2(0.5,0.5)
 			fblock.position = storage.position
+			storedblock = fblock
 			fblock = null
 			
-			#tempblock is the new fblock, positions the block correctly and then starts filling
-			#storage.remove_child(tempblock)
-			#add_child(tempblock)
+			#regrow old stored block
 			tempblock.scale = Vector2(1,1)
-			fblock = tempblock
-			tempblock = null
+			fillBlock(tempblock)
+			setHoldCool()
+			
 		#if there is not a block already stored, store current
 		elif storedblock == null:
 			#set storedblock and unset fblock
 			storedblock = fblock
-			#repositions the stored block
-			#remove_child(storedblock)
-			#storage.add_child(storedblock)
 			storedblock.position = storage.position
 			storedblock.scale = Vector2(0.5,0.5)
-			
-			#gets next block
+			#gets the next block
 			fblock = null
 			levelGrid.next_block()
-	
+			
+			#show the cooldown of the hold on the box
+			setHoldCool()
+		
+func setHoldCool():
+	storage.get_child(0).visible = true
+	storage.get_child(0).scale = Vector2(16,16)
+	create_tween().tween_property(storage.get_child(0),"scale", Vector2(0, 16), holdCooldown)
+	canHold = false
+	await get_tree().create_timer(holdCooldown, false).timeout
+	storage.get_child(0).visible = false
+	canHold = true
+
 func spawnCrystal() -> Crystal:
 	var crys = load("res://Scenes/GameObjects/crystals.tscn").instantiate()
 	add_child(crys)
 	crys.position.y = -140
 	return crys
 	
-func addToFBlock(Cys : Crystal):
-	if fblock != null:
+func addToFBlock(Cys : Crystal, oblock: BoxHandler):
+	if fblock != null && oblock == fblock:
 		if fblock.material == Cys.material:
 			fblock._addToBlock()
 			if fblock.has_node("Explosion") && fblock.blockValue > BoxHandler.bombThreshold-1:

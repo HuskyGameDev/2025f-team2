@@ -13,44 +13,44 @@
 [sub_resource type="Resource" id="Resource_i5pnf"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 1
-value = 5
+blockColor = 3
+value = 1
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_s1w51"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 2
-value = 5
+blockColor = 3
+value = 6
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_q2770"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 3
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_b0sih"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 2
-value = 5
+blockColor = 3
+value = 6
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_pdn0r"]
 script = ExtResource("3_ga2lx")
 enemyType = 0
 blockType = 2
-blockColor = 2
-value = 5
+blockColor = 3
+value = 18
 metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_1f50c"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 2
-value = 5
+blockColor = 3
+value = 4
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_h0yi6"]
@@ -62,43 +62,43 @@ metadata/_custom_type_script = "uid://38vanp3lsifc"
 script = ExtResource("3_ga2lx")
 enemyType = 0
 blockType = 2
-blockColor = 2
-value = 5
+blockColor = 3
+value = 12
 metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_5jgoa"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 1
-value = 5
+blockColor = 3
+value = 16
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_wg3dh"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 1
-value = 5
+blockColor = 3
+value = 2
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_7iyf3"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 2
+blockColor = 3
 value = 5
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_33u1k"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 3
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_fall4"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 14
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_msnwa"]
@@ -109,44 +109,44 @@ metadata/_custom_type_script = "uid://38vanp3lsifc"
 [sub_resource type="Resource" id="Resource_s3tyf"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 4
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_xtxjj"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 1
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_wwxbg"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 13
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_qss1q"]
 script = ExtResource("3_ga2lx")
 enemyType = 0
 blockType = 2
-blockColor = 0
+blockColor = 3
 value = 5
 metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_anc32"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
+blockColor = 3
 value = 5
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_bukdk"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 4
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_fwk61"]
@@ -157,43 +157,43 @@ metadata/_custom_type_script = "uid://38vanp3lsifc"
 [sub_resource type="Resource" id="Resource_kfbos"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 7
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_5g0yr"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 3
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_2ie8x"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_1vcln"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 7
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_2iakp"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 3
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_i0bve"]
 script = ExtResource("2_tpklb")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 3
+value = 8
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_fn5rl"]
@@ -208,7 +208,7 @@ metadata/_custom_type_script = "uid://dysfew0ala1lg"
 
 [sub_resource type="Resource" id="Resource_ph5ix"]
 script = ExtResource("5_rofhb")
-enemyPerBlock = Vector2i(3, 5)
+enemyPerBlock = Vector2i(43, 390)
 staticHealth = Vector2i(5, 10)
 floaterHealth = Vector2i(3, 5)
 floaterActionSpeed = Vector2(2, 4)

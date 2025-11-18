@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="Level" load_steps=44 format=3 uid="uid://buho5m0ofqu2h"]
+[gd_resource type="Resource" script_class="Level" load_steps=49 format=3 uid="uid://buho5m0ofqu2h"]
 
 [ext_resource type="Script" uid="uid://38vanp3lsifc" path="res://Resources/scripts/BlockRows.gd" id="1_iqcmg"]
 [ext_resource type="Script" uid="uid://b4802g7da1mrw" path="res://Resources/scripts/Block.gd" id="2_o2p07"]
+[ext_resource type="Script" uid="uid://chbaj4mpel1bg" path="res://Resources/scripts/Enemy.gd" id="3_j4yqh"]
 [ext_resource type="Script" uid="uid://dysfew0ala1lg" path="res://Resources/scripts/LevelBlockOrder.gd" id="4_oolgr"]
 [ext_resource type="Script" uid="uid://bq1lexixywh21" path="res://Resources/scripts/PlacementOrder.gd" id="5_1cjd3"]
 [ext_resource type="Script" uid="uid://dhggsd3rnk3oc" path="res://Resources/scripts/LevelEnemyStats.gd" id="5_uuuv2"]
@@ -13,42 +14,42 @@
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_jh8ux"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_tn4cl"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 1
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_rpumo"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_yeyt7"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_7di3d"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_brco6"]
@@ -59,90 +60,91 @@ metadata/_custom_type_script = "uid://38vanp3lsifc"
 [sub_resource type="Resource" id="Resource_ywueu"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_4qdom"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_75jm0"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_b7346"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_tddvw"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 1
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
-[sub_resource type="Resource" id="Resource_f5hes"]
-script = ExtResource("2_o2p07")
-blockType = 0
-blockColor = 0
-value = 5
-metadata/_custom_type_script = "uid://b4802g7da1mrw"
+[sub_resource type="Resource" id="Resource_bglci"]
+script = ExtResource("3_j4yqh")
+enemyType = 0
+blockType = 2
+blockColor = 1
+value = 10
+metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_ufra7"]
 script = ExtResource("1_iqcmg")
-blocks = Array[ExtResource("2_o2p07")]([SubResource("Resource_ywueu"), SubResource("Resource_4qdom"), SubResource("Resource_75jm0"), SubResource("Resource_b7346"), SubResource("Resource_tddvw"), SubResource("Resource_f5hes")])
+blocks = Array[ExtResource("2_o2p07")]([SubResource("Resource_ywueu"), SubResource("Resource_4qdom"), SubResource("Resource_75jm0"), SubResource("Resource_b7346"), SubResource("Resource_tddvw"), SubResource("Resource_bglci")])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [sub_resource type="Resource" id="Resource_4ojla"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_egglm"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_eojnc"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 1
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_rhdeo"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_k5co1"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_cvfff"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_fp1v4"]
@@ -153,58 +155,86 @@ metadata/_custom_type_script = "uid://38vanp3lsifc"
 [sub_resource type="Resource" id="Resource_cssvn"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_q8m8q"]
+script = ExtResource("2_o2p07")
+blockType = 0
+blockColor = 1
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_2h6k2"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_p5l5o"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 1
+value = 10
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_j4yqh"]
+script = ExtResource("2_o2p07")
+blockType = 0
+blockColor = 1
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_85x71"]
 script = ExtResource("1_iqcmg")
-blocks = Array[ExtResource("2_o2p07")]([SubResource("Resource_cssvn"), null, SubResource("Resource_2h6k2"), SubResource("Resource_p5l5o"), null, null])
+blocks = Array[ExtResource("2_o2p07")]([SubResource("Resource_cssvn"), SubResource("Resource_q8m8q"), SubResource("Resource_2h6k2"), SubResource("Resource_p5l5o"), SubResource("Resource_j4yqh"), null])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [sub_resource type="Resource" id="Resource_6gy47"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 1
+value = 10
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
+
+[sub_resource type="Resource" id="Resource_eq284"]
+script = ExtResource("2_o2p07")
+blockType = 0
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_6pj8j"]
 script = ExtResource("2_o2p07")
 blockType = 0
 blockColor = 0
-value = 5
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_yk2jd"]
 script = ExtResource("1_iqcmg")
-blocks = Array[ExtResource("2_o2p07")]([SubResource("Resource_6gy47"), null, null, SubResource("Resource_6pj8j"), null, null])
+blocks = Array[ExtResource("2_o2p07")]([SubResource("Resource_6gy47"), SubResource("Resource_eq284"), null, SubResource("Resource_6pj8j"), null, null])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_sb6tj"]
+script = ExtResource("2_o2p07")
+blockType = 0
+blockColor = 1
+value = 10
+metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_y6oa5"]
 script = ExtResource("2_o2p07")
 blockType = 0
-blockColor = 0
-value = 5
+blockColor = 2
+value = 10
 metadata/_custom_type_script = "uid://b4802g7da1mrw"
 
 [sub_resource type="Resource" id="Resource_eftyl"]
 script = ExtResource("1_iqcmg")
-blocks = Array[ExtResource("2_o2p07")]([null, null, null, SubResource("Resource_y6oa5"), null, null])
+blocks = Array[ExtResource("2_o2p07")]([null, SubResource("Resource_sb6tj"), null, SubResource("Resource_y6oa5"), null, null])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [sub_resource type="Resource" id="Resource_kmith"]
@@ -224,9 +254,9 @@ metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
 
 [sub_resource type="Resource" id="Resource_iqcmg"]
 script = ExtResource("5_1cjd3")
-typeOrder = Array[int]([0])
-colorOrder = Array[int]([0])
-enemyTypeOrder = Array[String](["StaticEnemy", "FloaterEnemy", "PainterEnemy"])
+typeOrder = Array[int]([0, 0, 1, 0, 0, 0, 0, 1, 0, 0])
+colorOrder = Array[int]([0, 1, 2, 1, 0, 0, 2, 2, 0, 1, 0])
+enemyTypeOrder = Array[String](["null"])
 metadata/_custom_type_script = "uid://bq1lexixywh21"
 
 [sub_resource type="Resource" id="Resource_oypat"]
@@ -236,7 +266,7 @@ killEnemies = 0
 achieveScoreCondition = false
 targetScore = 0
 removeBlocksCondition = true
-targetRemovedBlocks = 10
+targetRemovedBlocks = 20
 scoreOnBoardWinCondition = false
 scoreColorOnBoardWinCondition = false
 targetColor = 0
@@ -244,7 +274,7 @@ scoreOnBoardTarget = 0
 timerLoseCondition = false
 timeTillLoss = 0
 blockLoseCondition = true
-blockLossLimit = 3
+blockLossLimit = 4
 tooManyBombsCondition = false
 bombLimit = 0
 tooManyEnemiesCondition = false
