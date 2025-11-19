@@ -24,6 +24,8 @@ func _input(event: InputEvent) -> void:
 		await sets()
 	if event.is_action_released("release"):
 		enterLevel()
+	if event.is_action_released("pause"):
+		mainMenu()
 
 func next():
 	pos += 1
@@ -53,3 +55,6 @@ func enterLevel():
 	await uiScreen.wait()
 	worldPoints[pos].level.levelObject.worldMapPos = pos
 	GlobalSceneLoader.load_level(worldPoints[pos].level.scene, worldPoints[pos].level.levelObject)
+
+func mainMenu():
+	GlobalSceneLoader.load_level("res://Scenes/TestScenes/MainMenu.tscn")

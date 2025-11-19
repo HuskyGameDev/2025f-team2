@@ -35,7 +35,7 @@ corner_radius_top_left = 12
 corner_radius_bottom_right = 105
 anti_aliasing = false
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wx2l1"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alore"]
 texture = ExtResource("2_alore")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
@@ -50,4 +50,4 @@ Button/styles/focus = SubResource("StyleBoxFlat_k2kie")
 Button/styles/hover = SubResource("StyleBoxFlat_c1qgm")
 Button/styles/normal = SubResource("StyleBoxFlat_alore")
 Button/styles/pressed = SubResource("StyleBoxFlat_rekv5")
-Panel/styles/panel = SubResource("StyleBoxTexture_wx2l1")
+Panel/styles/panel = SubResource("StyleBoxTexture_alore")

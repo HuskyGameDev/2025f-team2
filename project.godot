@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="Ribbon In The Wacky Warehouse"
+config/description="Block placing puzzle game!"
+config/version="0.0.111925"
 run/main_scene="uid://dcgj7q6h1wg41"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://xg40q1effgwx"
 
 [autoload]
 
