@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://chhg2v24jqxi6"]
+
+[ext_resource type="Script" uid="uid://dwg5bfcx4263t" path="res://Scenes/TestScenes/SettingsMenu.gd" id="1_ji05a"]
+
+[node name="settingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ji05a")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 183.0
+
+[node name="ResolutionDropdown" type="OptionButton" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 70.0
+offset_right = 33.0
+offset_bottom = 90.0
+
+[node name="FullscreenToggle" type="CheckBox" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 30.0
+offset_right = 108.0
+offset_bottom = 61.0
+text = "Fullscreen"
+
+[node name="VolumeSlider" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 128.0
+offset_right = 136.0
+offset_bottom = 150.0
+
+[node name="KeybindContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 47.0
+offset_right = 74.0
+offset_bottom = 87.0
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.012
+anchor_bottom = 0.022
+offset_left = 195.0
+offset_top = 146.0
+offset_right = 314.148
+offset_bottom = 172.974
+text = "Save and Close"
+
+[node name="MenuHeader" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 23.0
+text = "Settings Menu"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 163.0
+offset_right = 243.0
+offset_bottom = 212.0
+scale = Vector2(0.655, 0.655)
+text = "Settings are a work in Progress!
+"
+
+[connection signal="item_selected" from="Panel/ResolutionDropdown" to="." method="_on_resolution_selected"]
+[connection signal="toggled" from="Panel/FullscreenToggle" to="." method="_on_fullscreen_toggled"]
+[connection signal="value_changed" from="Panel/VolumeSlider" to="." method="_on_volume_changed"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_save_pressed"]

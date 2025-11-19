@@ -1,13 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://w6i51b5jwmid"]
+[gd_scene load_steps=18 format=3 uid="uid://w6i51b5jwmid"]
 
 [ext_resource type="Theme" uid="uid://ded1rpxa401uw" path="res://Resources/ButtonTheme.tres" id="1_nskxk"]
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="1_wsnrw"]
 [ext_resource type="Script" uid="uid://ctpykaqiomvdw" path="res://Scripts/UI_Scripts/Quit_Game_Button.gd" id="2_ou1s8"]
+[ext_resource type="Script" uid="uid://ddeogo5vpxjd5" path="res://Scripts/UI_Scripts/SettingsButton.gd" id="3_b5koh"]
 [ext_resource type="Texture2D" uid="uid://cbf3lderaeip3" path="res://Artwork/UI/ProtoLogo.png" id="3_eepvo"]
 [ext_resource type="Texture2D" uid="uid://cuux1q8w8kn7a" path="res://Artwork/UI/Box5.png" id="4_saup2"]
 [ext_resource type="Texture2D" uid="uid://d1khlqrctri0y" path="res://Artwork/UI/Gear.png" id="5_tndt8"]
 [ext_resource type="Script" uid="uid://rn6shf4n0ura" path="res://Scripts/WorldMap/RotatingBox.gd" id="6_ddxe7"]
-[ext_resource type="Shader" uid="uid://s7qv3pcwgmgf" path="res://Scripts/Shaders/Scroll.gdshader" id="7_ddxe7"]
+[ext_resource type="Shader" path="res://Scripts/Shaders/Scroll.gdshader" id="7_ddxe7"]
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="9_y66ou"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_saup2"]
@@ -77,6 +78,7 @@ offset_bottom = 150.0
 focus_next = NodePath("../Quit")
 theme = ExtResource("1_nskxk")
 text = "Settings"
+script = ExtResource("3_b5koh")
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 0
@@ -152,4 +154,5 @@ text = "November 25' Playtest"
 label_settings = SubResource("LabelSettings_b5koh")
 
 [connection signal="pressed" from="PlayGame" to="PlayGame" method="_on_pressed"]
+[connection signal="pressed" from="Settings" to="Settings" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]

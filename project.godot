@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalSceneLoader="*res://Scripts/GlobalScripts/GlobalSceneLoader.gd"
 GlobalNodeLoader="*res://Scripts/Gameplay/GlobalNodeLoader.gd"
+SettingsData="*res://Scripts/GlobalScripts/SettingsData.gd"
 
 [display]
 
