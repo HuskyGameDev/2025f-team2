@@ -162,7 +162,7 @@ metadata/_custom_type_script = "uid://4qlmb4eym05e"
 
 [resource]
 script = ExtResource("8_xqawk")
-levelName = "Tutorial"
+levelName = "Dead painter society"
 levelType = 2
 scene = "res://Scenes/ActualLevels/Level_0 (template)/Level_0.tscn"
 levelObject = SubResource("Resource_msl7w")

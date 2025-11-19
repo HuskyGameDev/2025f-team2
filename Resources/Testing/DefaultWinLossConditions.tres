@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_vyefx")
 killEnemiesCondition = true
-killEnemies = 5
+killEnemies = 2
 achieveScoreCondition = false
 targetScore = 0
 removeBlocksCondition = false

@@ -13,5 +13,5 @@ enum Backgrounds{
 @export var wlconditions: WinLossConditions
 @export var background : Backgrounds
 
-#automatically set
+#automatically set in enterLevel() in WordMap.gd
 var worldMapPos: int = -1

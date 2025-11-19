@@ -62,11 +62,6 @@ script = ExtResource("1_ljvl2")
 blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
-[sub_resource type="Resource" id="Resource_njg1g"]
-script = ExtResource("1_ljvl2")
-blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, null, null])
-metadata/_custom_type_script = "uid://38vanp3lsifc"
-
 [sub_resource type="Resource" id="Resource_n4e2a"]
 script = ExtResource("3_uyxr4")
 enemyType = 1
@@ -77,7 +72,7 @@ metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_fa8xx"]
 script = ExtResource("1_ljvl2")
-blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, SubResource("Resource_n4e2a"), null])
+blocks = Array[ExtResource("2_6gpne")]([SubResource("Resource_n4e2a"), null, null, null, null, null])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [sub_resource type="Resource" id="Resource_ndsd7"]
@@ -103,19 +98,24 @@ metadata/_custom_type_script = "uid://chbaj4mpel1bg"
 
 [sub_resource type="Resource" id="Resource_mpur8"]
 script = ExtResource("1_ljvl2")
-blocks = Array[ExtResource("2_6gpne")]([SubResource("Resource_67w55"), null, null, null, null, null])
+blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, SubResource("Resource_67w55"), null])
+metadata/_custom_type_script = "uid://38vanp3lsifc"
+
+[sub_resource type="Resource" id="Resource_njg1g"]
+script = ExtResource("1_ljvl2")
+blocks = Array[ExtResource("2_6gpne")]([null, null, null, null, null, null])
 metadata/_custom_type_script = "uid://38vanp3lsifc"
 
 [sub_resource type="Resource" id="Resource_fpuw0"]
 script = ExtResource("4_d6k74")
-levelOrder = Array[ExtResource("1_ljvl2")]([SubResource("Resource_l7i8f"), SubResource("Resource_ijm3m"), SubResource("Resource_njg1g"), SubResource("Resource_fa8xx"), SubResource("Resource_pd7j7"), SubResource("Resource_mpur8")])
+levelOrder = Array[ExtResource("1_ljvl2")]([SubResource("Resource_l7i8f"), SubResource("Resource_ijm3m"), SubResource("Resource_fa8xx"), SubResource("Resource_pd7j7"), SubResource("Resource_mpur8"), SubResource("Resource_njg1g")])
 
 [sub_resource type="Resource" id="Resource_8mvx8"]
 script = ExtResource("5_onloj")
 enemyPerBlock = Vector2i(10, 10)
 staticHealth = Vector2i(5, 10)
 floaterHealth = Vector2i(1, 1)
-floaterActionSpeed = Vector2(2, 2)
+floaterActionSpeed = Vector2(0.25, 1)
 painterHealth = Vector2i(3, 5)
 painterActionSpeed = Vector2(3, 5)
 metadata/_custom_type_script = "uid://dhggsd3rnk3oc"
