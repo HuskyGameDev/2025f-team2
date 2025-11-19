@@ -1,6 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://chhg2v24jqxi6"]
+[gd_scene load_steps=14 format=3 uid="uid://chhg2v24jqxi6"]
 
 [ext_resource type="Script" uid="uid://dwg5bfcx4263t" path="res://Scenes/TestScenes/SettingsMenu.gd" id="1_ji05a"]
+[ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="2_chell"]
+[ext_resource type="Texture2D" uid="uid://bojtibijjqckh" path="res://Artwork/WorldMap/PingUI.png" id="3_f0o54"]
+[ext_resource type="Texture2D" uid="uid://ce0xt248y0d5x" path="res://Artwork/GameObjects/Box.png" id="3_kekee"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wx2l1"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k2kie"]
+bg_color = Color(0.0807832, 0.0807834, 0.0807833, 1)
+border_width_top = 2
+border_color = Color(0.82605, 0.419228, 1, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1qgm"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alore"]
+bg_color = Color(0.169245, 0.169245, 0.169245, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rekv5"]
+bg_color = Color(0.0687982, 0.0687983, 0.0687982, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 105
+anti_aliasing = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wx2l1"]
+texture = ExtResource("3_f0o54")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+modulate_color = Color(0.396078, 0.192157, 0.447059, 1)
+
+[sub_resource type="Theme" id="Theme_kekee"]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("2_chell")
+Button/styles/disabled = SubResource("StyleBoxFlat_wx2l1")
+Button/styles/focus = SubResource("StyleBoxFlat_k2kie")
+Button/styles/hover = SubResource("StyleBoxFlat_c1qgm")
+Button/styles/normal = SubResource("StyleBoxFlat_alore")
+Button/styles/pressed = SubResource("StyleBoxFlat_rekv5")
+HSlider/icons/grabber = ExtResource("3_kekee")
+HSlider/icons/grabber_disabled = ExtResource("3_kekee")
+HSlider/icons/grabber_highlight = ExtResource("3_kekee")
+Panel/styles/panel = SubResource("StyleBoxTexture_wx2l1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0o54"]
+font = ExtResource("2_chell")
+font_size = 32
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_chell"]
+font = ExtResource("2_chell")
 
 [node name="settingsMenu" type="Control"]
 layout_mode = 3
@@ -15,6 +81,7 @@ script = ExtResource("1_ji05a")
 layout_mode = 0
 offset_right = 321.0
 offset_bottom = 183.0
+theme = SubResource("Theme_kekee")
 
 [node name="ResolutionDropdown" type="OptionButton" parent="Panel"]
 layout_mode = 0
@@ -22,21 +89,27 @@ offset_left = 1.0
 offset_top = 70.0
 offset_right = 33.0
 offset_bottom = 90.0
+focus_next = NodePath("../VolumeSlider")
+focus_previous = NodePath("../FullscreenToggle")
 
 [node name="FullscreenToggle" type="CheckBox" parent="Panel"]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 30.0
 offset_right = 108.0
-offset_bottom = 61.0
+offset_bottom = 54.0
+focus_next = NodePath("../ResolutionDropdown")
+focus_previous = NodePath("../CloseButton")
 text = "Fullscreen"
 
 [node name="VolumeSlider" type="HSlider" parent="Panel"]
 layout_mode = 0
-offset_left = 1.0
+offset_left = 2.0
 offset_top = 128.0
-offset_right = 136.0
+offset_right = 137.0
 offset_bottom = 150.0
+focus_next = NodePath("../CloseButton")
+focus_previous = NodePath("../ResolutionDropdown")
 
 [node name="KeybindContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -51,9 +124,11 @@ anchors_preset = -1
 anchor_right = 0.012
 anchor_bottom = 0.022
 offset_left = 195.0
-offset_top = 146.0
+offset_top = 162.0
 offset_right = 314.148
 offset_bottom = 172.974
+focus_next = NodePath("../FullscreenToggle")
+focus_previous = NodePath("../VolumeSlider")
 text = "Save and Close"
 
 [node name="MenuHeader" type="Label" parent="Panel"]
@@ -61,6 +136,7 @@ layout_mode = 0
 offset_right = 321.0
 offset_bottom = 23.0
 text = "Settings Menu"
+label_settings = SubResource("LabelSettings_f0o54")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Panel"]
@@ -68,9 +144,19 @@ layout_mode = 0
 offset_top = 163.0
 offset_right = 243.0
 offset_bottom = 212.0
-scale = Vector2(0.655, 0.655)
 text = "Settings are a work in Progress!
 "
+label_settings = SubResource("LabelSettings_chell")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 117.0
+offset_right = 245.0
+offset_bottom = 166.0
+text = "Volume
+"
+label_settings = SubResource("LabelSettings_chell")
 
 [connection signal="item_selected" from="Panel/ResolutionDropdown" to="." method="_on_resolution_selected"]
 [connection signal="toggled" from="Panel/FullscreenToggle" to="." method="_on_fullscreen_toggled"]

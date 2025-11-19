@@ -1,6 +1,8 @@
 # SettingsMenu.gd
 extends Control
 
+signal on_close
+
 #to go back to main menu
 @export var targetScene: String = "res://Scenes/TestScenes/MainMenu.tscn";
 
@@ -22,14 +24,16 @@ var resolutions := [
 	Vector2i(2560, 1440)   # 1440p
 ]
 
-func _ready():
+func inShow():
+	show()
 	populate_resolution_dropdown()
 	load_current_settings()
-
+	fullscreen_toggle.grab_focus()
 	resolution_dropdown.item_selected.connect(_on_resolution_selected)
 	fullscreen_toggle.toggled.connect(_on_fullscreen_toggled)
 	volume_slider.value_changed.connect(_on_volume_changed)
 	close_button.pressed.connect(_on_save_pressed)
+
 
 func populate_resolution_dropdown():
 	resolution_dropdown.clear()
@@ -83,7 +87,8 @@ func _on_volume_changed(value):
 
 #save settings and go back to main menu
 func _on_save_pressed():
+	on_close.emit()
 	SettingsData.save_settings()
 	get_tree().paused = false
-	GlobalSceneLoader.load_level(targetScene)
-	queue_free()
+	#GlobalSceneLoader.load_level(targetScene)
+	hide()

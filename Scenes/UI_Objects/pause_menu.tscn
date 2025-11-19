@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://c1tvvf4myq6lo" path="res://Scripts/UI_Scripts/OtherSceneButton.gd" id="2_2hj8d"]
 [ext_resource type="FontFile" uid="uid://ck46iqrcecvvq" path="res://Artwork/Text/PearSoda.ttf" id="2_8iu4d"]
 [ext_resource type="Script" uid="uid://cu2brcrsxiqb5" path="res://Scripts/UI_Scripts/Return_World_Map.gd" id="2_yuavk"]
-[ext_resource type="Texture2D" uid="uid://ct4sb7px278c" path="res://Artwork/LevelSelectImages/New Project.jpg" id="7_8iu4d"]
+[ext_resource type="Texture2D" uid="uid://nx0c0kgeditj" path="res://Artwork/LevelSelectImages/New Project.png" id="7_8iu4d"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6kkn2"]
 font = ExtResource("2_8iu4d")
@@ -106,8 +106,8 @@ theme = SubResource("Theme_8iu4d")
 
 [node name="NewProject" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(220.737, 89.7036)
-scale = Vector2(0.526316, 0.592834)
+position = Vector2(217, 90)
+scale = Vector2(0.085, 0.085)
 texture = ExtResource("7_8iu4d")
 
 [connection signal="pressed" from="Resume" to="Resume" method="_on_pressed"]

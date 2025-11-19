@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/New Project.png-012ee4b58c787e231381c1e12a4fd
 
 [params]
 
-compress/mode=4
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=0

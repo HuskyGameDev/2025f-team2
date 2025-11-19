@@ -2,7 +2,7 @@
 extends Button
 
 #set this var to whatever scene you want this button to send you to
-@export var targetScene: String = "res://Scenes/TestScenes/SettingsMenu.tscn";
+@export var settings : Control
 
 func _ready() -> void:
 	if name == "PlayGame":
@@ -10,5 +10,8 @@ func _ready() -> void:
 
 #When the button is pressed, loads the next scene
 func _on_pressed() -> void:
-	get_tree().paused = false
-	GlobalSceneLoader.load_level(targetScene)
+	settings.inShow()
+	settings.connect("on_close", returnFocus)
+
+func returnFocus():
+	grab_focus()
