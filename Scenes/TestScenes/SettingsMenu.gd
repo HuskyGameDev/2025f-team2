@@ -13,15 +13,14 @@ signal on_close
 
 # Example resolutions to offer
 var resolutions := [
-	Vector2i(800, 600),    # 4:3 classic
-	Vector2i(1024, 576),   # 16:9 low-end
-	Vector2i(1024, 768),   # 4:3
-	Vector2i(1152, 648),   # 16:9 HD-ready
-	Vector2i(1280, 720),   # 720p (default)
-	Vector2i(1366, 768),   # common laptop resolution
-	Vector2i(1600, 900),   # 900p
-	Vector2i(1920, 1080),  # 1080p
-	Vector2i(2560, 1440)   # 1440p
+	Vector2i(320, 180),    # 4:3 classic
+	Vector2i(640, 320),    # 4:3 classic
+	Vector2i(960, 540),    # 4:3 classic
+	Vector2i(1280, 720),    # 4:3 classic
+	Vector2i(1600, 900),    # 4:3 classic
+	Vector2i(1920, 1080),    # 4:3 classic
+	Vector2i(2240, 1260),    # 4:3 classic
+	Vector2i(2560, 1440)    # 4:3 classic
 ]
 
 func inShow():
@@ -52,7 +51,7 @@ func load_current_settings():
 	# Fullscreen
 	fullscreen_toggle.button_pressed = s.fullscreen
 	DisplayServer.window_set_mode(
-		DisplayServer.WINDOW_MODE_FULLSCREEN if s.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
+		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN if s.fullscreen else DisplayServer.WINDOW_MODE_WINDOWED
 	)
 
 	# Volume
