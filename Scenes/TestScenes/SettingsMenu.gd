@@ -23,6 +23,9 @@ var resolutions := [
 	Vector2i(2560, 1440)    # 4:3 classic
 ]
 
+func _ready() -> void:
+	load_current_settings()
+
 func inShow():
 	show()
 	populate_resolution_dropdown()

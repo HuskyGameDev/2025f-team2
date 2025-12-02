@@ -2,10 +2,16 @@ extends Node
 
 signal onTransitionDone
 
+var isLoading = false
+
+
 func debug_load(targetScene: String):
 	get_tree().change_scene_to_file(targetScene)
 
 func load_level(targetScene: String, levelState : LevelState = null, worldMapPos: int = -1):
+	if isLoading:
+		return
+	isLoading = true
 	var transition : Transition = load("res://Scenes/UI_Objects/Transitions/transition1.tscn").instantiate()
 	add_child(transition)
 	await transition.animator.animation_finished
@@ -61,3 +67,4 @@ func load_level(targetScene: String, levelState : LevelState = null, worldMapPos
 
 func emitTransDone(name:String):
 	onTransitionDone.emit()
+	isLoading = false
