@@ -52,7 +52,7 @@ size = Vector2(36.25, 36.25)
 [sub_resource type="Curve3D" id="Curve3D_e7gs1"]
 bake_interval = 0.1
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.181, -0.0553299, -4.945, -0.5, 0, -0.79, 0, 0, 0, 0.269687, 0.00998545, 1.70444, -0.125, 0, -0.115, 0, 0, 0, 1.421, 0, 2.432, 0, 0, 0, 0, 0, 0, 2.468, 0, 2.656, 0, 0, 0, 0, 0, 0, 3.06, 0, 3.516, 0, 0, 0, 0, 0, 0, 2.85064, 0.0140328, 4.83, 0, 0, 0, 0, 0, 0, 2.18113, -0.000976324, 6.15417, -3.485, 0, 0.995, 0, 0, 0, 4.82879, 0.00903535, 8.0998, 0, 0, 0, 0, 0, 0, 6.91732, -5.24521e-06, 7.43115, 0, 0, 0, 0, 0, 0, 7.96647, -5.24521e-06, 6.07114, 0, 0, 0, 0, 0, 0, 9.17106, -5.24521e-06, 5.39114, 0, 0, 0, 0, 0, 0, 10.2354, -5.24521e-06, 5.00051, 0, 0, 0, 0, 0, 0, 11.8536, -5.24521e-06, 5.00051, 0, 0, 0, 0, 0, 0, 14.299, -0.0927787, 5.32417),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.181, -0.0553299, -4.945, -0.5, 0, -0.79, 0, 0, 0.54, 0.269687, 0.00998545, 0.763929, -0.347, -0.016, -0.517, 0.607, 0, 0.152, 1.10026, 0, 2.23583, 0.11, 0, 0.215, 0, 0, 0, 2.468, 0, 2.656, 0, 0, 0, 0, 0, 0, 3.06, 0, 3.511, 0, 0, 0, 0, 0, 0, 2.85064, 0.0140328, 4.83, 0, 0, 0, 0, 0, 0, 2.18113, -0.000976324, 6.15417, -3.485, 0, 0.995, 0, 0, 0, 4.82879, 0.00903535, 8.0998, 0, 0, 0, 0, 0, 0, 6.91732, -5.24521e-06, 7.43115, 0, 0, 0, 0, 0, 0, 7.96647, -5.24521e-06, 6.07114, 0, 0, 0, 0, 0, 0, 9.17106, -5.24521e-06, 5.39114, 0, 0, 0, 0, 0, 0, 10.2354, -5.24521e-06, 5.00051, 0, 0, 0, 0, 0, 0, 11.8536, -5.24521e-06, 5.00051, 0, 0, 0, 0, 0, 0, 14.299, -0.0927787, 5.32417),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 14
@@ -406,7 +406,7 @@ polygon = PackedVector2Array(0, 0, 0, 0.1, -1, 0.1, -1, 0)
 mode = 2
 path_node = NodePath("../WorldPlane/Path3D")
 path_interval_type = 0
-path_interval = 0.37
+path_interval = 0.32
 path_simplify_angle = 0.0
 path_rotation = 2
 path_rotation_accurate = false
@@ -450,6 +450,58 @@ texture_filter = 0
 texture = ExtResource("22_50wd3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gear3"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
+
+[node name="Gear4" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.725761, 0, -2.7761)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear4"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
+
+[node name="Gear5" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2455, 0, -4.23817)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear5"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
+
+[node name="Gear6" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8864, 0, -0.671667)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear6"]
+libraries = {
+&"": SubResource("AnimationLibrary_23pus")
+}
+autoplay = "rotate"
+
+[node name="Gear7" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.474642, 0, -1.91088)
+modulate = Color(0.872187, 0.765739, 0.488182, 1)
+pixel_size = 0.0075
+texture_filter = 0
+texture = ExtResource("22_50wd3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gear7"]
 libraries = {
 &"": SubResource("AnimationLibrary_23pus")
 }
